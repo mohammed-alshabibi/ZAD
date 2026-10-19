@@ -1,0 +1,14 @@
+{
+  "@@locale": "en",
+  "appName": "ZAD",
+  "splashTagline": "Good meals from kitchens near you,\nsaved before closing time.",
+  "@splashTagline": { "description": "Two-line tagline under the logo on the splash screen." },
+  "getStarted": "Get started",
+  "haveAccount": "I already have an account",
+  "splashLegal": "By continuing, you agree to ZAD's Terms and Privacy Policy.",
+  "comingSoon": "{screen} is coming soon.",
+  "@comingSoon": {
+    "description": "Placeholder body for screens that are not built yet.",
+    "placeholders": { "screen": { "type": "String" } }
+  }
+}

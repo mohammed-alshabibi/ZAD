@@ -1,0 +1,34 @@
+# ZAD dev stack: Django API + MongoDB.
+#   docker compose up --build        start (API on http://<laptop-ip>:8000)
+#   docker compose exec backend python manage.py <command>
+# The Flutter app is not containerised; it runs on the phone.
+
+name: zad
+
+services:
+  mongo:
+    image: mongo:7.0
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "127.0.0.1:27017:27017" # laptop only, for MongoDB Compass
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    env_file: ./backend/.env
+    ports:
+      - "8000:8000" # all interfaces, so phones on the same Wi-Fi can reach it
+    volumes:
+      - ./backend:/app # live reload while coding
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+volumes:
+  mongo-data:

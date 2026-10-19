@@ -1,0 +1,14 @@
+# Secrets (CLAUDE.md §13)
+.env
+backend/.env
+**/firebase-service-account*.json
+
+# Third-party reference screenshots (Mobbin): local only
+Zesty/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+backend/media/
