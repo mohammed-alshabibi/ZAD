@@ -43,7 +43,7 @@ In-app payments · POS/CSV import · ratings · reports/moderation queue · emai
 |---|---|---|
 | App | Flutter + Dart, `go_router`, Riverpod, `dio` | One app with three route groups (user / restaurant / admin). Plain Dart model classes (`fromJson`), no code generation. |
 | UI | Material 3 + `ZadColors` `ThemeExtension` (mirrors Figma tokens), `google_fonts`, `fl_chart` | Reuse the Figma components as widgets (§14). |
-| Maps & location | `google_maps_flutter`, `geolocator`, `url_launcher` (directions) | Foreground location only. Directions open Google Maps. |
+| Maps & location | **Mapbox** `mapbox_maps_flutter` (style `dark-v11`) + Mapbox Geocoding v6 for "address from the pin" (owner's choice, 2026-10-21), `geolocator`, `url_launcher` (directions) | Foreground location only. Directions open Google Maps. Free Mapbox tier without a card: 100 monthly active phones, enough for the demo. Public token in `app/config/mapbox.json` (git-ignored, copy `mapbox.example.json`), passed with `--dart-define-from-file`. |
 | Push | Firebase Cloud Messaging (`firebase_messaging` + `firebase-admin` on the server) | One FCM token per user, stored on the user. |
 | Backend | Django 5 + DRF, `djangorestframework-simplejwt` | JWT without blacklist (no extra tables). Logout = delete tokens on the phone. |
 | Database | **MongoDB 7** via `django-mongodb-backend` 5.2.4 (Django 5.2); raw `aggregate()` for `$geoNear` | Local `mongo:7.0` container by default; switch to **Atlas M0** by changing `MONGODB_URI` in `backend/.env`. |
@@ -278,12 +278,12 @@ Hours for one person, including testing on a phone. Weeks at 10 h/week. Add ~20%
 - GeoJSON is **longitude first**. User locations rounded to 3 decimals.
 - Indexes are created in code (`python manage.py ensure_indexes`).
 - Synthetic data is always `source='synthetic'` and never reported as real accuracy.
-- Secrets (`DJANGO_SECRET_KEY`, `MONGODB_URI`, Firebase service account) live in `backend/.env`, never in git or in the app.
+- Secrets (`DJANGO_SECRET_KEY`, `MONGODB_URI`, Firebase service account) live in `backend/.env`, never in git or in the app. The Mapbox public token lives in `app/config/mapbox.json` (git-ignored).
 - **Git:** repo https://github.com/mohammed-alshabibi/ZAD. `main` holds working code. Every new feature or bug fix gets its own branch from `main` (`feature/<short-name>` or `fix/<short-name>`), merged back when it works. `Zesty/` (Mobbin screenshots) stays out of git.
 
 ```
 # app
-cd app && flutter pub get && flutter run          # API base URL = http://<laptop-ip>:8000
+cd app && flutter pub get && flutter run --dart-define-from-file=config/mapbox.json   # API base URL = http://<laptop-ip>:8000
 flutter analyze && flutter test
 flutter gen-l10n
 # backend (Docker Compose, from the repo root; first time: copy backend/.env.example to backend/.env)

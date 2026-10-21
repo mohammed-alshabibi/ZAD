@@ -12,3 +12,6 @@ __pycache__/
 .pytest_cache/
 .venv/
 backend/media/
+
+# Mapbox token for the app (copy app/config/mapbox.example.json)
+app/config/mapbox.json

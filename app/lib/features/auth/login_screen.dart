@@ -9,6 +9,7 @@ import '../../core/theme/zad_type.dart';
 import '../../core/widgets/zad_button.dart';
 import '../../core/widgets/zad_icon.dart';
 import '../../core/widgets/zad_text_field.dart';
+import 'application/landing.dart';
 import 'application/session.dart';
 import 'data/auth_repository.dart';
 import 'domain/auth_validators.dart';
@@ -47,7 +48,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     setState(() => _busy = true);
     try {
       final user = await ref.read(sessionProvider.notifier).login(email: _email.text, password: _password.text);
-      if (mounted) context.go(homeForRole(user.role));
+      final route = await landingRouteFor(ref, user);
+      if (mounted) context.go(route);
     } on AuthException catch (e) {
       if (mounted) setState(() => _serverError = authErrorText(AppLocalizations.of(context), e));
     } catch (e) {

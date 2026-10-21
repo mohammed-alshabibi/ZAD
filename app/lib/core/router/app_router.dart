@@ -7,6 +7,10 @@ import '../../features/auth/location_permission_screen.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/auth/register_screen.dart';
 import '../../features/auth/splash_screen.dart';
+import '../../features/restaurant/onboarding/pending_approval_screen.dart';
+import '../../features/restaurant/onboarding/pickup_location_screen.dart';
+import '../../features/restaurant/onboarding/restaurant_details_screen.dart';
+import '../../features/restaurant/onboarding/typical_day_screen.dart';
 import '../widgets/placeholder_screen.dart';
 import 'routes.dart';
 
@@ -33,10 +37,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: Routes.userHome, builder: (_, _) => const PlaceholderScreen(name: 'User home')),
       GoRoute(path: Routes.setArea, builder: (_, _) => const PlaceholderScreen(name: 'Set my area')),
       GoRoute(path: Routes.restaurantHome, builder: (_, _) => const PlaceholderScreen(name: 'Restaurant home')),
-      GoRoute(
-        path: Routes.restaurantOnboarding,
-        builder: (_, _) => const PlaceholderScreen(name: 'Restaurant setup'),
-      ),
+      GoRoute(path: Routes.restaurantOnboarding, builder: (_, _) => const RestaurantDetailsScreen()),
+      GoRoute(path: Routes.restaurantOnboardingLocation, builder: (_, _) => const PickupLocationScreen()),
+      GoRoute(path: Routes.restaurantOnboardingTypicalDay, builder: (_, _) => const TypicalDayScreen()),
+      GoRoute(path: Routes.restaurantPending, builder: (_, _) => const PendingApprovalScreen()),
       GoRoute(path: Routes.adminHome, builder: (_, _) => const PlaceholderScreen(name: 'Admin overview')),
     ],
   );

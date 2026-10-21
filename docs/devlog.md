@@ -2,6 +2,11 @@
 
 Three lines per session: done / next / blockers.
 
+## 2026-10-21 · P1 UI, session 3 (`feature/restaurant-onboarding`)
+- **Done:** auth work merged into `main`. **Mapbox replaces Google Maps** (no billing setup; free tier = 100 monthly active phones): `mapbox_maps_flutter` with the `dark-v11` style, token in git-ignored `app/config/mapbox.json`, run with `--dart-define-from-file=config/mapbox.json` (VS Code "ZAD app" launch config does this). Restaurant onboarding built from Figma: Restaurant details (38:768), Pickup location (38:873, real map + fixed centre pin + Mapbox reverse geocoding, address editable), Your typical day (38:1033, stepper + surplus chips + forecast preview + Restaurant Terms), Pending approval (38:1100, pull down to re-check). `RestaurantRepository` + `FakeRestaurantRepository` (`POST /restaurants`, `GET`/`PATCH /restaurants/me`); after login a restaurant goes to onboarding / pending / home by status. New widgets: `ZadChip`, `ZadFormRow`, `ZadStepper`, `ZadSelectedMapPin`. New demo login karak@example.com (restaurant waiting for review). 27 tests pass, analyzer clean.
+- **Next:** Restaurant home (29:400) so approved restaurants land somewhere real, then the user Home map (reuse the Mapbox setup).
+- **Blockers:** the logo upload tile is not wired yet (needs `image_picker`; photos are first in the cut order).
+
 ## 2026-10-19 · P1 UI, session 2 (`feature/auth-screens`)
 - **Done:** Account type (36:643), Register (36:706), Login (36:865) and Location permission (36:786) built from Figma, plus widgets `ZadIcon`, `ZadTextField`, `ZadChoiceCard`, `ZadCheckbox`, `ZadMapPin`, and a loading state on `ZadButton`. First fake data layer: `AuthRepository` + `FakeAuthRepository` (§5 JSON shapes) behind `sessionProvider`; role routing after login/signup; real OS location prompt via `geolocator`, rounded to 3 decimals. Demo logins (password `zad12345`): aisha@example.com (user), khubz@example.com (restaurant), admin@zad.om (admin). 13 tests pass, analyzer clean, screens checked against Figma in a 402×874 web render.
 - **Next:** Restaurant onboarding (3 steps + pending), then the user Home map. Later: route guards by role, and the "Set my area" pin screen.

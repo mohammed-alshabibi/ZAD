@@ -21,22 +21,28 @@ class AuthLayout extends StatelessWidget {
     this.stepLabel,
     this.glow = true,
     this.crossAxisAlignment = CrossAxisAlignment.start,
+    this.physics,
   });
 
   final List<Widget> children;
   final List<Widget> actions;
 
-  /// Null hides the back button and the whole header row.
+  /// Null hides the back button. The header row shows if there is a back
+  /// button or a [stepLabel].
   final VoidCallback? onBack;
   final String? stepLabel;
   final bool glow;
   final CrossAxisAlignment crossAxisAlignment;
+
+  /// e.g. [AlwaysScrollableScrollPhysics] so pull-to-refresh works on short content.
+  final ScrollPhysics? physics;
 
   @override
   Widget build(BuildContext context) {
     final z = context.zad;
     final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
     final keyboardOpen = MediaQuery.viewInsetsOf(context).bottom > 0;
+    final hasHeader = onBack != null || stepLabel != null;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light.copyWith(statusBarColor: Colors.transparent),
@@ -49,10 +55,11 @@ class AuthLayout extends StatelessWidget {
               bottom: false,
               child: Column(
                 children: [
-                  if (onBack != null) _header(context, z),
+                  if (hasHeader) _header(context, z),
                   Expanded(
                     child: SingleChildScrollView(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, onBack != null ? 24 : 38, 20, 20),
+                      physics: physics,
+                      padding: EdgeInsetsDirectional.fromSTEB(20, hasHeader ? 24 : 38, 20, 20),
                       child: Column(crossAxisAlignment: crossAxisAlignment, children: children),
                     ),
                   ),
@@ -78,7 +85,8 @@ class AuthLayout extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Align(alignment: AlignmentDirectional.centerStart, child: _backButton(context, z)),
+            if (onBack != null)
+              Align(alignment: AlignmentDirectional.centerStart, child: _backButton(context, z)),
             if (stepLabel != null)
               Text(stepLabel!, style: ZadType.body(size: 14, weight: FontWeight.w500, color: z.onFrondMuted)),
           ],
