@@ -209,4 +209,285 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get locationFailed =>
       'We couldn’t find your location. Try again or set your area.';
+
+  @override
+  String onboardingStep(int step, int total) {
+    return 'Restaurant setup · $step of $total';
+  }
+
+  @override
+  String get detailsTitle => 'About your restaurant';
+
+  @override
+  String get detailsBody => 'This is what people see next to your meals.';
+
+  @override
+  String get addLogo => 'Add a logo';
+
+  @override
+  String get addLogoHint => 'Optional · a square image works best';
+
+  @override
+  String get logoComingSoon =>
+      'Logo upload is coming soon. You can skip it for now.';
+
+  @override
+  String get fieldRestaurantName => 'Restaurant name';
+
+  @override
+  String get fieldCuisine => 'Cuisine';
+
+  @override
+  String get fieldPhone => 'Phone';
+
+  @override
+  String get phoneHelper => 'Shown on your meals so people can call you.';
+
+  @override
+  String get fieldDescription => 'Short description (optional)';
+
+  @override
+  String get cuisineMore => 'More…';
+
+  @override
+  String get cuisineBakery => 'Bakery & sweets';
+
+  @override
+  String get cuisineOmani => 'Omani';
+
+  @override
+  String get cuisineArabic => 'Arabic';
+
+  @override
+  String get cuisineIndian => 'Indian';
+
+  @override
+  String get cuisineCafe => 'Café';
+
+  @override
+  String get cuisineFastFood => 'Fast food';
+
+  @override
+  String get cuisineHealthy => 'Healthy';
+
+  @override
+  String get cuisineGrill => 'Grill & shawarma';
+
+  @override
+  String get cuisineSeafood => 'Seafood';
+
+  @override
+  String get cuisineAsian => 'Asian';
+
+  @override
+  String get cuisineInternational => 'International';
+
+  @override
+  String get cuisineOther => 'Other';
+
+  @override
+  String get errorRestaurantNameRequired => 'Enter your restaurant’s name.';
+
+  @override
+  String get errorRestaurantNameTooLong => 'Keep the name under 60 characters.';
+
+  @override
+  String get errorCuisineRequired => 'Pick the cuisine that fits best.';
+
+  @override
+  String get errorPhoneRequired => 'Enter a number people can call.';
+
+  @override
+  String get errorPhoneInvalid => 'Enter an Omani number, like +968 9123 4567.';
+
+  @override
+  String get errorDescriptionTooLong => 'Keep it under 140 characters.';
+
+  @override
+  String get errorAddressRequired => 'Add the pickup address.';
+
+  @override
+  String get pickupTitle => 'Where do people pick up?';
+
+  @override
+  String get pickupBody =>
+      'People see this pin on the map and get directions to it.';
+
+  @override
+  String get pickupMoveHint => 'Move the map to put the pin on your entrance';
+
+  @override
+  String pickupFromPin(String city) {
+    return '$city · filled in from the pin';
+  }
+
+  @override
+  String get pickupEditHint => 'Tap to add the building or a landmark';
+
+  @override
+  String get pickupFindingAddress => 'Finding the address…';
+
+  @override
+  String get pickupNoAddress => 'Add the pickup address';
+
+  @override
+  String get pickupLocateMe => 'Go to my location';
+
+  @override
+  String get confirmLocation => 'Confirm location';
+
+  @override
+  String get pickupAddressTitle => 'Pickup address';
+
+  @override
+  String get pickupAddressField => 'Street, building, landmark';
+
+  @override
+  String get pickupAddressHelper =>
+      'Anything that helps people find your entrance.';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get mapUnavailable =>
+      'The map isn’t available in this build, so the pin is set to Al Khuwair, Muscat. Run on Android with the Mapbox token to move it.';
+
+  @override
+  String get typicalDayTitle => 'Your typical day';
+
+  @override
+  String get typicalDayBody =>
+      'Two rough answers give you a first surplus forecast. You can change them later in Settings.';
+
+  @override
+  String get mealsPerDayQuestion => 'Meals you prepare on a normal day';
+
+  @override
+  String get mealsUnit => 'meals';
+
+  @override
+  String get fewerMeals => 'Fewer meals';
+
+  @override
+  String get moreMeals => 'More meals';
+
+  @override
+  String get leftOverQuestion => 'How much is usually left at closing?';
+
+  @override
+  String get surplusUnder5 => 'Under 5%';
+
+  @override
+  String get surplus5to10 => '5–10%';
+
+  @override
+  String get surplus10to20 => '10–20%';
+
+  @override
+  String get surplusOver20 => 'Over 20%';
+
+  @override
+  String firstForecast(int low, int high) {
+    return 'First forecast: ~$low–$high meals a day';
+  }
+
+  @override
+  String get firstForecastNote =>
+      'A rough estimate until you’ve logged 14 days of real numbers.';
+
+  @override
+  String get firstForecastEmptyTitle => 'Your first forecast';
+
+  @override
+  String get firstForecastEmptyNote =>
+      'Pick how much is usually left to see it.';
+
+  @override
+  String get errorSurplusRequired => 'Pick the closest answer.';
+
+  @override
+  String get restaurantTermsPrefix => 'I accept the ';
+
+  @override
+  String get restaurantTerms => 'Restaurant Terms';
+
+  @override
+  String get restaurantTermsSuffix =>
+      '. We are responsible for the safety, labelling and allergen information of the food we post.';
+
+  @override
+  String get errorRestaurantTermsRequired =>
+      'Please accept the Restaurant Terms to continue.';
+
+  @override
+  String get submitForReview => 'Submit for review';
+
+  @override
+  String get saveChanges => 'Save changes';
+
+  @override
+  String get pendingTitle => 'Thanks! We’re checking your restaurant';
+
+  @override
+  String get pendingBody =>
+      'Our team usually reviews new restaurants within a day. We’ll send you a notification when you can post meals.';
+
+  @override
+  String get rejectedTitle => 'We couldn’t approve your restaurant';
+
+  @override
+  String get rejectedBody =>
+      'Check your details and send them again. Our team will take another look.';
+
+  @override
+  String get suspendedTitle => 'Your restaurant is paused';
+
+  @override
+  String get suspendedBody =>
+      'The ZAD team has paused your meals for now. Contact us to find out why.';
+
+  @override
+  String get pendingStepAccount => 'Account created';
+
+  @override
+  String get pendingStepDetails => 'Restaurant details sent';
+
+  @override
+  String get pendingStepReview => 'Review by the ZAD team';
+
+  @override
+  String get pendingInProgress => 'In progress';
+
+  @override
+  String get pendingNotApproved => 'Not approved';
+
+  @override
+  String get pendingPaused => 'Paused';
+
+  @override
+  String get pendingStepFirstSurplus => 'Post your first surplus';
+
+  @override
+  String get pendingUnlocks => 'Unlocks after approval';
+
+  @override
+  String get editRestaurantDetails => 'Edit restaurant details';
+
+  @override
+  String get logOut => 'Log out';
+
+  @override
+  String todayAt(String time) {
+    return 'Today, $time';
+  }
+
+  @override
+  String yesterdayAt(String time) {
+    return 'Yesterday, $time';
+  }
+
+  @override
+  String get errorLoadRestaurant =>
+      'We couldn’t load your restaurant. Pull down to try again.';
 }

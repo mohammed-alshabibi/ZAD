@@ -5,7 +5,8 @@ import 'auth_repository.dart';
 /// shapes and parses them with the same `fromJson` the real repository will use.
 ///
 /// Demo accounts (password `zad12345` for all):
-/// aisha@example.com (user) · khubz@example.com (restaurant) · admin@zad.om (admin).
+/// aisha@example.com (user) · khubz@example.com (restaurant, approved) ·
+/// karak@example.com (restaurant, waiting for review) · admin@zad.om (admin).
 class FakeAuthRepository implements AuthRepository {
   FakeAuthRepository({this.latency = const Duration(milliseconds: 500)});
 
@@ -26,6 +27,7 @@ class FakeAuthRepository implements AuthRepository {
         'notify_enabled': true,
         // Al Khuwair, Muscat. GeoJSON: [lng, lat].
         'location': {'type': 'Point', 'coordinates': [58.391, 23.588]},
+        'created_at': '2026-09-14T16:20:00Z',
       },
     ),
     'khubz@example.com': _Account(
@@ -39,6 +41,21 @@ class FakeAuthRepository implements AuthRepository {
         'status': 'active',
         'notify_enabled': true,
         'location': null,
+        'created_at': '2026-09-02T10:05:00Z',
+      },
+    ),
+    'karak@example.com': _Account(
+      password: demoPassword,
+      json: {
+        'id': 'u_karak',
+        'email': 'karak@example.com',
+        'role': 'restaurant',
+        'full_name': 'Maryam Al-Rawahi',
+        'phone': null,
+        'status': 'active',
+        'notify_enabled': true,
+        'location': null,
+        'created_at': '2026-10-21T06:58:00Z',
       },
     ),
     'admin@zad.om': _Account(
@@ -52,6 +69,7 @@ class FakeAuthRepository implements AuthRepository {
         'status': 'active',
         'notify_enabled': false,
         'location': null,
+        'created_at': '2026-08-30T08:00:00Z',
       },
     ),
   };
@@ -80,6 +98,7 @@ class FakeAuthRepository implements AuthRepository {
         'status': 'active',
         'notify_enabled': true,
         'location': null,
+        'created_at': DateTime.now().toUtc().toIso8601String(),
       },
     );
     _signedInEmail = key;

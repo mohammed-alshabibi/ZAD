@@ -20,6 +20,7 @@ class AppUser {
     this.phone,
     this.lat,
     this.lng,
+    this.createdAt,
   });
 
   final String id;
@@ -35,6 +36,9 @@ class AppUser {
   /// Last known location, already rounded to 3 decimals by the app.
   final double? lat;
   final double? lng;
+
+  /// When the account was made (UTC).
+  final DateTime? createdAt;
 
   bool get hasLocation => lat != null && lng != null;
   String get firstName => fullName.trim().split(RegExp(r'\s+')).first;
@@ -52,6 +56,7 @@ class AppUser {
       notifyEnabled: json['notify_enabled'] as bool,
       lng: (coords?[0] as num?)?.toDouble(),
       lat: (coords?[1] as num?)?.toDouble(),
+      createdAt: json['created_at'] == null ? null : DateTime.parse(json['created_at'] as String),
     );
   }
 }

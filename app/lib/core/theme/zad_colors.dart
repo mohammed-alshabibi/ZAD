@@ -51,6 +51,12 @@ class ZadColors extends ThemeExtension<ZadColors> {
   /// Map pin drop shadow, black @ 40% (a raw effect in Figma, not a variable).
   static const Color pinShadow = Color(0x66000000);
 
+  /// Text shadow under map pin labels, black @ 80% (a raw effect in Figma).
+  static const Color labelShadow = Color(0xCC000000);
+
+  /// Floating map button shadow, black @ 35% (a raw effect in Figma).
+  static const Color buttonShadow = Color(0x59000000);
+
   final Color frond;
   final Color rib;
   final Color sap;

@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- API calls and Mapbox map tiles. -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <!-- Foreground location only, to find meals nearby (CLAUDE.md §6). -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

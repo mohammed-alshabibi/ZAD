@@ -15,6 +15,12 @@ abstract final class Routes {
   static const userHome = '/user';
   static const setArea = '/user/set-area';
   static const restaurantHome = '/restaurant';
+
+  /// Restaurant setup: details → pickup location → typical day → pending.
   static const restaurantOnboarding = '/restaurant/onboarding';
+  static const restaurantOnboardingLocation = '/restaurant/onboarding/location';
+  static const restaurantOnboardingTypicalDay = '/restaurant/onboarding/typical-day';
+  static const restaurantPending = '/restaurant/pending';
+
   static const adminHome = '/admin';
 }

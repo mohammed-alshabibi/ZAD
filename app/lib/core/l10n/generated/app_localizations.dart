@@ -459,6 +459,522 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We couldn’t find your location. Try again or set your area.'**
   String get locationFailed;
+
+  /// Progress label at the top of the restaurant onboarding screens.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurant setup · {step} of {total}'**
+  String onboardingStep(int step, int total);
+
+  /// No description provided for @detailsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About your restaurant'**
+  String get detailsTitle;
+
+  /// No description provided for @detailsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This is what people see next to your meals.'**
+  String get detailsBody;
+
+  /// No description provided for @addLogo.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a logo'**
+  String get addLogo;
+
+  /// No description provided for @addLogoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional · a square image works best'**
+  String get addLogoHint;
+
+  /// No description provided for @logoComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Logo upload is coming soon. You can skip it for now.'**
+  String get logoComingSoon;
+
+  /// No description provided for @fieldRestaurantName.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurant name'**
+  String get fieldRestaurantName;
+
+  /// No description provided for @fieldCuisine.
+  ///
+  /// In en, this message translates to:
+  /// **'Cuisine'**
+  String get fieldCuisine;
+
+  /// No description provided for @fieldPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get fieldPhone;
+
+  /// No description provided for @phoneHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown on your meals so people can call you.'**
+  String get phoneHelper;
+
+  /// No description provided for @fieldDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Short description (optional)'**
+  String get fieldDescription;
+
+  /// Last cuisine chip; shows the rest of the cuisines.
+  ///
+  /// In en, this message translates to:
+  /// **'More…'**
+  String get cuisineMore;
+
+  /// No description provided for @cuisineBakery.
+  ///
+  /// In en, this message translates to:
+  /// **'Bakery & sweets'**
+  String get cuisineBakery;
+
+  /// No description provided for @cuisineOmani.
+  ///
+  /// In en, this message translates to:
+  /// **'Omani'**
+  String get cuisineOmani;
+
+  /// No description provided for @cuisineArabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get cuisineArabic;
+
+  /// No description provided for @cuisineIndian.
+  ///
+  /// In en, this message translates to:
+  /// **'Indian'**
+  String get cuisineIndian;
+
+  /// No description provided for @cuisineCafe.
+  ///
+  /// In en, this message translates to:
+  /// **'Café'**
+  String get cuisineCafe;
+
+  /// No description provided for @cuisineFastFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Fast food'**
+  String get cuisineFastFood;
+
+  /// No description provided for @cuisineHealthy.
+  ///
+  /// In en, this message translates to:
+  /// **'Healthy'**
+  String get cuisineHealthy;
+
+  /// No description provided for @cuisineGrill.
+  ///
+  /// In en, this message translates to:
+  /// **'Grill & shawarma'**
+  String get cuisineGrill;
+
+  /// No description provided for @cuisineSeafood.
+  ///
+  /// In en, this message translates to:
+  /// **'Seafood'**
+  String get cuisineSeafood;
+
+  /// No description provided for @cuisineAsian.
+  ///
+  /// In en, this message translates to:
+  /// **'Asian'**
+  String get cuisineAsian;
+
+  /// No description provided for @cuisineInternational.
+  ///
+  /// In en, this message translates to:
+  /// **'International'**
+  String get cuisineInternational;
+
+  /// No description provided for @cuisineOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get cuisineOther;
+
+  /// No description provided for @errorRestaurantNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your restaurant’s name.'**
+  String get errorRestaurantNameRequired;
+
+  /// No description provided for @errorRestaurantNameTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep the name under 60 characters.'**
+  String get errorRestaurantNameTooLong;
+
+  /// No description provided for @errorCuisineRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the cuisine that fits best.'**
+  String get errorCuisineRequired;
+
+  /// No description provided for @errorPhoneRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a number people can call.'**
+  String get errorPhoneRequired;
+
+  /// No description provided for @errorPhoneInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter an Omani number, like +968 9123 4567.'**
+  String get errorPhoneInvalid;
+
+  /// No description provided for @errorDescriptionTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep it under 140 characters.'**
+  String get errorDescriptionTooLong;
+
+  /// No description provided for @errorAddressRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the pickup address.'**
+  String get errorAddressRequired;
+
+  /// No description provided for @pickupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Where do people pick up?'**
+  String get pickupTitle;
+
+  /// No description provided for @pickupBody.
+  ///
+  /// In en, this message translates to:
+  /// **'People see this pin on the map and get directions to it.'**
+  String get pickupBody;
+
+  /// No description provided for @pickupMoveHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Move the map to put the pin on your entrance'**
+  String get pickupMoveHint;
+
+  /// Under the address, e.g. 'Muscat · filled in from the pin'.
+  ///
+  /// In en, this message translates to:
+  /// **'{city} · filled in from the pin'**
+  String pickupFromPin(String city);
+
+  /// No description provided for @pickupEditHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to add the building or a landmark'**
+  String get pickupEditHint;
+
+  /// No description provided for @pickupFindingAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding the address…'**
+  String get pickupFindingAddress;
+
+  /// No description provided for @pickupNoAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the pickup address'**
+  String get pickupNoAddress;
+
+  /// No description provided for @pickupLocateMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to my location'**
+  String get pickupLocateMe;
+
+  /// No description provided for @confirmLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm location'**
+  String get confirmLocation;
+
+  /// No description provided for @pickupAddressTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup address'**
+  String get pickupAddressTitle;
+
+  /// No description provided for @pickupAddressField.
+  ///
+  /// In en, this message translates to:
+  /// **'Street, building, landmark'**
+  String get pickupAddressField;
+
+  /// No description provided for @pickupAddressHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Anything that helps people find your entrance.'**
+  String get pickupAddressHelper;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @mapUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'The map isn’t available in this build, so the pin is set to Al Khuwair, Muscat. Run on Android with the Mapbox token to move it.'**
+  String get mapUnavailable;
+
+  /// No description provided for @typicalDayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your typical day'**
+  String get typicalDayTitle;
+
+  /// No description provided for @typicalDayBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Two rough answers give you a first surplus forecast. You can change them later in Settings.'**
+  String get typicalDayBody;
+
+  /// No description provided for @mealsPerDayQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Meals you prepare on a normal day'**
+  String get mealsPerDayQuestion;
+
+  /// No description provided for @mealsUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'meals'**
+  String get mealsUnit;
+
+  /// No description provided for @fewerMeals.
+  ///
+  /// In en, this message translates to:
+  /// **'Fewer meals'**
+  String get fewerMeals;
+
+  /// No description provided for @moreMeals.
+  ///
+  /// In en, this message translates to:
+  /// **'More meals'**
+  String get moreMeals;
+
+  /// No description provided for @leftOverQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'How much is usually left at closing?'**
+  String get leftOverQuestion;
+
+  /// No description provided for @surplusUnder5.
+  ///
+  /// In en, this message translates to:
+  /// **'Under 5%'**
+  String get surplusUnder5;
+
+  /// No description provided for @surplus5to10.
+  ///
+  /// In en, this message translates to:
+  /// **'5–10%'**
+  String get surplus5to10;
+
+  /// No description provided for @surplus10to20.
+  ///
+  /// In en, this message translates to:
+  /// **'10–20%'**
+  String get surplus10to20;
+
+  /// No description provided for @surplusOver20.
+  ///
+  /// In en, this message translates to:
+  /// **'Over 20%'**
+  String get surplusOver20;
+
+  /// No description provided for @firstForecast.
+  ///
+  /// In en, this message translates to:
+  /// **'First forecast: ~{low}–{high} meals a day'**
+  String firstForecast(int low, int high);
+
+  /// No description provided for @firstForecastNote.
+  ///
+  /// In en, this message translates to:
+  /// **'A rough estimate until you’ve logged 14 days of real numbers.'**
+  String get firstForecastNote;
+
+  /// No description provided for @firstForecastEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your first forecast'**
+  String get firstForecastEmptyTitle;
+
+  /// No description provided for @firstForecastEmptyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick how much is usually left to see it.'**
+  String get firstForecastEmptyNote;
+
+  /// No description provided for @errorSurplusRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the closest answer.'**
+  String get errorSurplusRequired;
+
+  /// No description provided for @restaurantTermsPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'I accept the '**
+  String get restaurantTermsPrefix;
+
+  /// No description provided for @restaurantTerms.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurant Terms'**
+  String get restaurantTerms;
+
+  /// No description provided for @restaurantTermsSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **'. We are responsible for the safety, labelling and allergen information of the food we post.'**
+  String get restaurantTermsSuffix;
+
+  /// No description provided for @errorRestaurantTermsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please accept the Restaurant Terms to continue.'**
+  String get errorRestaurantTermsRequired;
+
+  /// No description provided for @submitForReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit for review'**
+  String get submitForReview;
+
+  /// No description provided for @saveChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save changes'**
+  String get saveChanges;
+
+  /// No description provided for @pendingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks! We’re checking your restaurant'**
+  String get pendingTitle;
+
+  /// No description provided for @pendingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Our team usually reviews new restaurants within a day. We’ll send you a notification when you can post meals.'**
+  String get pendingBody;
+
+  /// No description provided for @rejectedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t approve your restaurant'**
+  String get rejectedTitle;
+
+  /// No description provided for @rejectedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your details and send them again. Our team will take another look.'**
+  String get rejectedBody;
+
+  /// No description provided for @suspendedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your restaurant is paused'**
+  String get suspendedTitle;
+
+  /// No description provided for @suspendedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The ZAD team has paused your meals for now. Contact us to find out why.'**
+  String get suspendedBody;
+
+  /// No description provided for @pendingStepAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Account created'**
+  String get pendingStepAccount;
+
+  /// No description provided for @pendingStepDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurant details sent'**
+  String get pendingStepDetails;
+
+  /// No description provided for @pendingStepReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Review by the ZAD team'**
+  String get pendingStepReview;
+
+  /// No description provided for @pendingInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get pendingInProgress;
+
+  /// No description provided for @pendingNotApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'Not approved'**
+  String get pendingNotApproved;
+
+  /// No description provided for @pendingPaused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get pendingPaused;
+
+  /// No description provided for @pendingStepFirstSurplus.
+  ///
+  /// In en, this message translates to:
+  /// **'Post your first surplus'**
+  String get pendingStepFirstSurplus;
+
+  /// No description provided for @pendingUnlocks.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlocks after approval'**
+  String get pendingUnlocks;
+
+  /// No description provided for @editRestaurantDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit restaurant details'**
+  String get editRestaurantDetails;
+
+  /// No description provided for @logOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get logOut;
+
+  /// No description provided for @todayAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Today, {time}'**
+  String todayAt(String time);
+
+  /// No description provided for @yesterdayAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday, {time}'**
+  String yesterdayAt(String time);
+
+  /// No description provided for @errorLoadRestaurant.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t load your restaurant. Pull down to try again.'**
+  String get errorLoadRestaurant;
 }
 
 class _AppLocalizationsDelegate
