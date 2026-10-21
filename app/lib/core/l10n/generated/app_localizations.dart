@@ -129,6 +129,336 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{screen} is coming soon.'**
   String comingSoon(String screen);
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @continueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueLabel;
+
+  /// Progress label at the top of the signup screens.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {step} of {total}'**
+  String stepOf(int step, int total);
+
+  /// Followed by the 'Log in' link.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get alreadyHaveAccountPrompt;
+
+  /// No description provided for @logIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get logIn;
+
+  /// No description provided for @accountTypeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How will you use ZAD?'**
+  String get accountTypeTitle;
+
+  /// No description provided for @accountTypeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the account that fits you. Restaurant accounts are checked by our team before their meals go live.'**
+  String get accountTypeBody;
+
+  /// No description provided for @accountTypeUserTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'I want to rescue meals'**
+  String get accountTypeUserTitle;
+
+  /// No description provided for @accountTypeUserBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Find surplus meals near you tonight and pick them up at the counter.'**
+  String get accountTypeUserBody;
+
+  /// No description provided for @accountTypeRestaurantTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'I run a restaurant'**
+  String get accountTypeRestaurantTitle;
+
+  /// No description provided for @accountTypeRestaurantBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Post what’s left at closing time, confirm pickups and see tomorrow’s forecast.'**
+  String get accountTypeRestaurantBody;
+
+  /// No description provided for @registerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your account'**
+  String get registerTitle;
+
+  /// No description provided for @registerSigningUpAsUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Signing up to rescue meals'**
+  String get registerSigningUpAsUser;
+
+  /// No description provided for @registerSigningUpAsRestaurant.
+  ///
+  /// In en, this message translates to:
+  /// **'Signing up as a restaurant'**
+  String get registerSigningUpAsRestaurant;
+
+  /// Link after 'Signing up to rescue meals ·' that goes back to the account type.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get registerChangeType;
+
+  /// No description provided for @fieldFullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get fieldFullName;
+
+  /// No description provided for @fieldEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get fieldEmail;
+
+  /// No description provided for @fieldPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get fieldPassword;
+
+  /// No description provided for @registerEmailHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'We’ll email you a link to verify it.'**
+  String get registerEmailHelper;
+
+  /// No description provided for @registerPasswordHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'At least 8 characters, including a number.'**
+  String get registerPasswordHelper;
+
+  /// No description provided for @registerTermsPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'I agree to ZAD’s '**
+  String get registerTermsPrefix;
+
+  /// No description provided for @registerTermsAnd.
+  ///
+  /// In en, this message translates to:
+  /// **' and '**
+  String get registerTermsAnd;
+
+  /// No description provided for @registerTermsSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **'.'**
+  String get registerTermsSuffix;
+
+  /// No description provided for @termsOfUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Use'**
+  String get termsOfUse;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicy;
+
+  /// No description provided for @registerTermsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please accept the Terms of Use to continue.'**
+  String get registerTermsRequired;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get createAccount;
+
+  /// No description provided for @showPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Show password'**
+  String get showPassword;
+
+  /// No description provided for @hidePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide password'**
+  String get hidePassword;
+
+  /// No description provided for @loginTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get loginTitle;
+
+  /// No description provided for @loginBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in to see what’s left near you tonight.'**
+  String get loginBody;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get forgotPassword;
+
+  /// Followed by the 'Create an account' link.
+  ///
+  /// In en, this message translates to:
+  /// **'New to ZAD?'**
+  String get newToZadPrompt;
+
+  /// No description provided for @createAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account'**
+  String get createAnAccount;
+
+  /// No description provided for @errorNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name.'**
+  String get errorNameRequired;
+
+  /// No description provided for @errorEmailRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email.'**
+  String get errorEmailRequired;
+
+  /// No description provided for @errorEmailInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'That doesn’t look like an email address.'**
+  String get errorEmailInvalid;
+
+  /// No description provided for @errorPasswordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password.'**
+  String get errorPasswordRequired;
+
+  /// No description provided for @errorPasswordTooWeak.
+  ///
+  /// In en, this message translates to:
+  /// **'Use at least 8 characters, including a number.'**
+  String get errorPasswordTooWeak;
+
+  /// No description provided for @errorEmailTaken.
+  ///
+  /// In en, this message translates to:
+  /// **'There’s already an account with this email. Log in instead?'**
+  String get errorEmailTaken;
+
+  /// No description provided for @errorInvalidCredentials.
+  ///
+  /// In en, this message translates to:
+  /// **'That email and password don’t match.'**
+  String get errorInvalidCredentials;
+
+  /// No description provided for @errorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get errorGeneric;
+
+  /// No description provided for @locationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See meals near you'**
+  String get locationTitle;
+
+  /// No description provided for @locationBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on location to find surplus meals close by, and get an alert when a restaurant nearby posts.'**
+  String get locationBody;
+
+  /// No description provided for @locationRadiusLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'3 km'**
+  String get locationRadiusLabel;
+
+  /// No description provided for @locationWhileUsing.
+  ///
+  /// In en, this message translates to:
+  /// **'Only while you’re using the app'**
+  String get locationWhileUsing;
+
+  /// No description provided for @locationRounded.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounded to about 100 m. Restaurants never see it.'**
+  String get locationRounded;
+
+  /// No description provided for @locationAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Alerts only within 3 km. Change it anytime.'**
+  String get locationAlerts;
+
+  /// No description provided for @locationTurnOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on location'**
+  String get locationTurnOn;
+
+  /// No description provided for @locationSetArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Set my area instead'**
+  String get locationSetArea;
+
+  /// No description provided for @locationDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is off for ZAD. You can set your area instead.'**
+  String get locationDenied;
+
+  /// No description provided for @locationBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is blocked for ZAD. Turn it on in Settings, or set your area instead.'**
+  String get locationBlocked;
+
+  /// No description provided for @locationServiceOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Your phone’s location is switched off.'**
+  String get locationServiceOff;
+
+  /// No description provided for @openSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get openSettings;
+
+  /// No description provided for @locationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t find your location. Try again or set your area.'**
+  String get locationFailed;
 }
 
 class _AppLocalizationsDelegate

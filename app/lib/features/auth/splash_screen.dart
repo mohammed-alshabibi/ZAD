@@ -173,14 +173,14 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                             children: [
                               ZadButton(
                                 label: l10n.getStarted,
-                                onPressed: () => context.go(Routes.accountType),
+                                onPressed: () => context.push(Routes.accountType),
                               ),
                               const SizedBox(height: 10),
                               ZadButton(
                                 label: l10n.haveAccount,
                                 style: ZadButtonStyle.ghost,
                                 height: 40,
-                                onPressed: () => context.go(Routes.login),
+                                onPressed: () => context.push(Routes.login),
                               ),
                               const SizedBox(height: 10),
                               Text(

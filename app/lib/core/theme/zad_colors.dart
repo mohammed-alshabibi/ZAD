@@ -48,6 +48,9 @@ class ZadColors extends ThemeExtension<ZadColors> {
   /// Splash "Bottom shade" gradient colour (a raw fill in Figma, not a variable).
   static const Color splashShade = Color(0xFF0B2119);
 
+  /// Map pin drop shadow, black @ 40% (a raw effect in Figma, not a variable).
+  static const Color pinShadow = Color(0x66000000);
+
   final Color frond;
   final Color rib;
   final Color sap;

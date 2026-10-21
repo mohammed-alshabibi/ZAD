@@ -21,6 +21,16 @@ ThemeData buildZadTheme() {
       error: z.danger,
     ),
     scaffoldBackgroundColor: z.nightSheet,
+    snackBarTheme: SnackBarThemeData(
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: z.nightRaised,
+      contentTextStyle: GoogleFonts.readexPro(fontSize: 14, color: z.card),
+      actionTextColor: z.sap,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(color: z.nightHairline),
+      ),
+    ),
     extensions: const [z],
   );
 }

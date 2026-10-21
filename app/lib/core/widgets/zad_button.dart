@@ -16,6 +16,7 @@ class ZadButton extends StatelessWidget {
     this.style = ZadButtonStyle.primary,
     this.height = 56,
     this.labelColor,
+    this.loading = false,
   });
 
   final String label;
@@ -25,6 +26,9 @@ class ZadButton extends StatelessWidget {
 
   /// Overrides the label colour, e.g. `zad.danger` for a destructive Secondary.
   final Color? labelColor;
+
+  /// Shows a spinner in place of the label and ignores taps (request in flight).
+  final bool loading;
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +59,16 @@ class ZadButton extends StatelessWidget {
         shape: StadiumBorder(side: border),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
-          onTap: onPressed,
+          onTap: loading ? null : onPressed,
           child: Padding(
             padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
             child: Center(
-              child: Text(label, style: text, maxLines: 1, overflow: TextOverflow.ellipsis),
+              child: loading
+                  ? SizedBox.square(
+                      dimension: 22,
+                      child: CircularProgressIndicator(strokeWidth: 2.5, color: text.color),
+                    )
+                  : Text(label, style: text, maxLines: 1, overflow: TextOverflow.ellipsis),
             ),
           ),
         ),
