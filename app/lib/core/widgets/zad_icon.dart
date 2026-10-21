@@ -30,7 +30,15 @@ enum ZadIcons {
   leafLarge('leaf_large', 48, 3.125, 3.125, 39.75, 39.75),
   plus('plus', 24, 4.125, 4.125, 15.75, 15.75),
   minus('minus', 24, 4.125, 11.125, 15.75, 1.75),
-  sparkles('sparkles', 22, 0.958, 0.958, 20.084, 20.084);
+  sparkles('sparkles', 22, 0.958, 0.958, 20.084, 20.084),
+  checkSmall('check_small', 14, 1.458, 2.625, 11.083, 8.167),
+  checkLarge('check_large', 20, 2.083, 3.75, 15.833, 11.667),
+  scan('scan', 20, 1.625, 1.625, 16.75, 16.75),
+  tabHome('tab_home', 22, 1.875, 0.959, 18.25, 19.166),
+  tabGrid('tab_grid', 22, 1.875, 1.875, 18.25, 18.25),
+  tabChart('tab_chart', 22, 1.875, 1.875, 18.25, 18.25),
+  tabUser('tab_user', 22, 2.792, 1.875, 16.417, 18.25),
+  tabPlus('tab_plus', 24, 4.125, 4.125, 15.75, 15.75);
 
   const ZadIcons(this.file, this.box, this.left, this.top, this.width, this.height);
 
@@ -42,6 +50,19 @@ enum ZadIcons {
   final double height;
 
   String get asset => 'assets/icons/$file.svg';
+}
+
+/// Loads every icon once at startup. Without this, an icon whose file
+/// finishes loading after its card is first drawn can stay blank until the
+/// next repaint (seen on the web build), and icons pop in on slow phones.
+Future<void> precacheZadIcons() async {
+  await Future.wait([
+    for (final icon in ZadIcons.values)
+      () {
+        final loader = SvgAssetLoader(icon.asset);
+        return svg.cache.putIfAbsent(loader.cacheKey(null), () => loader.loadBytes(null));
+      }(),
+  ]);
 }
 
 /// One icon at [size] (defaults to the Figma frame size). Colours come from the

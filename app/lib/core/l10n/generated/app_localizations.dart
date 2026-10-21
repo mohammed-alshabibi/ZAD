@@ -975,6 +975,360 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We couldn’t load your restaurant. Pull down to try again.'**
   String get errorLoadRestaurant;
+
+  /// No description provided for @tonightAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight at'**
+  String get tonightAt;
+
+  /// No description provided for @verifiedArea.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified · {area}'**
+  String verifiedArea(String area);
+
+  /// No description provided for @statPosted.
+  ///
+  /// In en, this message translates to:
+  /// **'posted'**
+  String get statPosted;
+
+  /// No description provided for @statReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'reserved'**
+  String get statReserved;
+
+  /// No description provided for @statCollected.
+  ///
+  /// In en, this message translates to:
+  /// **'collected'**
+  String get statCollected;
+
+  /// No description provided for @liveNow.
+  ///
+  /// In en, this message translates to:
+  /// **'LIVE NOW'**
+  String get liveNow;
+
+  /// Live offer line, e.g. '2 of 6 left · 0.800 OMR · until 21:40'.
+  ///
+  /// In en, this message translates to:
+  /// **'{left} of {total} left · {price} · until {time}'**
+  String offerMeta(int left, int total, String price, String time);
+
+  /// No description provided for @free.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get free;
+
+  /// No description provided for @minutesLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String minutesLeft(int minutes);
+
+  /// No description provided for @hoursMinutesLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours} h {minutes} min'**
+  String hoursMinutesLeft(int hours, int minutes);
+
+  /// No description provided for @editQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit quantity'**
+  String get editQuantity;
+
+  /// No description provided for @endEarly.
+  ///
+  /// In en, this message translates to:
+  /// **'End early'**
+  String get endEarly;
+
+  /// No description provided for @waitingForPickup.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for pickup · {count}'**
+  String waitingForPickup(int count);
+
+  /// No description provided for @seeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get seeAll;
+
+  /// No description provided for @showLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Show less'**
+  String get showLess;
+
+  /// No description provided for @reservationName.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} · {count, plural, =1{1 meal} other{{count} meals}}'**
+  String reservationName(String name, int count);
+
+  /// No description provided for @reservationWaitingDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Code ••{hint} · held until {time}'**
+  String reservationWaitingDetail(String hint, String time);
+
+  /// No description provided for @reservationCollectedDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Collected at {time}'**
+  String reservationCollectedDetail(String time);
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @collected.
+  ///
+  /// In en, this message translates to:
+  /// **'Collected'**
+  String get collected;
+
+  /// No description provided for @noPickupsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No pickups waiting. New reservations show up here.'**
+  String get noPickupsYet;
+
+  /// No description provided for @nothingLiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing live right now'**
+  String get nothingLiveTitle;
+
+  /// No description provided for @nothingLiveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Post what’s left tonight and people within 3 km get an alert.'**
+  String get nothingLiveBody;
+
+  /// No description provided for @postSurplus.
+  ///
+  /// In en, this message translates to:
+  /// **'Post surplus'**
+  String get postSurplus;
+
+  /// No description provided for @forecastTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow ({day}): ~{count} surplus meals'**
+  String forecastTomorrow(String day, int count);
+
+  /// No description provided for @forecastRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Range {low}–{high} · {confidence}'**
+  String forecastRange(int low, int high, String confidence);
+
+  /// No description provided for @confidenceLow.
+  ///
+  /// In en, this message translates to:
+  /// **'low confidence'**
+  String get confidenceLow;
+
+  /// No description provided for @confidenceMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'medium confidence'**
+  String get confidenceMedium;
+
+  /// No description provided for @confidenceHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'high confidence'**
+  String get confidenceHigh;
+
+  /// No description provided for @roughEstimate.
+  ///
+  /// In en, this message translates to:
+  /// **'rough estimate'**
+  String get roughEstimate;
+
+  /// No description provided for @confirmPickup.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm pickup'**
+  String get confirmPickup;
+
+  /// No description provided for @notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// No description provided for @tabToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get tabToday;
+
+  /// No description provided for @tabOffers.
+  ///
+  /// In en, this message translates to:
+  /// **'Offers'**
+  String get tabOffers;
+
+  /// No description provided for @tabInsights.
+  ///
+  /// In en, this message translates to:
+  /// **'Insights'**
+  String get tabInsights;
+
+  /// No description provided for @tabProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get tabProfile;
+
+  /// No description provided for @newSurplus.
+  ///
+  /// In en, this message translates to:
+  /// **'New surplus'**
+  String get newSurplus;
+
+  /// No description provided for @errorLoadToday.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t load tonight’s pickups. Pull down to try again.'**
+  String get errorLoadToday;
+
+  /// No description provided for @confirmPickupBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask the customer for their 6-digit code.'**
+  String get confirmPickupBody;
+
+  /// No description provided for @confirmPickupBodyFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask {name} for their 6-digit code.'**
+  String confirmPickupBodyFor(String name);
+
+  /// No description provided for @pickupCodeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup code'**
+  String get pickupCodeLabel;
+
+  /// No description provided for @codeMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Code matches · {name}'**
+  String codeMatches(String name);
+
+  /// No description provided for @codeMatchDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} × {title} · collect {amount}'**
+  String codeMatchDetail(int count, String title, String amount);
+
+  /// No description provided for @codeMatchDetailFree.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} × {title} · free'**
+  String codeMatchDetailFree(int count, String title);
+
+  /// No description provided for @codeNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No pickup matches this code. Check the digits.'**
+  String get codeNotFound;
+
+  /// No description provided for @codeAlreadyCollected.
+  ///
+  /// In en, this message translates to:
+  /// **'This code was already collected.'**
+  String get codeAlreadyCollected;
+
+  /// No description provided for @codeExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'This hold has expired, so the meals went back on the offer.'**
+  String get codeExpired;
+
+  /// No description provided for @codeLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many wrong codes. Try again at {time}.'**
+  String codeLocked(String time);
+
+  /// No description provided for @codeLockNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many wrong codes locks entry for 10 minutes.'**
+  String get codeLockNote;
+
+  /// No description provided for @pickupCollectedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Collected · {name} · {count, plural, =1{1 meal} other{{count} meals}}'**
+  String pickupCollectedToast(String name, int count);
+
+  /// No description provided for @editQuantityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit meals left'**
+  String get editQuantityTitle;
+
+  /// No description provided for @editQuantityBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{taken, plural, =0{Nobody has reserved yet.} =1{1 meal is already reserved or collected.} other{{taken} meals are already reserved or collected.}}'**
+  String editQuantityBody(int taken);
+
+  /// No description provided for @mealsLeftUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'meals left'**
+  String get mealsLeftUnit;
+
+  /// No description provided for @errorQuantityBelowTaken.
+  ///
+  /// In en, this message translates to:
+  /// **'You can’t go below what’s already reserved.'**
+  String get errorQuantityBelowTaken;
+
+  /// No description provided for @endEarlyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'End this offer now?'**
+  String get endEarlyTitle;
+
+  /// No description provided for @endEarlyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Nobody new can reserve it. People who already reserved can still pick up.'**
+  String get endEarlyBody;
+
+  /// No description provided for @endOffer.
+  ///
+  /// In en, this message translates to:
+  /// **'End offer'**
+  String get endOffer;
+
+  /// No description provided for @keepLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep it live'**
+  String get keepLive;
+
+  /// No description provided for @offerEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer ended. Waiting pickups are still valid.'**
+  String get offerEnded;
 }
 
 class _AppLocalizationsDelegate

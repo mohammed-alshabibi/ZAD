@@ -14,7 +14,14 @@ abstract final class Routes {
 
   static const userHome = '/user';
   static const setArea = '/user/set-area';
+  static const notifications = '/notifications';
+
+  /// Restaurant tabs: Today · Offers · (+ New surplus) · Insights · Profile.
   static const restaurantHome = '/restaurant';
+  static const restaurantOffers = '/restaurant/offers';
+  static const restaurantInsights = '/restaurant/insights';
+  static const restaurantProfile = '/restaurant/profile';
+  static const restaurantNewOffer = '/restaurant/new-offer';
 
   /// Restaurant setup: details → pickup location → typical day → pending.
   static const restaurantOnboarding = '/restaurant/onboarding';

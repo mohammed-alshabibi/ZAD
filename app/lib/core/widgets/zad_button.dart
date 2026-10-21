@@ -35,40 +35,45 @@ class ZadButton extends StatelessWidget {
     final z = context.zad;
     final (Color? fill, BorderSide border, TextStyle text) = switch (style) {
       ZadButtonStyle.primary => (
-          z.card,
-          BorderSide.none,
-          ZadType.body(size: 16, weight: FontWeight.w600, color: labelColor ?? z.frond),
-        ),
+        z.card,
+        BorderSide.none,
+        ZadType.body(size: 16, weight: FontWeight.w600, color: labelColor ?? z.frond),
+      ),
       ZadButtonStyle.secondary => (
-          z.nightRaised,
-          BorderSide(color: z.nightHairline),
-          ZadType.body(size: 16, weight: FontWeight.w600, color: labelColor ?? z.card),
-        ),
+        z.nightRaised,
+        BorderSide(color: z.nightHairline),
+        ZadType.body(size: 16, weight: FontWeight.w600, color: labelColor ?? z.card),
+      ),
       ZadButtonStyle.ghost => (
-          null,
-          BorderSide.none,
-          ZadType.body(size: 15, weight: FontWeight.w500, color: labelColor ?? z.card),
-        ),
+        null,
+        BorderSide.none,
+        ZadType.body(size: 15, weight: FontWeight.w500, color: labelColor ?? z.card),
+      ),
     };
 
+    // No action (and not loading) = disabled: dimmed, like the Figma states.
+    final disabled = onPressed == null && !loading;
     return SizedBox(
       height: height,
       width: double.infinity,
-      child: Material(
-        color: fill ?? Colors.transparent,
-        shape: StadiumBorder(side: border),
-        clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: loading ? null : onPressed,
-          child: Padding(
-            padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
-            child: Center(
-              child: loading
-                  ? SizedBox.square(
-                      dimension: 22,
-                      child: CircularProgressIndicator(strokeWidth: 2.5, color: text.color),
-                    )
-                  : Text(label, style: text, maxLines: 1, overflow: TextOverflow.ellipsis),
+      child: Opacity(
+        opacity: disabled ? 0.45 : 1,
+        child: Material(
+          color: fill ?? Colors.transparent,
+          shape: StadiumBorder(side: border),
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            onTap: loading ? null : onPressed,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
+              child: Center(
+                child: loading
+                    ? SizedBox.square(
+                        dimension: 22,
+                        child: CircularProgressIndicator(strokeWidth: 2.5, color: text.color),
+                      )
+                    : Text(label, style: text, maxLines: 1, overflow: TextOverflow.ellipsis),
+              ),
             ),
           ),
         ),
