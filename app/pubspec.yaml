@@ -34,6 +34,7 @@ flutter:
     - assets/icons/
     - assets/auth/
     - assets/onboarding/
+    - assets/home/
   # Variable Bricolage Grotesque (OFL) for the "zad" wordmark, which needs the
   # 96 pt optical size that google_fonts' static files don't have.
   fonts:

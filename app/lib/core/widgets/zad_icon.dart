@@ -38,7 +38,13 @@ enum ZadIcons {
   tabGrid('tab_grid', 22, 1.875, 1.875, 18.25, 18.25),
   tabChart('tab_chart', 22, 1.875, 1.875, 18.25, 18.25),
   tabUser('tab_user', 22, 2.792, 1.875, 16.417, 18.25),
-  tabPlus('tab_plus', 24, 4.125, 4.125, 15.75, 15.75);
+  tabPlus('tab_plus', 24, 4.125, 4.125, 15.75, 15.75),
+  tabTicket('tab_ticket', 22, 0.958, 3.708, 20.083, 14.583),
+  image('image', 22, 1.875, 1.875, 18.25, 18.25),
+  pinSmall('pin_small', 16, 1.792, 0.458, 12.417, 15.083),
+  chevronDown('chevron_down', 14, 2.5, 4.25, 9, 5.5),
+  bell18('bell_18', 18, 1.375, 0.625, 15.25, 16.75),
+  search('search', 18, 1.375, 1.375, 15.25, 15.25);
 
   const ZadIcons(this.file, this.box, this.left, this.top, this.width, this.height);
 

@@ -9,13 +9,15 @@ import '../../features/auth/register_screen.dart';
 import '../../features/auth/splash_screen.dart';
 import '../../features/restaurant/home/restaurant_home_screen.dart';
 import '../../features/restaurant/home/restaurant_shell.dart';
-import '../../features/restaurant/home/restaurant_tab_placeholder.dart';
 import '../../features/restaurant/onboarding/pending_approval_screen.dart';
 import '../../features/restaurant/onboarding/pickup_location_screen.dart';
 import '../../features/restaurant/onboarding/restaurant_details_screen.dart';
 import '../../features/restaurant/onboarding/typical_day_screen.dart';
+import '../../features/user/home/user_home_screen.dart';
+import '../../features/user/home/user_shell.dart';
 import '../l10n/generated/app_localizations.dart';
 import '../widgets/placeholder_screen.dart';
+import '../widgets/tab_placeholder.dart';
 import 'routes.dart';
 
 /// Screens not built yet show a placeholder; each is replaced as P1 progresses.
@@ -38,7 +40,31 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: Routes.locationPermission, builder: (_, _) => const LocationPermissionScreen()),
       GoRoute(path: Routes.terms, builder: (_, _) => const PlaceholderScreen(name: 'Terms of Use')),
       GoRoute(path: Routes.privacy, builder: (_, _) => const PlaceholderScreen(name: 'Privacy Policy')),
-      GoRoute(path: Routes.userHome, builder: (_, _) => const PlaceholderScreen(name: 'User home')),
+      // User tabs keep their own state (indexed stack), like the restaurant's.
+      StatefulShellRoute.indexedStack(
+        builder: (_, _, shell) => UserShell(shell: shell),
+        branches: [
+          StatefulShellBranch(routes: [
+            GoRoute(path: Routes.userHome, builder: (_, _) => const UserHomeScreen()),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: Routes.userPickups,
+              builder: (context, _) => TabPlaceholder(name: AppLocalizations.of(context).tabPickups),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: Routes.userProfile,
+              builder: (context, _) => TabPlaceholder(name: AppLocalizations.of(context).tabProfile, showLogOut: true),
+            ),
+          ]),
+        ],
+      ),
+      GoRoute(
+        path: Routes.mealDetailsPattern,
+        builder: (context, _) => PlaceholderScreen(name: AppLocalizations.of(context).mealDetails),
+      ),
       GoRoute(path: Routes.setArea, builder: (_, _) => const PlaceholderScreen(name: 'Set my area')),
       GoRoute(path: Routes.notifications, builder: (_, _) => const PlaceholderScreen(name: 'Notifications')),
       // Restaurant tabs keep their own state (indexed stack).
@@ -51,20 +77,20 @@ final routerProvider = Provider<GoRouter>((ref) {
           StatefulShellBranch(routes: [
             GoRoute(
               path: Routes.restaurantOffers,
-              builder: (context, _) => RestaurantTabPlaceholder(name: AppLocalizations.of(context).tabOffers),
+              builder: (context, _) => TabPlaceholder(name: AppLocalizations.of(context).tabOffers),
             ),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(
               path: Routes.restaurantInsights,
-              builder: (context, _) => RestaurantTabPlaceholder(name: AppLocalizations.of(context).tabInsights),
+              builder: (context, _) => TabPlaceholder(name: AppLocalizations.of(context).tabInsights),
             ),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(
               path: Routes.restaurantProfile,
               builder: (context, _) =>
-                  RestaurantTabPlaceholder(name: AppLocalizations.of(context).tabProfile, showLogOut: true),
+                  TabPlaceholder(name: AppLocalizations.of(context).tabProfile, showLogOut: true),
             ),
           ]),
         ],

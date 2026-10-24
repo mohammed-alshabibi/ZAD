@@ -726,4 +726,137 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get offerEnded => 'Offer ended. Waiting pickups are still valid.';
+
+  @override
+  String get tabHome => 'Home';
+
+  @override
+  String get tabPickups => 'Pickups';
+
+  @override
+  String get homeAreaUnset => 'Set my area';
+
+  @override
+  String get homeAreaNearYou => 'Near you';
+
+  @override
+  String homeMealsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count meals',
+      one: '1 meal',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String homeMealsTitle(String meals) {
+    return '$meals left near you tonight';
+  }
+
+  @override
+  String get homeNoMealsTitle => 'Nothing left near you right now';
+
+  @override
+  String get homeNoMealsBody =>
+      'Restaurants post what’s left around closing time. We’ll send you an alert when one within 3 km does.';
+
+  @override
+  String get homeNoMatchesTitle => 'No meals match';
+
+  @override
+  String get homeNoMatchesBody => 'Try another filter or clear the search.';
+
+  @override
+  String get homeLoadError => 'We couldn’t load meals near you.';
+
+  @override
+  String get homeLoading => 'Looking for meals near you…';
+
+  @override
+  String get tryAgain => 'Try again';
+
+  @override
+  String get filterClosingSoon => 'Closing soon';
+
+  @override
+  String get filterUnderOneOmr => 'Under 1 OMR';
+
+  @override
+  String get categoryBakery => 'Bakery';
+
+  @override
+  String get categoryRiceMandi => 'Rice & mandi';
+
+  @override
+  String get categoryGrill => 'Grill';
+
+  @override
+  String get categorySandwiches => 'Sandwiches';
+
+  @override
+  String get categorySweets => 'Sweets';
+
+  @override
+  String get categoryHealthy => 'Healthy';
+
+  @override
+  String get categoryMixed => 'Mixed';
+
+  @override
+  String get searchMealsHint => 'Search meals or restaurants';
+
+  @override
+  String offerCardDetails(String title, String distance, int minutes) {
+    return '$title · $distance · $minutes min walk';
+  }
+
+  @override
+  String offerRowDetails(String restaurant, String distance) {
+    return '$restaurant · $distance';
+  }
+
+  @override
+  String get pickupNow => 'Pickup now';
+
+  @override
+  String pickupFrom(String time) {
+    return 'Pickup from $time';
+  }
+
+  @override
+  String pickupUntil(String time) {
+    return 'until $time';
+  }
+
+  @override
+  String minutesLeftTag(int minutes) {
+    return '$minutes min left';
+  }
+
+  @override
+  String mealsLeftShort(int count) {
+    return '$count left';
+  }
+
+  @override
+  String get closingFirst => 'Closing first';
+
+  @override
+  String get showMyLocation => 'Show my location';
+
+  @override
+  String mapPinLabel(String name, int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count meals left',
+      one: '1 meal left',
+    );
+    return '$name, $_temp0';
+  }
+
+  @override
+  String get mealDetails => 'Meal details';
 }

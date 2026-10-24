@@ -1329,6 +1329,210 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Offer ended. Waiting pickups are still valid.'**
   String get offerEnded;
+
+  /// No description provided for @tabHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get tabHome;
+
+  /// No description provided for @tabPickups.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickups'**
+  String get tabPickups;
+
+  /// No description provided for @homeAreaUnset.
+  ///
+  /// In en, this message translates to:
+  /// **'Set my area'**
+  String get homeAreaUnset;
+
+  /// No description provided for @homeAreaNearYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Near you'**
+  String get homeAreaNearYou;
+
+  /// No description provided for @homeMealsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 meal} other{{count} meals}}'**
+  String homeMealsCount(int count);
+
+  /// Home sheet title. {meals} is homeMealsCount and is shown in green.
+  ///
+  /// In en, this message translates to:
+  /// **'{meals} left near you tonight'**
+  String homeMealsTitle(String meals);
+
+  /// No description provided for @homeNoMealsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing left near you right now'**
+  String get homeNoMealsTitle;
+
+  /// No description provided for @homeNoMealsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurants post what’s left around closing time. We’ll send you an alert when one within 3 km does.'**
+  String get homeNoMealsBody;
+
+  /// No description provided for @homeNoMatchesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No meals match'**
+  String get homeNoMatchesTitle;
+
+  /// No description provided for @homeNoMatchesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try another filter or clear the search.'**
+  String get homeNoMatchesBody;
+
+  /// No description provided for @homeLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t load meals near you.'**
+  String get homeLoadError;
+
+  /// No description provided for @homeLoading.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking for meals near you…'**
+  String get homeLoading;
+
+  /// No description provided for @tryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get tryAgain;
+
+  /// No description provided for @filterClosingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Closing soon'**
+  String get filterClosingSoon;
+
+  /// No description provided for @filterUnderOneOmr.
+  ///
+  /// In en, this message translates to:
+  /// **'Under 1 OMR'**
+  String get filterUnderOneOmr;
+
+  /// No description provided for @categoryBakery.
+  ///
+  /// In en, this message translates to:
+  /// **'Bakery'**
+  String get categoryBakery;
+
+  /// No description provided for @categoryRiceMandi.
+  ///
+  /// In en, this message translates to:
+  /// **'Rice & mandi'**
+  String get categoryRiceMandi;
+
+  /// No description provided for @categoryGrill.
+  ///
+  /// In en, this message translates to:
+  /// **'Grill'**
+  String get categoryGrill;
+
+  /// No description provided for @categorySandwiches.
+  ///
+  /// In en, this message translates to:
+  /// **'Sandwiches'**
+  String get categorySandwiches;
+
+  /// No description provided for @categorySweets.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweets'**
+  String get categorySweets;
+
+  /// No description provided for @categoryHealthy.
+  ///
+  /// In en, this message translates to:
+  /// **'Healthy'**
+  String get categoryHealthy;
+
+  /// No description provided for @categoryMixed.
+  ///
+  /// In en, this message translates to:
+  /// **'Mixed'**
+  String get categoryMixed;
+
+  /// No description provided for @searchMealsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search meals or restaurants'**
+  String get searchMealsHint;
+
+  /// Offer card line, e.g. 'Zaatar manakish box · 0.6 km · 8 min walk'.
+  ///
+  /// In en, this message translates to:
+  /// **'{title} · {distance} · {minutes} min walk'**
+  String offerCardDetails(String title, String distance, int minutes);
+
+  /// No description provided for @offerRowDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'{restaurant} · {distance}'**
+  String offerRowDetails(String restaurant, String distance);
+
+  /// No description provided for @pickupNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup now'**
+  String get pickupNow;
+
+  /// No description provided for @pickupFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup from {time}'**
+  String pickupFrom(String time);
+
+  /// No description provided for @pickupUntil.
+  ///
+  /// In en, this message translates to:
+  /// **'until {time}'**
+  String pickupUntil(String time);
+
+  /// No description provided for @minutesLeftTag.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min left'**
+  String minutesLeftTag(int minutes);
+
+  /// No description provided for @mealsLeftShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} left'**
+  String mealsLeftShort(int count);
+
+  /// No description provided for @closingFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Closing first'**
+  String get closingFirst;
+
+  /// No description provided for @showMyLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Show my location'**
+  String get showMyLocation;
+
+  /// Screen reader label for a map pin.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}, {count, plural, =1{1 meal left} other{{count} meals left}}'**
+  String mapPinLabel(String name, int count);
+
+  /// No description provided for @mealDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Meal details'**
+  String get mealDetails;
 }
 
 class _AppLocalizationsDelegate
