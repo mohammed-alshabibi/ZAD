@@ -57,6 +57,14 @@ class ZadColors extends ThemeExtension<ZadColors> {
   /// Floating map button shadow, black @ 35% (a raw effect in Figma).
   static const Color buttonShadow = Color(0x59000000);
 
+  /// Offer photo card shadow, black @ 45% (a raw effect in Figma).
+  static const Color cardShadow = Color(0x73000000);
+
+  /// "Photo" placeholder gradient on the Offer photo card when a meal has no
+  /// photo (raw fills in Figma, not variables).
+  static const Color photoPlaceholderTop = Color(0xFF785430);
+  static const Color photoPlaceholderBottom = Color(0xFF291F14);
+
   final Color frond;
   final Color rib;
   final Color sap;

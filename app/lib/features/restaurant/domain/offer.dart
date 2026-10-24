@@ -15,6 +15,23 @@ enum OfferStatus {
   static OfferStatus fromJson(String value) => values.firstWhere((s) => s.json == value);
 }
 
+/// Offer category enum. The server keeps the same list in Python (§4: enums live in code).
+enum OfferCategory {
+  bakery('bakery'),
+  riceMandi('rice_mandi'),
+  grill('grill'),
+  sandwiches('sandwiches'),
+  sweets('sweets'),
+  healthy('healthy'),
+  mixed('mixed');
+
+  const OfferCategory(this.json);
+
+  final String json;
+
+  static OfferCategory? fromJson(String value) => values.where((c) => c.json == value).firstOrNull;
+}
+
 /// A surplus offer as the owning restaurant sees it (`GET /restaurants/me/offers`).
 class Offer {
   const Offer({
@@ -40,6 +57,8 @@ class Offer {
   final String description;
   final String category;
   final List<String> allergens;
+
+  OfferCategory? get categoryEnum => OfferCategory.fromJson(category);
 
   /// 0 = free.
   final int priceBaisa;

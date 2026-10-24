@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/l10n/generated/app_localizations.dart';
-import '../../../core/router/routes.dart';
-import '../../../core/theme/zad_colors.dart';
-import '../../../core/theme/zad_type.dart';
-import '../../../core/widgets/zad_button.dart';
-import '../../auth/application/session.dart';
+import '../../features/auth/application/session.dart';
+import '../l10n/generated/app_localizations.dart';
+import '../router/routes.dart';
+import '../theme/zad_colors.dart';
+import '../theme/zad_type.dart';
+import 'zad_button.dart';
 
-/// Stand-in for restaurant tabs not built yet (Offers, Insights, Profile).
-/// Profile keeps a working "Log out" so restaurant accounts can switch.
-class RestaurantTabPlaceholder extends ConsumerWidget {
-  const RestaurantTabPlaceholder({super.key, required this.name, this.showLogOut = false});
+/// Stand-in for tabs not built yet (restaurant Offers, Insights, Profile;
+/// user Pickups, Profile). Profile keeps a working "Log out" so demo
+/// accounts can switch.
+class TabPlaceholder extends ConsumerWidget {
+  const TabPlaceholder({super.key, required this.name, this.showLogOut = false});
 
   final String name;
   final bool showLogOut;

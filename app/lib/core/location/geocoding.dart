@@ -5,10 +5,13 @@ import '../config/mapbox_config.dart';
 
 /// A street address for a map point, e.g. "Way 4212" in "Muscat".
 class PlaceAddress {
-  const PlaceAddress({required this.line, this.city});
+  const PlaceAddress({required this.line, this.area, this.city});
 
   /// Street-level text, saved as the restaurant's `address_text`.
   final String line;
+
+  /// Neighbourhood or locality ("Al Khuwair"), when Mapbox knows it.
+  final String? area;
   final String? city;
 }
 
@@ -62,7 +65,7 @@ PlaceAddress? parseMapboxProperties(Map<String, dynamic> props) {
   final street = props['name'] as String?;
   final parts = [?area, if (street != null && street != area) street];
   if (parts.isEmpty) return null;
-  return PlaceAddress(line: parts.join(', '), city: nameOf('place'));
+  return PlaceAddress(line: parts.join(', '), area: area, city: nameOf('place'));
 }
 
 final geocoderProvider = Provider<Geocoder>((ref) => MapboxGeocoder());

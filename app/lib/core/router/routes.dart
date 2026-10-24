@@ -12,8 +12,15 @@ abstract final class Routes {
   static const register = '/register';
   static String registerAs(String role) => '$register?role=$role';
 
+  /// User tabs: Home · Pickups · Profile.
   static const userHome = '/user';
+  static const userPickups = '/user/pickups';
+  static const userProfile = '/user/profile';
   static const setArea = '/user/set-area';
+
+  /// Meal details for one offer (`GET /offers/{id}`).
+  static const mealDetailsPattern = '/user/offers/:id';
+  static String mealDetails(String offerId) => '/user/offers/$offerId';
   static const notifications = '/notifications';
 
   /// Restaurant tabs: Today · Offers · (+ New surplus) · Insights · Profile.

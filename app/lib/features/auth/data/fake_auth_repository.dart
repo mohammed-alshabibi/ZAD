@@ -26,7 +26,7 @@ class FakeAuthRepository implements AuthRepository {
         'status': 'active',
         'notify_enabled': true,
         // Al Khuwair, Muscat. GeoJSON: [lng, lat].
-        'location': {'type': 'Point', 'coordinates': [58.391, 23.588]},
+        'location': {'type': 'Point', 'coordinates': [58.396, 23.583]},
         'created_at': '2026-09-14T16:20:00Z',
       },
     ),
