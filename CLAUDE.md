@@ -118,7 +118,7 @@ Enums (cuisines, categories, allergens, Oman holidays/Ramadan dates) live in Pyt
 | Anyone | `POST /auth/register` (email, password, name, role) · `POST /auth/login` · `POST /auth/refresh` |
 | Signed in | `GET/PATCH /me` · `PUT /me/location` · `PUT /me/push-token` · `GET /notifications` · `POST /notifications/{id}/read` |
 | User | `GET /offers/nearby?lat&lng&radius_km=5&category&free` · `GET /offers/{id}` · `POST /offers/{id}/reserve` · `GET /reservations` · `POST /reservations/{id}/cancel` |
-| Restaurant | `POST /restaurants` · `GET/PATCH /restaurants/me` · `GET /restaurants/me/offers` · `POST /offers` · `PATCH /offers/{id}` · `POST /offers/{id}/cancel` · `GET /restaurants/me/reservations` · `POST /pickups/confirm` · `GET /daily-logs` · `PUT /daily-logs/{date}` · `GET /forecasts` |
+| Restaurant | `POST /restaurants` · `GET/PATCH /restaurants/me` · `GET /restaurants/me/offers` · `POST /offers` · `PATCH /offers/{id}` · `POST /offers/{id}/cancel` · `GET /restaurants/me/reservations` · `POST /pickups/check` (who a code belongs to, shown before handing food over; counts toward the wrong-code lockout) · `POST /pickups/confirm` · `GET /daily-logs` · `PUT /daily-logs/{date}` · `GET /forecasts` |
 | Admin | `GET /admin/overview` · `GET /admin/restaurants?status=` · `POST /admin/restaurants/{id}/status` · `GET /admin/offers` · `POST /admin/offers/{id}/remove` |
 
 **Security rules (keep these, they are cheap):** `IsAuthenticated` by default; one role permission per view (`IsUserRole`, `IsRestaurantRole`, `IsApprovedRestaurant`, `IsAdminRole`); querysets always filtered by `request.user`; `role`, `status` and counters are read-only in serializers. Restaurants see only the user's first name and the code status, never their phone or location.

@@ -490,4 +490,240 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get errorLoadRestaurant =>
       'We couldn’t load your restaurant. Pull down to try again.';
+
+  @override
+  String get tonightAt => 'Tonight at';
+
+  @override
+  String verifiedArea(String area) {
+    return 'Verified · $area';
+  }
+
+  @override
+  String get statPosted => 'posted';
+
+  @override
+  String get statReserved => 'reserved';
+
+  @override
+  String get statCollected => 'collected';
+
+  @override
+  String get liveNow => 'LIVE NOW';
+
+  @override
+  String offerMeta(int left, int total, String price, String time) {
+    return '$left of $total left · $price · until $time';
+  }
+
+  @override
+  String get free => 'Free';
+
+  @override
+  String minutesLeft(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String hoursMinutesLeft(int hours, int minutes) {
+    return '$hours h $minutes min';
+  }
+
+  @override
+  String get editQuantity => 'Edit quantity';
+
+  @override
+  String get endEarly => 'End early';
+
+  @override
+  String waitingForPickup(int count) {
+    return 'Waiting for pickup · $count';
+  }
+
+  @override
+  String get seeAll => 'See all';
+
+  @override
+  String get showLess => 'Show less';
+
+  @override
+  String reservationName(String name, int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count meals',
+      one: '1 meal',
+    );
+    return '$name · $_temp0';
+  }
+
+  @override
+  String reservationWaitingDetail(String hint, String time) {
+    return 'Code ••$hint · held until $time';
+  }
+
+  @override
+  String reservationCollectedDetail(String time) {
+    return 'Collected at $time';
+  }
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get collected => 'Collected';
+
+  @override
+  String get noPickupsYet =>
+      'No pickups waiting. New reservations show up here.';
+
+  @override
+  String get nothingLiveTitle => 'Nothing live right now';
+
+  @override
+  String get nothingLiveBody =>
+      'Post what’s left tonight and people within 3 km get an alert.';
+
+  @override
+  String get postSurplus => 'Post surplus';
+
+  @override
+  String forecastTomorrow(String day, int count) {
+    return 'Tomorrow ($day): ~$count surplus meals';
+  }
+
+  @override
+  String forecastRange(int low, int high, String confidence) {
+    return 'Range $low–$high · $confidence';
+  }
+
+  @override
+  String get confidenceLow => 'low confidence';
+
+  @override
+  String get confidenceMedium => 'medium confidence';
+
+  @override
+  String get confidenceHigh => 'high confidence';
+
+  @override
+  String get roughEstimate => 'rough estimate';
+
+  @override
+  String get confirmPickup => 'Confirm pickup';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get tabToday => 'Today';
+
+  @override
+  String get tabOffers => 'Offers';
+
+  @override
+  String get tabInsights => 'Insights';
+
+  @override
+  String get tabProfile => 'Profile';
+
+  @override
+  String get newSurplus => 'New surplus';
+
+  @override
+  String get errorLoadToday =>
+      'We couldn’t load tonight’s pickups. Pull down to try again.';
+
+  @override
+  String get confirmPickupBody => 'Ask the customer for their 6-digit code.';
+
+  @override
+  String confirmPickupBodyFor(String name) {
+    return 'Ask $name for their 6-digit code.';
+  }
+
+  @override
+  String get pickupCodeLabel => 'Pickup code';
+
+  @override
+  String codeMatches(String name) {
+    return 'Code matches · $name';
+  }
+
+  @override
+  String codeMatchDetail(int count, String title, String amount) {
+    return '$count × $title · collect $amount';
+  }
+
+  @override
+  String codeMatchDetailFree(int count, String title) {
+    return '$count × $title · free';
+  }
+
+  @override
+  String get codeNotFound => 'No pickup matches this code. Check the digits.';
+
+  @override
+  String get codeAlreadyCollected => 'This code was already collected.';
+
+  @override
+  String get codeExpired =>
+      'This hold has expired, so the meals went back on the offer.';
+
+  @override
+  String codeLocked(String time) {
+    return 'Too many wrong codes. Try again at $time.';
+  }
+
+  @override
+  String get codeLockNote => 'Too many wrong codes locks entry for 10 minutes.';
+
+  @override
+  String pickupCollectedToast(String name, int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count meals',
+      one: '1 meal',
+    );
+    return 'Collected · $name · $_temp0';
+  }
+
+  @override
+  String get editQuantityTitle => 'Edit meals left';
+
+  @override
+  String editQuantityBody(int taken) {
+    String _temp0 = intl.Intl.pluralLogic(
+      taken,
+      locale: localeName,
+      other: '$taken meals are already reserved or collected.',
+      one: '1 meal is already reserved or collected.',
+      zero: 'Nobody has reserved yet.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get mealsLeftUnit => 'meals left';
+
+  @override
+  String get errorQuantityBelowTaken =>
+      'You can’t go below what’s already reserved.';
+
+  @override
+  String get endEarlyTitle => 'End this offer now?';
+
+  @override
+  String get endEarlyBody =>
+      'Nobody new can reserve it. People who already reserved can still pick up.';
+
+  @override
+  String get endOffer => 'End offer';
+
+  @override
+  String get keepLive => 'Keep it live';
+
+  @override
+  String get offerEnded => 'Offer ended. Waiting pickups are still valid.';
 }

@@ -7,10 +7,14 @@ import '../../features/auth/location_permission_screen.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/auth/register_screen.dart';
 import '../../features/auth/splash_screen.dart';
+import '../../features/restaurant/home/restaurant_home_screen.dart';
+import '../../features/restaurant/home/restaurant_shell.dart';
+import '../../features/restaurant/home/restaurant_tab_placeholder.dart';
 import '../../features/restaurant/onboarding/pending_approval_screen.dart';
 import '../../features/restaurant/onboarding/pickup_location_screen.dart';
 import '../../features/restaurant/onboarding/restaurant_details_screen.dart';
 import '../../features/restaurant/onboarding/typical_day_screen.dart';
+import '../l10n/generated/app_localizations.dart';
 import '../widgets/placeholder_screen.dart';
 import 'routes.dart';
 
@@ -36,7 +40,36 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: Routes.privacy, builder: (_, _) => const PlaceholderScreen(name: 'Privacy Policy')),
       GoRoute(path: Routes.userHome, builder: (_, _) => const PlaceholderScreen(name: 'User home')),
       GoRoute(path: Routes.setArea, builder: (_, _) => const PlaceholderScreen(name: 'Set my area')),
-      GoRoute(path: Routes.restaurantHome, builder: (_, _) => const PlaceholderScreen(name: 'Restaurant home')),
+      GoRoute(path: Routes.notifications, builder: (_, _) => const PlaceholderScreen(name: 'Notifications')),
+      // Restaurant tabs keep their own state (indexed stack).
+      StatefulShellRoute.indexedStack(
+        builder: (_, _, shell) => RestaurantShell(shell: shell),
+        branches: [
+          StatefulShellBranch(routes: [
+            GoRoute(path: Routes.restaurantHome, builder: (_, _) => const RestaurantHomeScreen()),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: Routes.restaurantOffers,
+              builder: (context, _) => RestaurantTabPlaceholder(name: AppLocalizations.of(context).tabOffers),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: Routes.restaurantInsights,
+              builder: (context, _) => RestaurantTabPlaceholder(name: AppLocalizations.of(context).tabInsights),
+            ),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: Routes.restaurantProfile,
+              builder: (context, _) =>
+                  RestaurantTabPlaceholder(name: AppLocalizations.of(context).tabProfile, showLogOut: true),
+            ),
+          ]),
+        ],
+      ),
+      GoRoute(path: Routes.restaurantNewOffer, builder: (_, _) => const PlaceholderScreen(name: 'Add surplus')),
       GoRoute(path: Routes.restaurantOnboarding, builder: (_, _) => const RestaurantDetailsScreen()),
       GoRoute(path: Routes.restaurantOnboardingLocation, builder: (_, _) => const PickupLocationScreen()),
       GoRoute(path: Routes.restaurantOnboardingTypicalDay, builder: (_, _) => const TypicalDayScreen()),
