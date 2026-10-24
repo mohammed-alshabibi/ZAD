@@ -859,4 +859,196 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mealDetails => 'Meal details';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get directions => 'Directions';
+
+  @override
+  String get call => 'Call';
+
+  @override
+  String mealDetailsLine(String restaurant, String distance, int minutes) {
+    return '$restaurant · $distance · $minutes min walk';
+  }
+
+  @override
+  String get allergensSafety => 'Allergens & safety';
+
+  @override
+  String get allergenGluten => 'Gluten';
+
+  @override
+  String get allergenMilk => 'Dairy';
+
+  @override
+  String get allergenEggs => 'Eggs';
+
+  @override
+  String get allergenNuts => 'Nuts';
+
+  @override
+  String get allergenPeanuts => 'Peanuts';
+
+  @override
+  String get allergenSesame => 'Sesame';
+
+  @override
+  String get allergenSoy => 'Soy';
+
+  @override
+  String get allergenFish => 'Fish';
+
+  @override
+  String get allergenShellfish => 'Shellfish';
+
+  @override
+  String get allergenNone => 'No common allergens';
+
+  @override
+  String safetyNote(String time) {
+    return 'Prepared today at $time and stored safely. The restaurant is responsible for food safety. Eat promptly or refrigerate, and ask staff if you are unsure about allergens.';
+  }
+
+  @override
+  String get payAtPickup => 'Pay at pickup · cash or card';
+
+  @override
+  String get nothingToPay => 'Nothing to pay at pickup';
+
+  @override
+  String get reserve => 'Reserve';
+
+  @override
+  String get reserved => 'Reserved';
+
+  @override
+  String reservedHeldUntil(int count, String time) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count meals',
+      one: '1 meal',
+    );
+    return '$_temp0 · held until $time';
+  }
+
+  @override
+  String get showPickupCode => 'Show pickup code';
+
+  @override
+  String get soldOut => 'Sold out';
+
+  @override
+  String get soldOutHint => 'Meals come back if someone cancels.';
+
+  @override
+  String get pickupEnded => 'Pickup has ended';
+
+  @override
+  String get pickupEndedHint => 'This offer is closed.';
+
+  @override
+  String get mealLoadError => 'We couldn’t load this meal.';
+
+  @override
+  String get reserveSheetTitle => 'Reserve this meal?';
+
+  @override
+  String reserveSheetSubtitle(String title, String restaurant) {
+    return '$title · $restaurant';
+  }
+
+  @override
+  String get howMany => 'How many?';
+
+  @override
+  String howManyHint(int left) {
+    return 'Up to 3 per person · $left left';
+  }
+
+  @override
+  String get decreaseQuantity => 'Fewer meals';
+
+  @override
+  String get increaseQuantity => 'More meals';
+
+  @override
+  String holdUntilTitle(String time) {
+    return 'We’ll hold it until $time';
+  }
+
+  @override
+  String get holdUntilBody =>
+      'Can’t make it? Cancel so someone else can have it.';
+
+  @override
+  String payCounterTitle(String price) {
+    return '$price · pay at the counter';
+  }
+
+  @override
+  String get payCounterBody => 'Cash or card. No payment in the app.';
+
+  @override
+  String get freeCounterTitle => 'Free · nothing to pay';
+
+  @override
+  String get freeCounterBody => 'Just show your code at the counter.';
+
+  @override
+  String reserveMeals(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Reserve $count meals',
+      one: 'Reserve 1 meal',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get notNow => 'Not now';
+
+  @override
+  String get reserveSafetyNote =>
+      'The restaurant is responsible for food safety. Check allergens before eating.';
+
+  @override
+  String reservedToastTitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Reserved. $count meals are yours.',
+      one: 'Reserved. 1 meal is yours.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String reservedToastBody(String code, String time) {
+    return 'Show code $code at the counter by $time.';
+  }
+
+  @override
+  String get errorSoldOut =>
+      'Someone just took the last one, so it’s sold out.';
+
+  @override
+  String get errorNotEnoughLeft => 'Not that many left now. Pick fewer.';
+
+  @override
+  String get errorAlreadyReserved =>
+      'You already reserved this meal. Find it in Pickups.';
+
+  @override
+  String get errorOfferNotLive => 'This offer has ended.';
+
+  @override
+  String get errorReserveFailed => 'We couldn’t reserve it. Try again.';
+
+  @override
+  String get errorCantOpen => 'We couldn’t open that on this phone.';
 }

@@ -65,6 +65,13 @@ class ZadColors extends ThemeExtension<ZadColors> {
   static const Color photoPlaceholderTop = Color(0xFF785430);
   static const Color photoPlaceholderBottom = Color(0xFF291F14);
 
+  /// The same placeholder on Meal details, a little lighter (raw fills).
+  static const Color mealPhotoTop = Color(0xFF855E36);
+  static const Color mealPhotoBottom = Color(0xFF332417);
+
+  /// Reserve bar and toast shadows, black @ 40% / 45% (raw effects).
+  static const Color barShadow = Color(0x66000000);
+
   final Color frond;
   final Color rib;
   final Color sap;

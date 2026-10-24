@@ -17,7 +17,12 @@ class ZadButton extends StatelessWidget {
     this.height = 56,
     this.labelColor,
     this.loading = false,
+    this.fullWidth = true,
   });
+
+  /// False = as wide as the label (with 20 px sides), for a pill that shares a
+  /// row with other content, like the Meal details reserve bar.
+  final bool fullWidth;
 
   final String label;
   final VoidCallback? onPressed;
@@ -55,7 +60,7 @@ class ZadButton extends StatelessWidget {
     final disabled = onPressed == null && !loading;
     return SizedBox(
       height: height,
-      width: double.infinity,
+      width: fullWidth ? double.infinity : null,
       child: Opacity(
         opacity: disabled ? 0.45 : 1,
         child: Material(
@@ -65,8 +70,9 @@ class ZadButton extends StatelessWidget {
           child: InkWell(
             onTap: loading ? null : onPressed,
             child: Padding(
-              padding: const EdgeInsetsDirectional.symmetric(horizontal: 24),
-              child: Center(
+              padding: EdgeInsetsDirectional.symmetric(horizontal: fullWidth ? 24 : 20),
+              child: Align(
+                widthFactor: fullWidth ? null : 1,
                 child: loading
                     ? SizedBox.square(
                         dimension: 22,

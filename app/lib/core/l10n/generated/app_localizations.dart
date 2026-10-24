@@ -1533,6 +1533,306 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Meal details'**
   String get mealDetails;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @directions.
+  ///
+  /// In en, this message translates to:
+  /// **'Directions'**
+  String get directions;
+
+  /// No description provided for @call.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get call;
+
+  /// No description provided for @mealDetailsLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{restaurant} · {distance} · {minutes} min walk'**
+  String mealDetailsLine(String restaurant, String distance, int minutes);
+
+  /// No description provided for @allergensSafety.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergens & safety'**
+  String get allergensSafety;
+
+  /// No description provided for @allergenGluten.
+  ///
+  /// In en, this message translates to:
+  /// **'Gluten'**
+  String get allergenGluten;
+
+  /// No description provided for @allergenMilk.
+  ///
+  /// In en, this message translates to:
+  /// **'Dairy'**
+  String get allergenMilk;
+
+  /// No description provided for @allergenEggs.
+  ///
+  /// In en, this message translates to:
+  /// **'Eggs'**
+  String get allergenEggs;
+
+  /// No description provided for @allergenNuts.
+  ///
+  /// In en, this message translates to:
+  /// **'Nuts'**
+  String get allergenNuts;
+
+  /// No description provided for @allergenPeanuts.
+  ///
+  /// In en, this message translates to:
+  /// **'Peanuts'**
+  String get allergenPeanuts;
+
+  /// No description provided for @allergenSesame.
+  ///
+  /// In en, this message translates to:
+  /// **'Sesame'**
+  String get allergenSesame;
+
+  /// No description provided for @allergenSoy.
+  ///
+  /// In en, this message translates to:
+  /// **'Soy'**
+  String get allergenSoy;
+
+  /// No description provided for @allergenFish.
+  ///
+  /// In en, this message translates to:
+  /// **'Fish'**
+  String get allergenFish;
+
+  /// No description provided for @allergenShellfish.
+  ///
+  /// In en, this message translates to:
+  /// **'Shellfish'**
+  String get allergenShellfish;
+
+  /// No description provided for @allergenNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No common allergens'**
+  String get allergenNone;
+
+  /// No description provided for @safetyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Prepared today at {time} and stored safely. The restaurant is responsible for food safety. Eat promptly or refrigerate, and ask staff if you are unsure about allergens.'**
+  String safetyNote(String time);
+
+  /// No description provided for @payAtPickup.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay at pickup · cash or card'**
+  String get payAtPickup;
+
+  /// No description provided for @nothingToPay.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing to pay at pickup'**
+  String get nothingToPay;
+
+  /// No description provided for @reserve.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserve'**
+  String get reserve;
+
+  /// No description provided for @reserved.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserved'**
+  String get reserved;
+
+  /// Under 'Reserved' on the Meal details bar. Figma puts the count on the first line, which doesn't fit narrow phones.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 meal} other{{count} meals}} · held until {time}'**
+  String reservedHeldUntil(int count, String time);
+
+  /// No description provided for @showPickupCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Show pickup code'**
+  String get showPickupCode;
+
+  /// No description provided for @soldOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sold out'**
+  String get soldOut;
+
+  /// No description provided for @soldOutHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Meals come back if someone cancels.'**
+  String get soldOutHint;
+
+  /// No description provided for @pickupEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup has ended'**
+  String get pickupEnded;
+
+  /// No description provided for @pickupEndedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'This offer is closed.'**
+  String get pickupEndedHint;
+
+  /// No description provided for @mealLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t load this meal.'**
+  String get mealLoadError;
+
+  /// No description provided for @reserveSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserve this meal?'**
+  String get reserveSheetTitle;
+
+  /// No description provided for @reserveSheetSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{title} · {restaurant}'**
+  String reserveSheetSubtitle(String title, String restaurant);
+
+  /// No description provided for @howMany.
+  ///
+  /// In en, this message translates to:
+  /// **'How many?'**
+  String get howMany;
+
+  /// No description provided for @howManyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to 3 per person · {left} left'**
+  String howManyHint(int left);
+
+  /// No description provided for @decreaseQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Fewer meals'**
+  String get decreaseQuantity;
+
+  /// No description provided for @increaseQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'More meals'**
+  String get increaseQuantity;
+
+  /// No description provided for @holdUntilTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We’ll hold it until {time}'**
+  String holdUntilTitle(String time);
+
+  /// No description provided for @holdUntilBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Can’t make it? Cancel so someone else can have it.'**
+  String get holdUntilBody;
+
+  /// No description provided for @payCounterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{price} · pay at the counter'**
+  String payCounterTitle(String price);
+
+  /// No description provided for @payCounterBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash or card. No payment in the app.'**
+  String get payCounterBody;
+
+  /// No description provided for @freeCounterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Free · nothing to pay'**
+  String get freeCounterTitle;
+
+  /// No description provided for @freeCounterBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Just show your code at the counter.'**
+  String get freeCounterBody;
+
+  /// No description provided for @reserveMeals.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Reserve 1 meal} other{Reserve {count} meals}}'**
+  String reserveMeals(int count);
+
+  /// No description provided for @notNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get notNow;
+
+  /// No description provided for @reserveSafetyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'The restaurant is responsible for food safety. Check allergens before eating.'**
+  String get reserveSafetyNote;
+
+  /// No description provided for @reservedToastTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Reserved. 1 meal is yours.} other{Reserved. {count} meals are yours.}}'**
+  String reservedToastTitle(int count);
+
+  /// No description provided for @reservedToastBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Show code {code} at the counter by {time}.'**
+  String reservedToastBody(String code, String time);
+
+  /// No description provided for @errorSoldOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Someone just took the last one, so it’s sold out.'**
+  String get errorSoldOut;
+
+  /// No description provided for @errorNotEnoughLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Not that many left now. Pick fewer.'**
+  String get errorNotEnoughLeft;
+
+  /// No description provided for @errorAlreadyReserved.
+  ///
+  /// In en, this message translates to:
+  /// **'You already reserved this meal. Find it in Pickups.'**
+  String get errorAlreadyReserved;
+
+  /// No description provided for @errorOfferNotLive.
+  ///
+  /// In en, this message translates to:
+  /// **'This offer has ended.'**
+  String get errorOfferNotLive;
+
+  /// No description provided for @errorReserveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t reserve it. Try again.'**
+  String get errorReserveFailed;
+
+  /// No description provided for @errorCantOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t open that on this phone.'**
+  String get errorCantOpen;
 }
 
 class _AppLocalizationsDelegate
