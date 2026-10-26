@@ -2853,6 +2853,456 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Offer removed.'**
   String get removedToast;
+
+  /// No description provided for @insightsTabForecast.
+  ///
+  /// In en, this message translates to:
+  /// **'Forecast'**
+  String get insightsTabForecast;
+
+  /// No description provided for @insightsTabImpact.
+  ///
+  /// In en, this message translates to:
+  /// **'Impact'**
+  String get insightsTabImpact;
+
+  /// No description provided for @insightsImpactSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Impact stats come later: meals rescued, money saved and food kept out of the bin.'**
+  String get insightsImpactSoon;
+
+  /// No description provided for @insightsTomorrowKicker.
+  ///
+  /// In en, this message translates to:
+  /// **'TOMORROW · {day}'**
+  String insightsTomorrowKicker(String day);
+
+  /// No description provided for @confidencePillLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Low confidence'**
+  String get confidencePillLow;
+
+  /// No description provided for @confidencePillMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium confidence'**
+  String get confidencePillMedium;
+
+  /// No description provided for @confidencePillHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'High confidence'**
+  String get confidencePillHigh;
+
+  /// No description provided for @confidencePillRough.
+  ///
+  /// In en, this message translates to:
+  /// **'Rough estimate'**
+  String get confidencePillRough;
+
+  /// No description provided for @insightsExpected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{surplus meal expected} other{surplus meals expected}}'**
+  String insightsExpected(int count);
+
+  /// No description provided for @insightsLikelyRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Likely between {low} and {high}'**
+  String insightsLikelyRange(int low, int high);
+
+  /// No description provided for @insightsNext7Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Next 7 days'**
+  String get insightsNext7Title;
+
+  /// No description provided for @insightsNext7Note.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected surplus meals · band = likely range · shaded = weekend'**
+  String get insightsNext7Note;
+
+  /// No description provided for @insightsViewAsList.
+  ///
+  /// In en, this message translates to:
+  /// **'View as list'**
+  String get insightsViewAsList;
+
+  /// No description provided for @insightsViewAsChart.
+  ///
+  /// In en, this message translates to:
+  /// **'View as chart'**
+  String get insightsViewAsChart;
+
+  /// No description provided for @insightsListDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get insightsListDay;
+
+  /// No description provided for @insightsListExpected.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected'**
+  String get insightsListExpected;
+
+  /// No description provided for @insightsListRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Likely range'**
+  String get insightsListRange;
+
+  /// No description provided for @insightsListWeekend.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekend'**
+  String get insightsListWeekend;
+
+  /// No description provided for @insightsTooltipExpected.
+  ///
+  /// In en, this message translates to:
+  /// **'~{count} meals'**
+  String insightsTooltipExpected(int count);
+
+  /// No description provided for @insightsTooltipRange.
+  ///
+  /// In en, this message translates to:
+  /// **'likely {low}–{high}'**
+  String insightsTooltipRange(int low, int high);
+
+  /// No description provided for @insightsChartHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a bar for details.'**
+  String get insightsChartHint;
+
+  /// No description provided for @insightsChartDay.
+  ///
+  /// In en, this message translates to:
+  /// **'{day}: about {count}, likely {low} to {high}.'**
+  String insightsChartDay(String day, int count, int low, int high);
+
+  /// No description provided for @insightsWhyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Why this forecast'**
+  String get insightsWhyTitle;
+
+  /// No description provided for @reasonWeekdayHigher.
+  ///
+  /// In en, this message translates to:
+  /// **'{weekday, select, mon{Mondays} tue{Tuesdays} wed{Wednesdays} thu{Thursdays} fri{Fridays} sat{Saturdays} sun{Sundays} other{This day}} are usually {pct}% higher'**
+  String reasonWeekdayHigher(String weekday, int pct);
+
+  /// No description provided for @reasonWeekdayLower.
+  ///
+  /// In en, this message translates to:
+  /// **'{weekday, select, mon{Mondays} tue{Tuesdays} wed{Wednesdays} thu{Thursdays} fri{Fridays} sat{Saturdays} sun{Sundays} other{This day}} are usually {pct}% lower'**
+  String reasonWeekdayLower(String weekday, int pct);
+
+  /// No description provided for @reasonDaysLogged.
+  ///
+  /// In en, this message translates to:
+  /// **'Based on {days, plural, =1{1 day} other{{days} days}} of your logs'**
+  String reasonDaysLogged(int days);
+
+  /// No description provided for @reasonWeekdayAverage.
+  ///
+  /// In en, this message translates to:
+  /// **'{weeks}-week weekday average'**
+  String reasonWeekdayAverage(int weeks);
+
+  /// No description provided for @reasonRamadan.
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan pattern applied'**
+  String get reasonRamadan;
+
+  /// No description provided for @reasonHoliday.
+  ///
+  /// In en, this message translates to:
+  /// **'Public holiday pattern applied'**
+  String get reasonHoliday;
+
+  /// No description provided for @reasonColdStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Rough estimate from your typical day'**
+  String get reasonColdStart;
+
+  /// No description provided for @insightsSuggestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Consider preparing about {count} fewer portions on {day}, or plan a surplus offer for closing time.'**
+  String insightsSuggestion(int count, String day);
+
+  /// No description provided for @insightsSuggestionLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Little surplus expected on {day}. Post anything left at closing.'**
+  String insightsSuggestionLow(String day);
+
+  /// No description provided for @insightsPostNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Post surplus now'**
+  String get insightsPostNow;
+
+  /// No description provided for @insightsNeverPosts.
+  ///
+  /// In en, this message translates to:
+  /// **'A forecast never posts meals for you. You confirm the real quantity.'**
+  String get insightsNeverPosts;
+
+  /// No description provided for @insightsAccuracy.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 2 weeks: off by about {count, plural, =1{1 meal} other{{count} meals}} a day'**
+  String insightsAccuracy(int count);
+
+  /// No description provided for @insightsAccuracyUnderOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 2 weeks: off by less than 1 meal a day'**
+  String get insightsAccuracyUnderOne;
+
+  /// No description provided for @insightsAccuracyNotYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Log a few more days to see how close the forecast gets.'**
+  String get insightsAccuracyNotYet;
+
+  /// No description provided for @insightsLogYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Log yesterday ({day})'**
+  String insightsLogYesterday(String day);
+
+  /// No description provided for @insightsLogYesterdayNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Prepared and left over · about 10 seconds'**
+  String get insightsLogYesterdayNote;
+
+  /// No description provided for @insightsLogNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Log now'**
+  String get insightsLogNow;
+
+  /// No description provided for @insightsYesterdayLogged.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday is logged ({day})'**
+  String insightsYesterdayLogged(String day);
+
+  /// No description provided for @loggedNumbers.
+  ///
+  /// In en, this message translates to:
+  /// **'{prepared} prepared · {surplus} left over'**
+  String loggedNumbers(int prepared, int surplus);
+
+  /// No description provided for @insightsEditLog.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit log'**
+  String get insightsEditLog;
+
+  /// No description provided for @insightsNoForecast.
+  ///
+  /// In en, this message translates to:
+  /// **'No forecast yet. It appears after the next nightly run.'**
+  String get insightsNoForecast;
+
+  /// No description provided for @errorLoadInsights.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn’t load your forecast. Pull down to try again.'**
+  String get errorLoadInsights;
+
+  /// No description provided for @dailyLogHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily log'**
+  String get dailyLogHeader;
+
+  /// No description provided for @dailyLogTitleYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Log yesterday'**
+  String get dailyLogTitleYesterday;
+
+  /// No description provided for @dailyLogTitleDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Log {day}'**
+  String dailyLogTitleDay(String day);
+
+  /// No description provided for @dailyLogIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'{date} · about 10 seconds. Each log makes your forecast more accurate.'**
+  String dailyLogIntro(String date);
+
+  /// No description provided for @dailyLogPreparedYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Meals prepared yesterday'**
+  String get dailyLogPreparedYesterday;
+
+  /// No description provided for @dailyLogPreparedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Meals prepared on {day}'**
+  String dailyLogPreparedOn(String day);
+
+  /// No description provided for @dailyLogLeftOver.
+  ///
+  /// In en, this message translates to:
+  /// **'Left over at closing'**
+  String get dailyLogLeftOver;
+
+  /// No description provided for @dailyLogLeftOverHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Count everything not sold to regular customers, including meals you posted on ZAD.'**
+  String get dailyLogLeftOverHelp;
+
+  /// No description provided for @dailyLogShare.
+  ///
+  /// In en, this message translates to:
+  /// **'{surplus} of {prepared} left · {pct}%'**
+  String dailyLogShare(int surplus, int prepared, int pct);
+
+  /// No description provided for @dailyLogFewerPrepared.
+  ///
+  /// In en, this message translates to:
+  /// **'Fewer meals prepared'**
+  String get dailyLogFewerPrepared;
+
+  /// No description provided for @dailyLogMorePrepared.
+  ///
+  /// In en, this message translates to:
+  /// **'More meals prepared'**
+  String get dailyLogMorePrepared;
+
+  /// No description provided for @dailyLogFewerLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Fewer left over'**
+  String get dailyLogFewerLeft;
+
+  /// No description provided for @dailyLogMoreLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'More left over'**
+  String get dailyLogMoreLeft;
+
+  /// No description provided for @dailyLogLeftOverMax.
+  ///
+  /// In en, this message translates to:
+  /// **'Left over can’t be more than prepared.'**
+  String get dailyLogLeftOverMax;
+
+  /// No description provided for @dailyLogGuessed.
+  ///
+  /// In en, this message translates to:
+  /// **'The forecast guessed ~{count} for {day}'**
+  String dailyLogGuessed(int count, String day);
+
+  /// No description provided for @dailyLogYesterdayWord.
+  ///
+  /// In en, this message translates to:
+  /// **'yesterday'**
+  String get dailyLogYesterdayWord;
+
+  /// No description provided for @dailyLogOffBy.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Spot on.} =1{Off by 1 meal.} other{Off by {count} meals.}}'**
+  String dailyLogOffBy(int count);
+
+  /// No description provided for @dailyLogLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} days logged, so it now learns from your own numbers.'**
+  String dailyLogLearning(int days);
+
+  /// No description provided for @dailyLogWarmingUp.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} of 14 days logged. After that it learns from your own numbers.'**
+  String dailyLogWarmingUp(int days);
+
+  /// No description provided for @dailyLogNoGuessTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =0{Your first log} =1{1 day logged} other{{days} days logged}}'**
+  String dailyLogNoGuessTitle(int days);
+
+  /// No description provided for @dailyLogNoGuessBody.
+  ///
+  /// In en, this message translates to:
+  /// **'There was no forecast for this day to compare with.'**
+  String get dailyLogNoGuessBody;
+
+  /// No description provided for @dailyLogEarlier.
+  ///
+  /// In en, this message translates to:
+  /// **'Earlier days'**
+  String get dailyLogEarlier;
+
+  /// No description provided for @dailyLogEarlierNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix a missed or wrong day'**
+  String get dailyLogEarlierNote;
+
+  /// No description provided for @dailyLogEarlierSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The last 2 weeks. Tap a day to log or fix it.'**
+  String get dailyLogEarlierSubtitle;
+
+  /// No description provided for @dailyLogNotLogged.
+  ///
+  /// In en, this message translates to:
+  /// **'Not logged'**
+  String get dailyLogNotLogged;
+
+  /// No description provided for @dailyLogSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save log'**
+  String get dailyLogSave;
+
+  /// No description provided for @dailyLogSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved. {day} is logged.'**
+  String dailyLogSaved(String day);
+
+  /// No description provided for @dailyLogSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn’t save the log. Try again.'**
+  String get dailyLogSaveError;
+
+  /// No description provided for @dailyLogAfter14.
+  ///
+  /// In en, this message translates to:
+  /// **'After 14 days, the forecast learns from your own numbers.'**
+  String get dailyLogAfter14;
+
+  /// No description provided for @insightsListNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected surplus meals and the likely range for each day'**
+  String get insightsListNote;
 }
 
 class _AppLocalizationsDelegate

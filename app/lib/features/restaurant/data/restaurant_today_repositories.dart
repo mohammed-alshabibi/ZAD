@@ -5,6 +5,7 @@ import '../domain/forecast.dart';
 import '../domain/offer.dart';
 import '../domain/offer_draft.dart';
 import '../domain/restaurant_reservation.dart';
+import 'fake_forecast.dart';
 import 'fake_today_store.dart';
 
 /// The restaurant's own offers (CLAUDE.md §5.1).
@@ -40,7 +41,9 @@ abstract interface class PickupsRepository {
   Future<RestaurantReservation> confirm(String code);
 }
 
-/// `GET /forecasts`: the next 7 days for the signed-in restaurant (§7.5).
+/// `GET /forecasts`: the signed-in restaurant's last 14 days and next 7 (§7.5).
+/// Past days are what the forecast said at the time, kept so the app can
+/// compare them with the daily logs (accuracy line, Daily log feedback).
 abstract interface class ForecastRepository {
   Future<List<Forecast>> myForecasts();
 }

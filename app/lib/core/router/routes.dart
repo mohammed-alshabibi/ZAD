@@ -30,6 +30,10 @@ abstract final class Routes {
   static const restaurantProfile = '/restaurant/profile';
   static const restaurantNewOffer = '/restaurant/new-offer';
 
+  /// Daily log for yesterday (`PUT /daily-logs/{date}`); earlier days are
+  /// picked on the screen.
+  static const restaurantDailyLog = '/restaurant/daily-log';
+
   /// Restaurant setup: details → pickup location → typical day → pending.
   static const restaurantOnboarding = '/restaurant/onboarding';
   static const restaurantOnboardingLocation = '/restaurant/onboarding/location';

@@ -1721,4 +1721,346 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get removedToast => 'Offer removed.';
+
+  @override
+  String get insightsTabForecast => 'Forecast';
+
+  @override
+  String get insightsTabImpact => 'Impact';
+
+  @override
+  String get insightsImpactSoon =>
+      'Impact stats come later: meals rescued, money saved and food kept out of the bin.';
+
+  @override
+  String insightsTomorrowKicker(String day) {
+    return 'TOMORROW · $day';
+  }
+
+  @override
+  String get confidencePillLow => 'Low confidence';
+
+  @override
+  String get confidencePillMedium => 'Medium confidence';
+
+  @override
+  String get confidencePillHigh => 'High confidence';
+
+  @override
+  String get confidencePillRough => 'Rough estimate';
+
+  @override
+  String insightsExpected(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'surplus meals expected',
+      one: 'surplus meal expected',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String insightsLikelyRange(int low, int high) {
+    return 'Likely between $low and $high';
+  }
+
+  @override
+  String get insightsNext7Title => 'Next 7 days';
+
+  @override
+  String get insightsNext7Note =>
+      'Expected surplus meals · band = likely range · shaded = weekend';
+
+  @override
+  String get insightsViewAsList => 'View as list';
+
+  @override
+  String get insightsViewAsChart => 'View as chart';
+
+  @override
+  String get insightsListDay => 'Day';
+
+  @override
+  String get insightsListExpected => 'Expected';
+
+  @override
+  String get insightsListRange => 'Likely range';
+
+  @override
+  String get insightsListWeekend => 'Weekend';
+
+  @override
+  String insightsTooltipExpected(int count) {
+    return '~$count meals';
+  }
+
+  @override
+  String insightsTooltipRange(int low, int high) {
+    return 'likely $low–$high';
+  }
+
+  @override
+  String get insightsChartHint => 'Tap a bar for details.';
+
+  @override
+  String insightsChartDay(String day, int count, int low, int high) {
+    return '$day: about $count, likely $low to $high.';
+  }
+
+  @override
+  String get insightsWhyTitle => 'Why this forecast';
+
+  @override
+  String reasonWeekdayHigher(String weekday, int pct) {
+    String _temp0 = intl.Intl.selectLogic(weekday, {
+      'mon': 'Mondays',
+      'tue': 'Tuesdays',
+      'wed': 'Wednesdays',
+      'thu': 'Thursdays',
+      'fri': 'Fridays',
+      'sat': 'Saturdays',
+      'sun': 'Sundays',
+      'other': 'This day',
+    });
+    return '$_temp0 are usually $pct% higher';
+  }
+
+  @override
+  String reasonWeekdayLower(String weekday, int pct) {
+    String _temp0 = intl.Intl.selectLogic(weekday, {
+      'mon': 'Mondays',
+      'tue': 'Tuesdays',
+      'wed': 'Wednesdays',
+      'thu': 'Thursdays',
+      'fri': 'Fridays',
+      'sat': 'Saturdays',
+      'sun': 'Sundays',
+      'other': 'This day',
+    });
+    return '$_temp0 are usually $pct% lower';
+  }
+
+  @override
+  String reasonDaysLogged(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days days',
+      one: '1 day',
+    );
+    return 'Based on $_temp0 of your logs';
+  }
+
+  @override
+  String reasonWeekdayAverage(int weeks) {
+    return '$weeks-week weekday average';
+  }
+
+  @override
+  String get reasonRamadan => 'Ramadan pattern applied';
+
+  @override
+  String get reasonHoliday => 'Public holiday pattern applied';
+
+  @override
+  String get reasonColdStart => 'Rough estimate from your typical day';
+
+  @override
+  String insightsSuggestion(int count, String day) {
+    return 'Consider preparing about $count fewer portions on $day, or plan a surplus offer for closing time.';
+  }
+
+  @override
+  String insightsSuggestionLow(String day) {
+    return 'Little surplus expected on $day. Post anything left at closing.';
+  }
+
+  @override
+  String get insightsPostNow => 'Post surplus now';
+
+  @override
+  String get insightsNeverPosts =>
+      'A forecast never posts meals for you. You confirm the real quantity.';
+
+  @override
+  String insightsAccuracy(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count meals',
+      one: '1 meal',
+    );
+    return 'Last 2 weeks: off by about $_temp0 a day';
+  }
+
+  @override
+  String get insightsAccuracyUnderOne =>
+      'Last 2 weeks: off by less than 1 meal a day';
+
+  @override
+  String get insightsAccuracyNotYet =>
+      'Log a few more days to see how close the forecast gets.';
+
+  @override
+  String insightsLogYesterday(String day) {
+    return 'Log yesterday ($day)';
+  }
+
+  @override
+  String get insightsLogYesterdayNote =>
+      'Prepared and left over · about 10 seconds';
+
+  @override
+  String get insightsLogNow => 'Log now';
+
+  @override
+  String insightsYesterdayLogged(String day) {
+    return 'Yesterday is logged ($day)';
+  }
+
+  @override
+  String loggedNumbers(int prepared, int surplus) {
+    return '$prepared prepared · $surplus left over';
+  }
+
+  @override
+  String get insightsEditLog => 'Edit log';
+
+  @override
+  String get insightsNoForecast =>
+      'No forecast yet. It appears after the next nightly run.';
+
+  @override
+  String get errorLoadInsights =>
+      'Couldn’t load your forecast. Pull down to try again.';
+
+  @override
+  String get dailyLogHeader => 'Daily log';
+
+  @override
+  String get dailyLogTitleYesterday => 'Log yesterday';
+
+  @override
+  String dailyLogTitleDay(String day) {
+    return 'Log $day';
+  }
+
+  @override
+  String dailyLogIntro(String date) {
+    return '$date · about 10 seconds. Each log makes your forecast more accurate.';
+  }
+
+  @override
+  String get dailyLogPreparedYesterday => 'Meals prepared yesterday';
+
+  @override
+  String dailyLogPreparedOn(String day) {
+    return 'Meals prepared on $day';
+  }
+
+  @override
+  String get dailyLogLeftOver => 'Left over at closing';
+
+  @override
+  String get dailyLogLeftOverHelp =>
+      'Count everything not sold to regular customers, including meals you posted on ZAD.';
+
+  @override
+  String dailyLogShare(int surplus, int prepared, int pct) {
+    return '$surplus of $prepared left · $pct%';
+  }
+
+  @override
+  String get dailyLogFewerPrepared => 'Fewer meals prepared';
+
+  @override
+  String get dailyLogMorePrepared => 'More meals prepared';
+
+  @override
+  String get dailyLogFewerLeft => 'Fewer left over';
+
+  @override
+  String get dailyLogMoreLeft => 'More left over';
+
+  @override
+  String get dailyLogLeftOverMax => 'Left over can’t be more than prepared.';
+
+  @override
+  String dailyLogGuessed(int count, String day) {
+    return 'The forecast guessed ~$count for $day';
+  }
+
+  @override
+  String get dailyLogYesterdayWord => 'yesterday';
+
+  @override
+  String dailyLogOffBy(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Off by $count meals.',
+      one: 'Off by 1 meal.',
+      zero: 'Spot on.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String dailyLogLearning(int days) {
+    return '$days days logged, so it now learns from your own numbers.';
+  }
+
+  @override
+  String dailyLogWarmingUp(int days) {
+    return '$days of 14 days logged. After that it learns from your own numbers.';
+  }
+
+  @override
+  String dailyLogNoGuessTitle(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days days logged',
+      one: '1 day logged',
+      zero: 'Your first log',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dailyLogNoGuessBody =>
+      'There was no forecast for this day to compare with.';
+
+  @override
+  String get dailyLogEarlier => 'Earlier days';
+
+  @override
+  String get dailyLogEarlierNote => 'Fix a missed or wrong day';
+
+  @override
+  String get dailyLogEarlierSubtitle =>
+      'The last 2 weeks. Tap a day to log or fix it.';
+
+  @override
+  String get dailyLogNotLogged => 'Not logged';
+
+  @override
+  String get dailyLogSave => 'Save log';
+
+  @override
+  String dailyLogSaved(String day) {
+    return 'Saved. $day is logged.';
+  }
+
+  @override
+  String get dailyLogSaveError => 'Couldn’t save the log. Try again.';
+
+  @override
+  String get dailyLogAfter14 =>
+      'After 14 days, the forecast learns from your own numbers.';
+
+  @override
+  String get insightsListNote =>
+      'Expected surplus meals and the likely range for each day';
 }

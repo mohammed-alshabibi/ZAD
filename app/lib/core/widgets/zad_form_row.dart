@@ -14,8 +14,12 @@ class ZadFormRow extends StatelessWidget {
     this.value,
     this.chevron = true,
     this.error = false,
+    this.iconColor,
     this.onTap,
   });
+
+  /// Re-tints the icon (a `context.zad` token), e.g. sap for a done state.
+  final Color? iconColor;
 
   /// Shows [value] in the danger colour (a required field still missing).
   final bool error;
@@ -38,7 +42,7 @@ class ZadFormRow extends StatelessWidget {
           decoration: BoxDecoration(border: Border(bottom: BorderSide(color: z.nightHairline))),
           child: Row(
             children: [
-              ZadIcon(icon, size: 20),
+              ZadIcon(icon, size: 20, color: iconColor),
               const SizedBox(width: 14),
               Expanded(
                 child: Column(

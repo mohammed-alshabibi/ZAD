@@ -101,7 +101,7 @@ All documents have `_id`, `created_at`, `updated_at`. Locations are GeoJSON `{"t
 | `reservations` | offer_id, user_id, quantity, pickup_code (6 digits), `status` (reserved/collected/cancelled/expired), hold_expires_at, collected_at? | `hold_expires_at = min(max(now, pickup_start) + 30 min, pickup_end)`. |
 | `notifications` | user_id, type, offer_id?, title, body, read_at? | Inbox + the 3-per-day cap. |
 | `daily_logs` | restaurant_id, date, meals_prepared, meals_surplus, `source` (manual/synthetic) | Unique (restaurant_id, date). surplus ≤ prepared. |
-| `forecasts` | restaurant_id, target_date, predicted, low, high, confidence (low/medium/high), model, explanations [] | Replaced on each run. |
+| `forecasts` | restaurant_id, target_date, predicted, low, high, confidence (low/medium/high), model, explanations [] | Future days are replaced on each run; past days are kept (what the forecast said at the time) so the app can compare them with the logs. `explanations` are codes + numbers (`{"code":"weekday_higher","weekday":5,"pct":40}`, `days_logged`, `weekday_average`, `ramadan`, `holiday`, `cold_start`); the app words them. |
 
 Enums (cuisines, categories, allergens, Oman holidays/Ramadan dates) live in Python code, not in collections.
 
@@ -118,7 +118,7 @@ Enums (cuisines, categories, allergens, Oman holidays/Ramadan dates) live in Pyt
 | Anyone | `POST /auth/register` (email, password, name, role) · `POST /auth/login` · `POST /auth/refresh` |
 | Signed in | `GET/PATCH /me` · `PUT /me/location` · `PUT /me/push-token` · `GET /notifications` · `POST /notifications/{id}/read` |
 | User | `GET /offers/nearby?lat&lng&radius_km=5&category&free` · `GET /offers/{id}` · `POST /offers/{id}/reserve` · `GET /reservations` · `POST /reservations/{id}/cancel` |
-| Restaurant | `POST /restaurants` · `GET/PATCH /restaurants/me` · `GET /restaurants/me/offers` · `POST /offers` · `PATCH /offers/{id}` · `POST /offers/{id}/cancel` · `GET /restaurants/me/reservations` · `POST /pickups/check` (who a code belongs to, shown before handing food over; counts toward the wrong-code lockout) · `POST /pickups/confirm` · `GET /daily-logs` · `PUT /daily-logs/{date}` · `GET /forecasts` |
+| Restaurant | `POST /restaurants` · `GET/PATCH /restaurants/me` · `GET /restaurants/me/offers` · `POST /offers` · `PATCH /offers/{id}` · `POST /offers/{id}/cancel` · `GET /restaurants/me/reservations` · `POST /pickups/check` (who a code belongs to, shown before handing food over; counts toward the wrong-code lockout) · `POST /pickups/confirm` · `GET /daily-logs` · `PUT /daily-logs/{date}` · `GET /forecasts` (last 14 days + next 7) |
 | Admin | `GET /admin/overview` · `GET /admin/restaurants?status=` · `POST /admin/restaurants/{id}/status` · `GET /admin/offers` · `POST /admin/offers/{id}/remove` |
 
 **Security rules (keep these, they are cheap):** `IsAuthenticated` by default; one role permission per view (`IsUserRole`, `IsRestaurantRole`, `IsApprovedRestaurant`, `IsAdminRole`); querysets always filtered by `request.user`; `role`, `status` and counters are read-only in serializers. Restaurants see only the user's first name and the code status, never their phone or location.
@@ -173,7 +173,7 @@ Predict **how many meals a restaurant will have left over each day for the next 
 Rolling backtest on the synthetic data: train up to day t, predict t+1…t+7, slide forward. Report **MAE** (meals/day), **WAPE** (Σ|error| / Σactual) and **interval coverage** (share of actuals inside the range, target ≈ 80%) for M0 vs M1. Synthetic results are labelled as synthetic. `python -m zad_forecast.run --backtest` writes the results table to `docs/`.
 
 ### 7.5 Running it
-`python manage.py run_forecast` → for each approved restaurant, pick cold-start or M1, predict 7 days, replace its `forecasts`. The app reads `GET /forecasts`.
+`python manage.py run_forecast` → for each approved restaurant, pick cold-start or M1, predict 7 days, replace its future `forecasts` (past days stay for the accuracy line). The app reads `GET /forecasts`.
 
 ### 7.6 How the restaurant sees it
 Matches the Figma Insights screen: tomorrow card ("~12 surplus meals, likely 8–16") with a confidence label; 7-day bar chart with range bands and weekend shading; 2–3 explanation chips ("Fridays are usually higher", "Ramadan pattern applied", "Based on 23 days of your data"); a suggestion ("Consider preparing ~8 fewer portions"); "Post surplus now" opens Add Surplus **without** pre-filling the quantity; "Log yesterday" card.
