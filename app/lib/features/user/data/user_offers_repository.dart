@@ -11,6 +11,14 @@ abstract interface class UserOffersRepository {
   /// `GET /offers/nearby?lat&lng&radius_km=5`: live offers (`active` or
   /// `sold_out`, pickup not over) within [radiusKm], nearest first, at most 50.
   Future<List<NearbyOffer>> nearby({required double lat, required double lng, double radiusKm = 5});
+
+  /// `GET /offers/{id}?lat&lng`: one offer with the restaurant's phone and
+  /// the distance from the user. Throws [OfferNotFound] for removed offers.
+  Future<NearbyOffer> offer(String id, {required double lat, required double lng});
+}
+
+class OfferNotFound implements Exception {
+  const OfferNotFound();
 }
 
 /// Answers from the shared demo store, so a meal reserved here is gone for
@@ -34,10 +42,21 @@ class FakeUserOffersRepository implements UserOffersRepository {
       if (!live || !DateTime.parse(o['pickup_end'] as String).isAfter(now)) continue;
       final coords = (o['location'] as Map<String, dynamic>)['coordinates'] as List<dynamic>;
       final d = distanceMeters(lat, lng, (coords[1] as num).toDouble(), (coords[0] as num).toDouble());
-      if (d <= radiusKm * 1000) results.add({...o, 'distance_m': d.round()});
+      if (d <= radiusKm * 1000) results.add({...o, 'distance_m': d.round()}..remove('restaurant_phone'));
     }
     results.sort((a, b) => (a['distance_m'] as int).compareTo(b['distance_m'] as int));
     return [for (final json in results.take(limit)) NearbyOffer.fromJson(json)];
+  }
+
+  @override
+  Future<NearbyOffer> offer(String id, {required double lat, required double lng}) async {
+    await Future<void>.delayed(latency);
+    store.expireStale(DateTime.now());
+    final o = store.offerById(id);
+    if (o == null || o['status'] == 'removed') throw const OfferNotFound();
+    final coords = (o['location'] as Map<String, dynamic>)['coordinates'] as List<dynamic>;
+    final d = distanceMeters(lat, lng, (coords[1] as num).toDouble(), (coords[0] as num).toDouble());
+    return NearbyOffer.fromJson({...o, 'distance_m': d.round()});
   }
 }
 

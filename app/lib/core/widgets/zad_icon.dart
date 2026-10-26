@@ -44,7 +44,14 @@ enum ZadIcons {
   pinSmall('pin_small', 16, 1.792, 0.458, 12.417, 15.083),
   chevronDown('chevron_down', 14, 2.5, 4.25, 9, 5.5),
   bell18('bell_18', 18, 1.375, 0.625, 15.25, 16.75),
-  search('search', 18, 1.375, 1.375, 15.25, 15.25);
+  search('search', 18, 1.375, 1.375, 15.25, 15.25),
+  chevronDown24('chevron_down_24', 24, 5.125, 8.125, 13.75, 7.75),
+  directions('directions', 24, 4.125, 1.125, 15.75, 20.75),
+  call('call', 24, 1.125, 1.125, 21.75, 21.75),
+  shield18('shield_18', 18, 2.125, 0.625, 13.75, 16.753),
+  wallet('wallet', 20, 1.625, 1.625, 17.583, 16.75),
+  image28('image_28', 28, 2.625, 2.625, 22.75, 22.75),
+  ticketToast('ticket_toast', 22, 0.958, 3.708, 20.083, 14.583);
 
   const ZadIcons(this.file, this.box, this.left, this.top, this.width, this.height);
 

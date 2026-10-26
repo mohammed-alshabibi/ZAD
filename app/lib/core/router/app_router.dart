@@ -15,6 +15,7 @@ import '../../features/restaurant/onboarding/restaurant_details_screen.dart';
 import '../../features/restaurant/onboarding/typical_day_screen.dart';
 import '../../features/user/home/user_home_screen.dart';
 import '../../features/user/home/user_shell.dart';
+import '../../features/user/meal/meal_details_screen.dart';
 import '../l10n/generated/app_localizations.dart';
 import '../widgets/placeholder_screen.dart';
 import '../widgets/tab_placeholder.dart';
@@ -63,7 +64,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: Routes.mealDetailsPattern,
-        builder: (context, _) => PlaceholderScreen(name: AppLocalizations.of(context).mealDetails),
+        builder: (_, state) => MealDetailsScreen(offerId: state.pathParameters['id']!),
       ),
       GoRoute(path: Routes.setArea, builder: (_, _) => const PlaceholderScreen(name: 'Set my area')),
       GoRoute(path: Routes.notifications, builder: (_, _) => const PlaceholderScreen(name: 'Notifications')),

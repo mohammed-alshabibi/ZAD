@@ -2,31 +2,38 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/l10n/generated/app_localizations.dart';
 import '../../../core/theme/zad_colors.dart';
 import '../../../core/theme/zad_type.dart';
+import '../../../core/time/clock.dart';
 import '../../../core/widgets/zad_icon.dart';
+import '../application/reservations.dart';
 
 /// User tab bar from Figma 8:48: Home · Pickups · Profile (§14.3: three tabs,
 /// the Map tab was folded into Home). It has the same night colour as the
 /// Home sheet, so on Home the two read as one surface.
-class UserShell extends StatelessWidget {
+class UserShell extends ConsumerWidget {
   const UserShell({super.key, required this.shell});
 
   final StatefulNavigationShell shell;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final now = ref.now;
+    // Figma "Active reservation": a saffron dot on Pickups while a hold runs.
+    final hasActive = (ref.watch(myReservationsProvider).value ?? const []).any((r) => r.isActive(now));
     final l10n = AppLocalizations.of(context);
     final z = context.zad;
     final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
 
     // Branch order matches the router: Home, Pickups, Profile.
-    Widget tab(int branch, ZadIcons icon, String label) => _TabItem(
+    Widget tab(int branch, ZadIcons icon, String label, {bool dot = false}) => _TabItem(
           icon: icon,
           label: label,
+          dot: dot,
           active: shell.currentIndex == branch,
           onTap: () => shell.goBranch(branch, initialLocation: branch == shell.currentIndex),
         );
@@ -48,7 +55,7 @@ class UserShell extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 tab(0, ZadIcons.tabHome, l10n.tabHome),
-                tab(1, ZadIcons.tabTicket, l10n.tabPickups),
+                tab(1, ZadIcons.tabTicket, l10n.tabPickups, dot: hasActive),
                 tab(2, ZadIcons.tabUser, l10n.tabProfile),
               ],
             ),
@@ -60,12 +67,13 @@ class UserShell extends StatelessWidget {
 }
 
 class _TabItem extends StatelessWidget {
-  const _TabItem({required this.icon, required this.label, required this.active, required this.onTap});
+  const _TabItem({required this.icon, required this.label, required this.active, required this.onTap, this.dot = false});
 
   final ZadIcons icon;
   final String label;
   final bool active;
   final VoidCallback onTap;
+  final bool dot;
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +90,27 @@ class _TabItem extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ZadIcon(icon, size: 22, color: color),
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  ZadIcon(icon, size: 22, color: color),
+                  if (dot)
+                    // 8 px saffron dot with a 2 px ring in the bar colour (Figma 8:229).
+                    PositionedDirectional(
+                      start: 19,
+                      top: -2,
+                      child: Container(
+                        width: 12,
+                        height: 12,
+                        decoration: BoxDecoration(
+                          color: z.saffron,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: z.nightSheet, width: 2),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
               const SizedBox(height: 4),
               Text(
                 label,

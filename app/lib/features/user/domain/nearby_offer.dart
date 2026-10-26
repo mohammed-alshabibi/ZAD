@@ -10,7 +10,11 @@ class NearbyOffer {
     required this.lat,
     required this.lng,
     required this.distanceM,
+    this.restaurantPhone,
   });
+
+  /// Only on `GET /offers/{id}` (for the Call tile).
+  final String? restaurantPhone;
 
   final Offer offer;
   final String restaurantName;
@@ -37,6 +41,7 @@ class NearbyOffer {
       lng: (coords[0] as num).toDouble(),
       lat: (coords[1] as num).toDouble(),
       distanceM: (json['distance_m'] as num).round(),
+      restaurantPhone: json['restaurant_phone'] as String?,
     );
   }
 }

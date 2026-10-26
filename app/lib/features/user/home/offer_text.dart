@@ -18,6 +18,21 @@ extension OfferText on AppLocalizations {
         OfferCategory.mixed || null => categoryMixed,
       };
 
+  /// Allergen names as the API sends them (`gluten`, `milk`, … or `none`).
+  String allergenLabel(String a) => switch (a) {
+        'gluten' => allergenGluten,
+        'milk' => allergenMilk,
+        'eggs' => allergenEggs,
+        'nuts' => allergenNuts,
+        'peanuts' => allergenPeanuts,
+        'sesame' => allergenSesame,
+        'soy' => allergenSoy,
+        'fish' => allergenFish,
+        'shellfish' => allergenShellfish,
+        'none' => allergenNone,
+        _ => a,
+      };
+
   /// "0.800 OMR", or "Free" when the price is 0.
   String priceLabel(int baisa) => baisa == 0 ? free : formatOmr(baisa);
 
