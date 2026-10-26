@@ -526,7 +526,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String hoursMinutesLeft(int hours, int minutes) {
-    return '$hours h $minutes min left';
+    return '$hours h $minutes min';
   }
 
   @override
@@ -1132,6 +1132,11 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String hoursMinutesLeftTag(int hours, int minutes) {
+    return '$hours h $minutes min left';
+  }
+
+  @override
   String get pickupsRecent => 'Recent';
 
   @override
@@ -1243,4 +1248,191 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorCancelFailed => 'We couldn’t cancel it. Try again.';
+
+  @override
+  String get newSurplusTitle => 'New surplus';
+
+  @override
+  String get addPhoto => 'Add a photo';
+
+  @override
+  String get addPhotoHint => 'Optional · meals with photos get reserved faster';
+
+  @override
+  String get photosComingSoon => 'Adding photos comes in a later version.';
+
+  @override
+  String get mealNameHint => 'Meal name';
+
+  @override
+  String get mealNoteHint => 'Add a short note (optional)';
+
+  @override
+  String get errorMealName => 'Give the meal a name.';
+
+  @override
+  String get rowCategory => 'Category';
+
+  @override
+  String get rowQuantity => 'Quantity';
+
+  @override
+  String get rowPrice => 'Price';
+
+  @override
+  String get rowPickupWindow => 'Pickup window';
+
+  @override
+  String get rowPreparedAt => 'Prepared at';
+
+  @override
+  String get rowAllergens => 'Allergens';
+
+  @override
+  String get chooseCategory => 'Choose a category';
+
+  @override
+  String quantityValue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count meals',
+      one: '1 meal',
+    );
+    return '$_temp0 · up to 3 per person';
+  }
+
+  @override
+  String get setPrice => 'Set a price, or make it free';
+
+  @override
+  String priceWithWas(String price, String was) {
+    return '$price · was $was';
+  }
+
+  @override
+  String pickupWindowValue(String start, String end) {
+    return 'Today, $start – $end';
+  }
+
+  @override
+  String get pickupWindowOrder => 'Pickup must end after it starts';
+
+  @override
+  String get pickupWindowOver => 'This pickup time has already passed';
+
+  @override
+  String get pickupWindowTooLate => 'Pickup must end within 12 hours';
+
+  @override
+  String preparedAtValue(String time) {
+    return 'Today, $time';
+  }
+
+  @override
+  String get preparedAtMissing => 'When was it cooked?';
+
+  @override
+  String get preparedAtInvalid => 'Pick a time earlier today';
+
+  @override
+  String get allergensMissing => 'Pick allergens, or None';
+
+  @override
+  String get safetyCheckText =>
+      'This food was prepared today, stored at safe temperatures, has not been served to customers, and is safe to eat.';
+
+  @override
+  String get whatCantBePosted => 'What can’t be posted?';
+
+  @override
+  String get notifyNote => 'People within 3 km get one alert when you post.';
+
+  @override
+  String get fixHighlighted => 'Fill in the parts marked in red.';
+
+  @override
+  String get posted => 'Posted. People nearby can reserve it now.';
+
+  @override
+  String get errorNotApproved =>
+      'Your restaurant needs approval before you can post.';
+
+  @override
+  String get errorPostFailed => 'We couldn’t post it. Try again.';
+
+  @override
+  String get categorySheetTitle => 'What kind of food?';
+
+  @override
+  String get quantitySheetTitle => 'How many meals?';
+
+  @override
+  String get quantitySheetHint => 'Each person can reserve up to 3.';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get priceSheetTitle => 'Price';
+
+  @override
+  String get priceSheetHint =>
+      'People pay this at the counter. There’s no payment in the app.';
+
+  @override
+  String get priceField => 'Price (OMR)';
+
+  @override
+  String get wasPriceField => 'Normal price (OMR, optional)';
+
+  @override
+  String get wasPriceHelper => 'Shown crossed out next to your price.';
+
+  @override
+  String get makeItFree => 'Make it free';
+
+  @override
+  String get errorPriceFormat => 'Type a price like 0.800';
+
+  @override
+  String get errorWasPrice =>
+      'The normal price must be higher than your price.';
+
+  @override
+  String get pickupSheetTitle => 'Pickup window';
+
+  @override
+  String get pickupSheetHint => 'Pickup has to end within 12 hours.';
+
+  @override
+  String get pickupFromLabel => 'From';
+
+  @override
+  String get pickupUntilLabel => 'Until';
+
+  @override
+  String get allergenSheetTitle => 'Allergens';
+
+  @override
+  String get allergenSheetHint =>
+      'Pick everything in this meal. People with allergies rely on it.';
+
+  @override
+  String get cantPostTitle => 'What can’t be posted?';
+
+  @override
+  String get cantPostPlate => 'Leftovers from customers’ plates';
+
+  @override
+  String get cantPostOpened => 'Dishes that were opened or partly served';
+
+  @override
+  String get cantPostExpired => 'Food past its use-by date';
+
+  @override
+  String get cantPostHomemade => 'Home-made food';
+
+  @override
+  String get gotIt => 'Got it';
 }

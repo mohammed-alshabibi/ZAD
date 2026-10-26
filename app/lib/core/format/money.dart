@@ -8,3 +8,15 @@ String formatOmrAmount(int baisa) {
   final rest = (baisa % 1000).toString().padLeft(3, '0');
   return '$omr.$rest';
 }
+
+/// What the owner types as a price, in OMR, to baisa: "0.8" → 800,
+/// "1.250" → 1250, "2" → 2000. Null for anything else (more than 3 decimals,
+/// letters, negative).
+int? parseOmr(String input) {
+  final text = input.trim().replaceAll(',', '.');
+  final match = RegExp(r'^(\d{1,4})(?:\.(\d{0,3}))?$').firstMatch(text);
+  if (match == null) return null;
+  final omr = int.parse(match.group(1)!);
+  final baisa = (match.group(2) ?? '').padRight(3, '0');
+  return omr * 1000 + int.parse(baisa);
+}

@@ -1,9 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/format/muscat_time.dart';
+import '../../../core/time/clock.dart';
 import '../data/restaurant_today_repositories.dart';
 import '../domain/forecast.dart';
 import '../domain/offer.dart';
+import '../domain/offer_draft.dart';
 import '../domain/restaurant_reservation.dart';
 import 'my_restaurant.dart';
 
@@ -53,7 +55,12 @@ RestaurantToday buildRestaurantToday({
   final mine = [for (final r in reservations) if (ids.contains(r.offerId)) r];
   int meals(Iterable<RestaurantReservation> rs) => rs.fold(0, (sum, r) => sum + r.quantity);
 
-  final waiting = [for (final r in mine) if (r.status == ReservationStatus.reserved) r]
+  // A hold that has run out is no longer waiting (the server marks it
+  // expired on its next read).
+  final waiting = [
+    for (final r in mine)
+      if (r.status == ReservationStatus.reserved && r.holdExpiresAt.isAfter(now)) r,
+  ]
     ..sort((a, b) => a.holdExpiresAt.compareTo(b.holdExpiresAt));
   final collected = [for (final r in mine) if (r.status == ReservationStatus.collected) r]
     ..sort((a, b) => (b.collectedAt ?? now).compareTo(a.collectedAt ?? now));
@@ -75,26 +82,29 @@ RestaurantToday buildRestaurantToday({
 
 bool _sameDay(DateTime a, DateTime b) => a.year == b.year && a.month == b.month && a.day == b.day;
 
-class RestaurantTodayNotifier extends AsyncNotifier<RestaurantToday> {
+/// What `GET /restaurants/me/offers`, `/reservations` and `/forecasts`
+/// returned. [restaurantTodayViewProvider] turns it into the Today view.
+typedef RestaurantTodayData = ({
+  List<Offer> offers,
+  List<RestaurantReservation> reservations,
+  List<Forecast> forecasts,
+});
+
+class RestaurantTodayNotifier extends AsyncNotifier<RestaurantTodayData> {
   @override
-  Future<RestaurantToday> build() {
+  Future<RestaurantTodayData> build() {
     // Reload when a different restaurant signs in.
     ref.watch(myRestaurantProvider.select((r) => r.value?.id));
     return _load();
   }
 
-  Future<RestaurantToday> _load() async {
+  Future<RestaurantTodayData> _load() async {
     final (offers, reservations, forecasts) = await (
       ref.read(restaurantOffersRepositoryProvider).myOffers(),
       ref.read(pickupsRepositoryProvider).myReservations(),
       ref.read(forecastRepositoryProvider).myForecasts(),
     ).wait;
-    return buildRestaurantToday(
-      offers: offers,
-      reservations: reservations,
-      forecasts: forecasts,
-      now: DateTime.now(),
-    );
+    return (offers: offers, reservations: reservations, forecasts: forecasts);
   }
 
   /// Reloads, keeping the current data on screen until the new data arrives.
@@ -104,6 +114,13 @@ class RestaurantTodayNotifier extends AsyncNotifier<RestaurantToday> {
   Future<void> setMealsLeft(Offer offer, int mealsLeft) async {
     await ref.read(restaurantOffersRepositoryProvider).updateQuantity(offer.id, offer.taken + mealsLeft);
     await refresh();
+  }
+
+  /// "Post surplus": throws [OfferException]; Today reloads on success.
+  Future<Offer> post(OfferDraft draft) async {
+    final offer = await ref.read(restaurantOffersRepositoryProvider).create(draft);
+    await refresh();
+    return offer;
   }
 
   Future<void> endEarly(Offer offer) async {
@@ -121,4 +138,14 @@ class RestaurantTodayNotifier extends AsyncNotifier<RestaurantToday> {
 }
 
 final restaurantTodayProvider =
-    AsyncNotifierProvider<RestaurantTodayNotifier, RestaurantToday>(RestaurantTodayNotifier.new);
+    AsyncNotifierProvider<RestaurantTodayNotifier, RestaurantTodayData>(RestaurantTodayNotifier.new);
+
+/// The Today view at this moment. Rebuilt on every clock tick (30 s), so an
+/// offer drops out of "Live now" when its pickup ends and a hold that runs
+/// out leaves "Waiting for pickup", without a reload.
+final restaurantTodayViewProvider = Provider<AsyncValue<RestaurantToday>>((ref) {
+  final now = ref.now;
+  return ref.watch(restaurantTodayProvider).whenData(
+        (d) => buildRestaurantToday(offers: d.offers, reservations: d.reservations, forecasts: d.forecasts, now: now),
+      );
+});

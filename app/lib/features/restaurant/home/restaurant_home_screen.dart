@@ -52,7 +52,7 @@ class _RestaurantHomeScreenState extends ConsumerState<RestaurantHomeScreen> {
     final z = context.zad;
     final now = ref.now;
     final restaurant = ref.watch(myRestaurantProvider).value;
-    final todayAsync = ref.watch(restaurantTodayProvider);
+    final todayAsync = ref.watch(restaurantTodayViewProvider);
     final today = todayAsync.value;
 
     return Stack(

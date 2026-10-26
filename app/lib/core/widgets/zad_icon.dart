@@ -51,7 +51,12 @@ enum ZadIcons {
   shield18('shield_18', 18, 2.125, 0.625, 13.75, 16.753),
   wallet('wallet', 20, 1.625, 1.625, 17.583, 16.75),
   image28('image_28', 28, 2.625, 2.625, 22.75, 22.75),
-  ticketToast('ticket_toast', 22, 0.958, 3.708, 20.083, 14.583);
+  ticketToast('ticket_toast', 22, 0.958, 3.708, 20.083, 14.583),
+  x('x', 24, 5.125, 5.125, 13.75, 13.75),
+  tag('tag', 24, 1.125, 1.125, 21.745, 21.745),
+  package('package', 20, 1.625, 0.793, 16.75, 18.415),
+  banknote('banknote', 20, 0.792, 4.125, 18.417, 11.75),
+  alert('alert', 20, 0.777, 1.613, 18.43, 16.762);
 
   const ZadIcons(this.file, this.box, this.left, this.top, this.width, this.height);
 

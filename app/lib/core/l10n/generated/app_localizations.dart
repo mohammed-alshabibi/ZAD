@@ -1033,7 +1033,7 @@ abstract class AppLocalizations {
   /// No description provided for @hoursMinutesLeft.
   ///
   /// In en, this message translates to:
-  /// **'{hours} h {minutes} min left'**
+  /// **'{hours} h {minutes} min'**
   String hoursMinutesLeft(int hours, int minutes);
 
   /// No description provided for @editQuantity.
@@ -1912,6 +1912,12 @@ abstract class AppLocalizations {
   /// **'{hours} h {minutes} min'**
   String hoursMinutes(int hours, int minutes);
 
+  /// No description provided for @hoursMinutesLeftTag.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours} h {minutes} min left'**
+  String hoursMinutesLeftTag(int hours, int minutes);
+
   /// No description provided for @pickupsRecent.
   ///
   /// In en, this message translates to:
@@ -2085,6 +2091,342 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We couldn’t cancel it. Try again.'**
   String get errorCancelFailed;
+
+  /// No description provided for @newSurplusTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New surplus'**
+  String get newSurplusTitle;
+
+  /// No description provided for @addPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a photo'**
+  String get addPhoto;
+
+  /// No description provided for @addPhotoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional · meals with photos get reserved faster'**
+  String get addPhotoHint;
+
+  /// No description provided for @photosComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Adding photos comes in a later version.'**
+  String get photosComingSoon;
+
+  /// No description provided for @mealNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Meal name'**
+  String get mealNameHint;
+
+  /// No description provided for @mealNoteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a short note (optional)'**
+  String get mealNoteHint;
+
+  /// No description provided for @errorMealName.
+  ///
+  /// In en, this message translates to:
+  /// **'Give the meal a name.'**
+  String get errorMealName;
+
+  /// No description provided for @rowCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get rowCategory;
+
+  /// No description provided for @rowQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity'**
+  String get rowQuantity;
+
+  /// No description provided for @rowPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get rowPrice;
+
+  /// No description provided for @rowPickupWindow.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup window'**
+  String get rowPickupWindow;
+
+  /// No description provided for @rowPreparedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Prepared at'**
+  String get rowPreparedAt;
+
+  /// No description provided for @rowAllergens.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergens'**
+  String get rowAllergens;
+
+  /// No description provided for @chooseCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a category'**
+  String get chooseCategory;
+
+  /// No description provided for @quantityValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 meal} other{{count} meals}} · up to 3 per person'**
+  String quantityValue(int count);
+
+  /// No description provided for @setPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a price, or make it free'**
+  String get setPrice;
+
+  /// No description provided for @priceWithWas.
+  ///
+  /// In en, this message translates to:
+  /// **'{price} · was {was}'**
+  String priceWithWas(String price, String was);
+
+  /// No description provided for @pickupWindowValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Today, {start} – {end}'**
+  String pickupWindowValue(String start, String end);
+
+  /// No description provided for @pickupWindowOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup must end after it starts'**
+  String get pickupWindowOrder;
+
+  /// No description provided for @pickupWindowOver.
+  ///
+  /// In en, this message translates to:
+  /// **'This pickup time has already passed'**
+  String get pickupWindowOver;
+
+  /// No description provided for @pickupWindowTooLate.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup must end within 12 hours'**
+  String get pickupWindowTooLate;
+
+  /// No description provided for @preparedAtValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Today, {time}'**
+  String preparedAtValue(String time);
+
+  /// No description provided for @preparedAtMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'When was it cooked?'**
+  String get preparedAtMissing;
+
+  /// No description provided for @preparedAtInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a time earlier today'**
+  String get preparedAtInvalid;
+
+  /// No description provided for @allergensMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick allergens, or None'**
+  String get allergensMissing;
+
+  /// No description provided for @safetyCheckText.
+  ///
+  /// In en, this message translates to:
+  /// **'This food was prepared today, stored at safe temperatures, has not been served to customers, and is safe to eat.'**
+  String get safetyCheckText;
+
+  /// No description provided for @whatCantBePosted.
+  ///
+  /// In en, this message translates to:
+  /// **'What can’t be posted?'**
+  String get whatCantBePosted;
+
+  /// No description provided for @notifyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'People within 3 km get one alert when you post.'**
+  String get notifyNote;
+
+  /// No description provided for @fixHighlighted.
+  ///
+  /// In en, this message translates to:
+  /// **'Fill in the parts marked in red.'**
+  String get fixHighlighted;
+
+  /// No description provided for @posted.
+  ///
+  /// In en, this message translates to:
+  /// **'Posted. People nearby can reserve it now.'**
+  String get posted;
+
+  /// No description provided for @errorNotApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'Your restaurant needs approval before you can post.'**
+  String get errorNotApproved;
+
+  /// No description provided for @errorPostFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t post it. Try again.'**
+  String get errorPostFailed;
+
+  /// No description provided for @categorySheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What kind of food?'**
+  String get categorySheetTitle;
+
+  /// No description provided for @quantitySheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How many meals?'**
+  String get quantitySheetTitle;
+
+  /// No description provided for @quantitySheetHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Each person can reserve up to 3.'**
+  String get quantitySheetHint;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @priceSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get priceSheetTitle;
+
+  /// No description provided for @priceSheetHint.
+  ///
+  /// In en, this message translates to:
+  /// **'People pay this at the counter. There’s no payment in the app.'**
+  String get priceSheetHint;
+
+  /// No description provided for @priceField.
+  ///
+  /// In en, this message translates to:
+  /// **'Price (OMR)'**
+  String get priceField;
+
+  /// No description provided for @wasPriceField.
+  ///
+  /// In en, this message translates to:
+  /// **'Normal price (OMR, optional)'**
+  String get wasPriceField;
+
+  /// No description provided for @wasPriceHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown crossed out next to your price.'**
+  String get wasPriceHelper;
+
+  /// No description provided for @makeItFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Make it free'**
+  String get makeItFree;
+
+  /// No description provided for @errorPriceFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Type a price like 0.800'**
+  String get errorPriceFormat;
+
+  /// No description provided for @errorWasPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'The normal price must be higher than your price.'**
+  String get errorWasPrice;
+
+  /// No description provided for @pickupSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup window'**
+  String get pickupSheetTitle;
+
+  /// No description provided for @pickupSheetHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup has to end within 12 hours.'**
+  String get pickupSheetHint;
+
+  /// No description provided for @pickupFromLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get pickupFromLabel;
+
+  /// No description provided for @pickupUntilLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Until'**
+  String get pickupUntilLabel;
+
+  /// No description provided for @allergenSheetTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergens'**
+  String get allergenSheetTitle;
+
+  /// No description provided for @allergenSheetHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick everything in this meal. People with allergies rely on it.'**
+  String get allergenSheetHint;
+
+  /// No description provided for @cantPostTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What can’t be posted?'**
+  String get cantPostTitle;
+
+  /// No description provided for @cantPostPlate.
+  ///
+  /// In en, this message translates to:
+  /// **'Leftovers from customers’ plates'**
+  String get cantPostPlate;
+
+  /// No description provided for @cantPostOpened.
+  ///
+  /// In en, this message translates to:
+  /// **'Dishes that were opened or partly served'**
+  String get cantPostOpened;
+
+  /// No description provided for @cantPostExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Food past its use-by date'**
+  String get cantPostExpired;
+
+  /// No description provided for @cantPostHomemade.
+  ///
+  /// In en, this message translates to:
+  /// **'Home-made food'**
+  String get cantPostHomemade;
+
+  /// No description provided for @gotIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get gotIt;
 }
 
 class _AppLocalizationsDelegate
