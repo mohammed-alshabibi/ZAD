@@ -20,7 +20,7 @@ extension PickupText on AppLocalizations {
     final seconds = end.difference(now).inSeconds;
     final minutes = seconds <= 0 ? 0 : (seconds / 60).ceil();
     if (minutes < 60) return left ? minutesLeftTag(minutes) : minutesLeft(minutes);
-    return left ? hoursMinutesLeft(minutes ~/ 60, minutes % 60) : hoursMinutes(minutes ~/ 60, minutes % 60);
+    return left ? hoursMinutesLeftTag(minutes ~/ 60, minutes % 60) : hoursMinutes(minutes ~/ 60, minutes % 60);
   }
 
   /// "TONIGHT" for an evening pickup in Muscat, else "TODAY".

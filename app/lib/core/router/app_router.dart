@@ -7,6 +7,7 @@ import '../../features/auth/location_permission_screen.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/auth/register_screen.dart';
 import '../../features/auth/splash_screen.dart';
+import '../../features/restaurant/add_surplus/add_surplus_screen.dart';
 import '../../features/restaurant/home/restaurant_home_screen.dart';
 import '../../features/restaurant/home/restaurant_shell.dart';
 import '../../features/restaurant/onboarding/pending_approval_screen.dart';
@@ -94,7 +95,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           ]),
         ],
       ),
-      GoRoute(path: Routes.restaurantNewOffer, builder: (_, _) => const PlaceholderScreen(name: 'Add surplus')),
+      GoRoute(path: Routes.restaurantNewOffer, builder: (_, _) => const AddSurplusScreen()),
       GoRoute(path: Routes.restaurantOnboarding, builder: (_, _) => const RestaurantDetailsScreen()),
       GoRoute(path: Routes.restaurantOnboardingLocation, builder: (_, _) => const PickupLocationScreen()),
       GoRoute(path: Routes.restaurantOnboardingTypicalDay, builder: (_, _) => const TypicalDayScreen()),

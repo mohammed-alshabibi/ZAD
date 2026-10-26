@@ -1,6 +1,7 @@
 import '../../../core/format/muscat_time.dart';
 import '../domain/forecast.dart';
 import '../domain/offer.dart';
+import '../domain/offer_draft.dart';
 import '../domain/restaurant.dart';
 import '../domain/restaurant_reservation.dart';
 import 'restaurant_today_repositories.dart';
@@ -369,11 +370,47 @@ class FakeTodayStore {
 }
 
 class FakeRestaurantOffersRepository implements RestaurantOffersRepository {
-  FakeRestaurantOffersRepository(this.store, this.restaurantId, {this.latency = const Duration(milliseconds: 300)});
+  FakeRestaurantOffersRepository(
+    this.store,
+    this.restaurantId, {
+    this.restaurant,
+    this.latency = const Duration(milliseconds: 300),
+  });
 
   final FakeTodayStore store;
   final Future<String?> Function() restaurantId;
+
+  /// The signed-in restaurant, for posting (name, cuisine and location are
+  /// copied onto the offer).
+  final Future<Restaurant?> Function()? restaurant;
   final Duration latency;
+
+  @override
+  Future<Offer> create(OfferDraft draft) async {
+    await Future<void>.delayed(latency);
+    final r = await restaurant?.call();
+    if (r == null || r.status != RestaurantStatus.approved) throw const OfferException(OfferException.notApproved);
+    final now = DateTime.now();
+    if (draft.validate(now).isNotEmpty) throw const OfferException(OfferException.invalid);
+    final offer = {
+      ...draft.toJson(),
+      'id': 'o_${now.microsecondsSinceEpoch}',
+      'restaurant_id': r.id,
+      'restaurant_name': r.name,
+      'cuisine': r.cuisine.json,
+      'restaurant_phone': r.phone,
+      // GeoJSON is longitude first.
+      'location': {
+        'type': 'Point',
+        'coordinates': [r.lng, r.lat],
+      },
+      'photo': null,
+      'quantity_available': draft.quantity,
+      'status': 'active',
+    };
+    store.offers.add(offer);
+    return Offer.fromJson(offer);
+  }
 
   @override
   Future<List<Offer>> myOffers() async {

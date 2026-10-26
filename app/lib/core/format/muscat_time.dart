@@ -40,3 +40,9 @@ String muscatWeekday(DateTime instant) => DateFormat('EEE').format(toMuscat(inst
 
 /// "18 Oct" in Muscat time.
 String muscatDate(DateTime instant) => DateFormat('d MMM').format(toMuscat(instant));
+
+/// The instant that reads [hour]:[minute] in Muscat on the Muscat day of [now].
+DateTime muscatTodayAt(int hour, int minute, {required DateTime now}) {
+  final day = toMuscat(now);
+  return DateTime.utc(day.year, day.month, day.day, hour, minute).subtract(muscatOffset);
+}

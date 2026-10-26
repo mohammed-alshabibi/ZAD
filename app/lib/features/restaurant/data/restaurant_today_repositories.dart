@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../application/my_restaurant.dart';
 import '../domain/forecast.dart';
 import '../domain/offer.dart';
+import '../domain/offer_draft.dart';
 import '../domain/restaurant_reservation.dart';
 import 'fake_today_store.dart';
 
@@ -10,6 +11,11 @@ import 'fake_today_store.dart';
 abstract interface class RestaurantOffersRepository {
   /// `GET /restaurants/me/offers`.
   Future<List<Offer>> myOffers();
+
+  /// `POST /offers`: approved restaurants only. The server copies the
+  /// restaurant's name, cuisine and location onto the offer and alerts
+  /// people nearby (§6). Throws [OfferException].
+  Future<Offer> create(OfferDraft draft);
 
   /// `PATCH /offers/{id}` with a new `quantity_total`. The server keeps
   /// `quantity_available = total − already taken`. Throws [OfferException].
@@ -48,6 +54,8 @@ class OfferException implements Exception {
   static const notLive = 'offer_not_live';
   static const belowTaken = 'quantity_below_taken';
   static const outOfRange = 'quantity_out_of_range';
+  static const invalid = 'invalid_offer';
+  static const notApproved = 'restaurant_not_approved';
 
   @override
   String toString() => 'OfferException($code)';
@@ -77,7 +85,11 @@ final fakeTodayStoreProvider = Provider<FakeTodayStore>((ref) => FakeTodayStore.
 Future<String?> _restaurantId(Ref ref) async => (await ref.read(myRestaurantProvider.future))?.id;
 
 final restaurantOffersRepositoryProvider = Provider<RestaurantOffersRepository>(
-  (ref) => FakeRestaurantOffersRepository(ref.watch(fakeTodayStoreProvider), () => _restaurantId(ref)),
+  (ref) => FakeRestaurantOffersRepository(
+    ref.watch(fakeTodayStoreProvider),
+    () => _restaurantId(ref),
+    restaurant: () => ref.read(myRestaurantProvider.future),
+  ),
 );
 
 final pickupsRepositoryProvider = Provider<PickupsRepository>(

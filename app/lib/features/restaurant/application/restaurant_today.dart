@@ -4,6 +4,7 @@ import '../../../core/format/muscat_time.dart';
 import '../data/restaurant_today_repositories.dart';
 import '../domain/forecast.dart';
 import '../domain/offer.dart';
+import '../domain/offer_draft.dart';
 import '../domain/restaurant_reservation.dart';
 import 'my_restaurant.dart';
 
@@ -104,6 +105,13 @@ class RestaurantTodayNotifier extends AsyncNotifier<RestaurantToday> {
   Future<void> setMealsLeft(Offer offer, int mealsLeft) async {
     await ref.read(restaurantOffersRepositoryProvider).updateQuantity(offer.id, offer.taken + mealsLeft);
     await refresh();
+  }
+
+  /// "Post surplus": throws [OfferException]; Today reloads on success.
+  Future<Offer> post(OfferDraft draft) async {
+    final offer = await ref.read(restaurantOffersRepositoryProvider).create(draft);
+    await refresh();
+    return offer;
   }
 
   Future<void> endEarly(Offer offer) async {

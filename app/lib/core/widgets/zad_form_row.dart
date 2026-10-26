@@ -13,8 +13,12 @@ class ZadFormRow extends StatelessWidget {
     required this.title,
     this.value,
     this.chevron = true,
+    this.error = false,
     this.onTap,
   });
+
+  /// Shows [value] in the danger colour (a required field still missing).
+  final bool error;
 
   final ZadIcons icon;
   final String title;
@@ -47,7 +51,7 @@ class ZadFormRow extends StatelessWidget {
                         value!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: ZadType.body(size: 13, color: z.onFrondMuted),
+                        style: ZadType.body(size: 13, color: error ? z.danger : z.onFrondMuted),
                       ),
                     ],
                   ],
