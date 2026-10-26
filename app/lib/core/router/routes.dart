@@ -36,5 +36,9 @@ abstract final class Routes {
   static const restaurantOnboardingTypicalDay = '/restaurant/onboarding/typical-day';
   static const restaurantPending = '/restaurant/pending';
 
+  /// Admin tabs: Overview · Restaurants · Offers · Profile.
   static const adminHome = '/admin';
+  static const adminRestaurants = '/admin/restaurants';
+  static const adminOffers = '/admin/offers';
+  static const adminProfile = '/admin/profile';
 }

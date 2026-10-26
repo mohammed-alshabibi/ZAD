@@ -1,6 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/admin/admin_shell.dart';
+import '../../features/admin/offers_screen.dart';
+import '../../features/admin/overview_screen.dart';
+import '../../features/admin/restaurants_screen.dart';
 import '../../features/auth/account_type_screen.dart';
 import '../../features/auth/domain/app_user.dart';
 import '../../features/auth/location_permission_screen.dart';
@@ -100,7 +104,27 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: Routes.restaurantOnboardingLocation, builder: (_, _) => const PickupLocationScreen()),
       GoRoute(path: Routes.restaurantOnboardingTypicalDay, builder: (_, _) => const TypicalDayScreen()),
       GoRoute(path: Routes.restaurantPending, builder: (_, _) => const PendingApprovalScreen()),
-      GoRoute(path: Routes.adminHome, builder: (_, _) => const PlaceholderScreen(name: 'Admin overview')),
+      // Admin tabs keep their own state (indexed stack).
+      StatefulShellRoute.indexedStack(
+        builder: (_, _, shell) => AdminShell(shell: shell),
+        branches: [
+          StatefulShellBranch(routes: [
+            GoRoute(path: Routes.adminHome, builder: (_, _) => const AdminOverviewScreen()),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(path: Routes.adminRestaurants, builder: (_, _) => const AdminRestaurantsScreen()),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(path: Routes.adminOffers, builder: (_, _) => const AdminOffersScreen()),
+          ]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: Routes.adminProfile,
+              builder: (context, _) => TabPlaceholder(name: AppLocalizations.of(context).tabProfile, showLogOut: true),
+            ),
+          ]),
+        ],
+      ),
     ],
   );
 });

@@ -26,3 +26,7 @@ Future<void> _open(BuildContext context, Uri uri) async {
   } catch (_) {}
   if (!ok) messenger?.showSnackBar(SnackBar(content: Text(l10n.errorCantOpen)));
 }
+
+/// Opens a map pin in Google Maps (admin: check a restaurant's pickup point).
+Future<void> openMapAt(BuildContext context, {required double lat, required double lng}) =>
+    _open(context, Uri.https('www.google.com', '/maps/search/', {'api': '1', 'query': '$lat,$lng'}));

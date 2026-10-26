@@ -1435,4 +1435,290 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get gotIt => 'Got it';
+
+  @override
+  String get adminKicker => 'ZAD ADMIN';
+
+  @override
+  String get tabOverview => 'Overview';
+
+  @override
+  String get tabRestaurants => 'Restaurants';
+
+  @override
+  String adminUpdated(String time) {
+    return 'Muscat · today · updated $time';
+  }
+
+  @override
+  String get mealsRescuedKicker => 'MEALS RESCUED';
+
+  @override
+  String mealsTodayDelta(int count) {
+    return '+$count today';
+  }
+
+  @override
+  String mealsWeekRate(int week, int pct) {
+    return '$week this week · $pct% of reservations collected';
+  }
+
+  @override
+  String mealsWeek(int week) {
+    return '$week this week';
+  }
+
+  @override
+  String kgSaved(int kg) {
+    return '≈ $kg kg of food saved (estimate: 0.4 kg per meal)';
+  }
+
+  @override
+  String get statRestaurants => 'Restaurants';
+
+  @override
+  String statRestaurantsDetail(int pending) {
+    return 'approved · $pending waiting';
+  }
+
+  @override
+  String get statLiveOffers => 'Live offers';
+
+  @override
+  String statLiveOffersDetail(int meals) {
+    String _temp0 = intl.Intl.pluralLogic(
+      meals,
+      locale: localeName,
+      other: '$meals meals',
+      one: '1 meal',
+    );
+    return '$_temp0 left right now';
+  }
+
+  @override
+  String get statPickupsToday => 'Pickups today';
+
+  @override
+  String statPickupsDetail(int count) {
+    return '$count waiting at the counter';
+  }
+
+  @override
+  String get statUsers => 'Users';
+
+  @override
+  String statUsersDetail(int count) {
+    return '$count reserved today';
+  }
+
+  @override
+  String get needsAttention => 'Needs attention';
+
+  @override
+  String get attentionApprovals => 'Restaurant approvals';
+
+  @override
+  String attentionApprovalsValue(int count, String age) {
+    return '$count waiting · oldest $age';
+  }
+
+  @override
+  String get attentionApprovalsNone => 'Nothing waiting';
+
+  @override
+  String get attentionOffers => 'Live offers';
+
+  @override
+  String attentionOffersValue(int count) {
+    return '$count active · review or remove';
+  }
+
+  @override
+  String get adminLoadError => 'We couldn’t load this. Pull down to try again.';
+
+  @override
+  String get adminRestaurantsTitle => 'Restaurants';
+
+  @override
+  String pendingSummary(int count) {
+    return '$count waiting for review · reply within a day';
+  }
+
+  @override
+  String get pendingSummaryNone => 'Nothing waiting for review';
+
+  @override
+  String tabPendingCount(int count) {
+    return 'Pending · $count';
+  }
+
+  @override
+  String tabApprovedCount(int count) {
+    return 'Approved · $count';
+  }
+
+  @override
+  String tabSuspendedCount(int count) {
+    return 'Suspended · $count';
+  }
+
+  @override
+  String reviewKickerNew(String age) {
+    return 'NEW · WAITING $age';
+  }
+
+  @override
+  String get reviewKickerApproved => 'APPROVED';
+
+  @override
+  String get reviewKickerSuspended => 'SUSPENDED';
+
+  @override
+  String cuisineArea(String cuisine, String area) {
+    return '$cuisine · $area';
+  }
+
+  @override
+  String get rowOwner => 'Owner';
+
+  @override
+  String ownerValue(String name, String phone) {
+    return '$name · $phone';
+  }
+
+  @override
+  String get rowPickupPoint => 'Pickup point';
+
+  @override
+  String get rowTypicalDay => 'Typical day';
+
+  @override
+  String typicalDayValue(int meals, int low, int high) {
+    return '$meals meals · usually $low–$high% left';
+  }
+
+  @override
+  String get typicalDayNone => 'Not given';
+
+  @override
+  String termsAccepted(String when) {
+    return 'Restaurant Terms accepted · $when';
+  }
+
+  @override
+  String get adminReject => 'Reject';
+
+  @override
+  String get adminApprove => 'Approve';
+
+  @override
+  String get adminSuspend => 'Suspend';
+
+  @override
+  String get adminReinstate => 'Reinstate';
+
+  @override
+  String get ownerNotified => 'The owner is notified either way.';
+
+  @override
+  String alsoWaiting(int count) {
+    return 'Also waiting · $count';
+  }
+
+  @override
+  String get oldestFirst => 'Oldest first';
+
+  @override
+  String get nonePending => 'Nothing waiting. New sign-ups show up here.';
+
+  @override
+  String get noneApproved => 'No approved restaurants yet.';
+
+  @override
+  String get noneSuspended => 'No suspended restaurants.';
+
+  @override
+  String rejectTitle(String name) {
+    return 'Reject $name?';
+  }
+
+  @override
+  String get rejectBody => 'They can fix their details and send them again.';
+
+  @override
+  String suspendTitle(String name) {
+    return 'Suspend $name?';
+  }
+
+  @override
+  String get suspendBody =>
+      'They can’t post new surplus until you reinstate them.';
+
+  @override
+  String approvedToast(String name) {
+    return 'Approved. $name can post surplus now.';
+  }
+
+  @override
+  String rejectedToast(String name) {
+    return 'Rejected. $name has been told.';
+  }
+
+  @override
+  String suspendedToast(String name) {
+    return '$name is suspended.';
+  }
+
+  @override
+  String reinstatedToast(String name) {
+    return '$name can post again.';
+  }
+
+  @override
+  String get errorAdminAction => 'That didn’t work. Try again.';
+
+  @override
+  String ageMinutes(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String ageHours(int hours) {
+    return '$hours h';
+  }
+
+  @override
+  String ageDays(int days) {
+    return '$days d';
+  }
+
+  @override
+  String get adminOffersTitle => 'Offers';
+
+  @override
+  String adminOffersSummary(int count, int meals) {
+    return '$count live · $meals meals left';
+  }
+
+  @override
+  String get adminOffersNone => 'No live offers right now.';
+
+  @override
+  String adminOfferLine(int left, int total, String time) {
+    return '$left of $total left · until $time';
+  }
+
+  @override
+  String get adminRemove => 'Remove';
+
+  @override
+  String get removeTitle => 'Remove this offer?';
+
+  @override
+  String removeBody(String title, String restaurant) {
+    return '$title from $restaurant stops showing to users. People who already reserved can still pick up.';
+  }
+
+  @override
+  String get removedToast => 'Offer removed.';
 }
