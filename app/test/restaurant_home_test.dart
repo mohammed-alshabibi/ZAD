@@ -57,6 +57,19 @@ void main() {
       expect(today.collected.single.userFirstName, 'Mariam');
     });
 
+    test('once pickup ends, the offer leaves Live now and its holds leave Waiting', () async {
+      final o = await offers.myOffers();
+      final r = await pickups.myReservations();
+      // The seeded Khubz offer and both holds end in 28 minutes.
+      final later = DateTime.now().add(const Duration(minutes: 29));
+      final today = buildRestaurantToday(offers: o, reservations: r, forecasts: const [], now: later);
+      expect(today.liveOffers, isEmpty);
+      expect(today.waiting, isEmpty);
+      expect(today.reservedMeals, 0);
+      // Tonight's totals still count it.
+      expect((today.postedMeals, today.collectedMeals), (6, 1));
+    });
+
     test('the restaurant sees only the last 3 digits of a code', () async {
       final aisha = (await pickups.myReservations()).firstWhere((r) => r.userFirstName == 'Aisha');
       expect(aisha.codeHint, '913');
