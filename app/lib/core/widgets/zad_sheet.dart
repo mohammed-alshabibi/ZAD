@@ -7,10 +7,12 @@ import '../theme/zad_type.dart';
 
 /// Opens a Zesty-style bottom sheet (Figma "Reserve", "Pickup code",
 /// "Confirm pickup"): night-raised, 32 px top corners, grabber, and it rides
-/// above the keyboard.
+/// above the keyboard. It opens on the root navigator, so inside a tab it
+/// covers and dims the tab bar too, as in Figma.
 Future<T?> showZadSheet<T>(BuildContext context, {required WidgetBuilder builder}) {
   return showModalBottomSheet<T>(
     context: context,
+    useRootNavigator: true,
     isScrollControlled: true,
     useSafeArea: true,
     backgroundColor: context.zad.nightRaised,

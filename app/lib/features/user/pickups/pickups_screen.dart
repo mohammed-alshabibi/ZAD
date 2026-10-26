@@ -243,7 +243,8 @@ class _ActiveCard extends StatelessWidget {
                     const SizedBox(height: 3),
                     Text(
                       l10n.pickupAmount(r),
-                      maxLines: 1,
+                      // Money to pay: wrap rather than cut it off.
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: ZadType.mono(size: 12, weight: FontWeight.w400, color: z.card),
                     ),
