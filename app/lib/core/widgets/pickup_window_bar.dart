@@ -39,6 +39,8 @@ class PickupWindowBar extends StatelessWidget {
     final z = context.zad;
     final fraction = leftFraction(start, end, now);
     final bar = Container(
+      // Always the full width, so the fill sits at the end even in a Column.
+      width: double.infinity,
       height: 4,
       decoration: BoxDecoration(color: z.nightHairline, borderRadius: BorderRadius.circular(2)),
       child: FractionallySizedBox(

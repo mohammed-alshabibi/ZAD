@@ -56,7 +56,7 @@ class FakeUserReservationsRepository implements UserReservationsRepository {
   static const maxPerUser = 3;
 
   /// How long a reservation is held after pickup opens (§4).
-  static const hold = Duration(minutes: 30);
+  static const hold = UserReservation.holdLength;
 
   @override
   Future<List<UserReservation>> myReservations() async {
@@ -161,6 +161,7 @@ class FakeUserReservationsRepository implements UserReservationsRepository {
       'pickup_code': r['pickup_code'],
       'status': r['status'],
       'price_baisa': offer['price_baisa'],
+      'original_price_baisa': offer['original_price_baisa'],
       'hold_expires_at': r['hold_expires_at'],
       'pickup_end': offer['pickup_end'],
       'collected_at': r['collected_at'],

@@ -18,6 +18,7 @@ class UserReservation {
     required this.lng,
     required this.createdAt,
     this.restaurantPhone,
+    this.originalPriceBaisa,
     this.collectedAt,
   });
 
@@ -34,6 +35,9 @@ class UserReservation {
 
   /// Price per meal; [amountBaisa] is paid at the counter.
   final int priceBaisa;
+
+  /// The offer's normal price per meal, if the restaurant gave one.
+  final int? originalPriceBaisa;
   final DateTime holdExpiresAt;
   final DateTime pickupEnd;
 
@@ -45,8 +49,29 @@ class UserReservation {
 
   int get amountBaisa => priceBaisa * quantity;
 
+  /// A hold lasts 30 minutes from when pickup opens, cut short by the end of
+  /// the pickup window (§4).
+  static const holdLength = Duration(minutes: 30);
+
+  /// When the hold started counting down, for the hold bar.
+  DateTime get holdStartsAt {
+    final start = holdExpiresAt.subtract(holdLength);
+    return start.isAfter(createdAt) ? start : createdAt;
+  }
+
+  /// Money saved against the normal price; 0 when there is no normal price.
+  int get savedBaisa {
+    final was = originalPriceBaisa;
+    return was != null && was > priceBaisa ? (was - priceBaisa) * quantity : 0;
+  }
+
   /// Still waiting to be picked up.
   bool isActive(DateTime now) => status == ReservationStatus.reserved && holdExpiresAt.isAfter(now);
+
+  /// The hold ran out before pickup. The server marks it `expired` on its
+  /// next read; until then a `reserved` one past its hold counts as missed too.
+  bool isMissed(DateTime now) =>
+      status == ReservationStatus.expired || (status == ReservationStatus.reserved && !holdExpiresAt.isAfter(now));
 
   factory UserReservation.fromJson(Map<String, dynamic> json) {
     final coords = (json['location'] as Map<String, dynamic>)['coordinates'] as List<dynamic>;
@@ -60,6 +85,7 @@ class UserReservation {
       pickupCode: json['pickup_code'] as String,
       status: ReservationStatus.fromJson(json['status'] as String),
       priceBaisa: json['price_baisa'] as int,
+      originalPriceBaisa: json['original_price_baisa'] as int?,
       holdExpiresAt: DateTime.parse(json['hold_expires_at'] as String),
       pickupEnd: DateTime.parse(json['pickup_end'] as String),
       lng: (coords[0] as num).toDouble(),
