@@ -1,5 +1,3 @@
-import '../../../core/format/muscat_time.dart';
-import '../domain/forecast.dart';
 import '../domain/offer.dart';
 import '../domain/offer_draft.dart';
 import '../domain/restaurant.dart';
@@ -500,50 +498,4 @@ class FakePickupsRepository implements PickupsRepository {
     store.expireStale(now);
     return store.matchCode(id, code, now);
   }
-}
-
-/// Answers like `run_forecast` would (§7.3): Khubz has 23 days of logs and
-/// gets the seasonal model; a new restaurant gets the cold-start estimate
-/// from its onboarding answers.
-class FakeForecastRepository implements ForecastRepository {
-  FakeForecastRepository(this.restaurant, {this.latency = const Duration(milliseconds: 300)});
-
-  final Future<Restaurant?> Function() restaurant;
-  final Duration latency;
-
-  /// Generic weekday pattern, Monday first. Fri–Sat is the Omani weekend.
-  static const _weekday = [0.9, 0.95, 1.0, 1.1, 1.35, 1.2, 0.9];
-
-  @override
-  Future<List<Forecast>> myForecasts() async {
-    await Future<void>.delayed(latency);
-    final r = await restaurant();
-    if (r == null) return const [];
-    final hasHistory = r.id == 'r_khubz';
-    final meals = r.typicalDailyMeals ?? 40;
-    final pct = r.typicalSurplusPct ?? 10;
-    final base = meals * pct / 100;
-    final today = toMuscat(DateTime.now());
-    return [
-      for (var i = 1; i <= 7; i++)
-        () {
-          final day = DateTime.utc(today.year, today.month, today.day + i);
-          final predicted = (base * _weekday[day.weekday - 1]).round();
-          final spread = hasHistory ? (predicted * 0.34).round() : (predicted * 0.5).round();
-          return Forecast.fromJson({
-            'target_date': '${day.year}-${_two(day.month)}-${_two(day.day)}',
-            'predicted': predicted,
-            'low': (predicted - spread).clamp(0, predicted),
-            'high': predicted + spread,
-            'confidence': hasHistory ? 'medium' : 'low',
-            'model': hasHistory ? 'm1' : 'cold_start',
-            'explanations': hasHistory
-                ? ['Fridays are usually higher', 'Based on 23 days of your data']
-                : ['Rough estimate from your typical day'],
-          });
-        }(),
-    ];
-  }
-
-  static String _two(int n) => n.toString().padLeft(2, '0');
 }
