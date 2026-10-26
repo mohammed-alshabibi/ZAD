@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/format/distance.dart';
 import '../../../core/format/muscat_time.dart';
 import '../../../core/l10n/generated/app_localizations.dart';
-import '../../../core/router/routes.dart';
+import '../../../core/launch/external_links.dart';
 import '../../../core/theme/zad_colors.dart';
 import '../../../core/theme/zad_type.dart';
 import '../../../core/time/clock.dart';
@@ -24,6 +23,7 @@ import '../application/reservations.dart';
 import '../domain/nearby_offer.dart';
 import '../domain/user_reservation.dart';
 import '../home/offer_text.dart';
+import '../pickups/pickup_code_sheet.dart';
 import 'reserve_sheet.dart';
 
 /// Figma "Meal details" (23:135) with its "Reserved" state (24:332): photo
@@ -63,25 +63,9 @@ class _MealDetailsScreenState extends ConsumerState<MealDetailsScreen> {
     });
   }
 
-  Future<void> _open(Uri uri) async {
-    final l10n = AppLocalizations.of(context);
-    var ok = false;
-    try {
-      ok = await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } catch (_) {}
-    if (!ok && mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.errorCantOpen)));
-    }
-  }
+  void _directions(NearbyOffer o) => openDirections(context, lat: o.lat, lng: o.lng);
 
-  /// Google Maps walking directions (CLAUDE.md §2: directions open Google Maps).
-  void _directions(NearbyOffer o) => _open(Uri.https('www.google.com', '/maps/dir/', {
-        'api': '1',
-        'destination': '${o.lat},${o.lng}',
-        'travelmode': 'walking',
-      }));
-
-  void _call(String phone) => _open(Uri(scheme: 'tel', path: phone.replaceAll(' ', '')));
+  void _call(String phone) => callPhone(context, phone);
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +121,7 @@ class _MealDetailsScreenState extends ConsumerState<MealDetailsScreen> {
                   reservation: reservation,
                   now: now,
                   onReserve: () => _reserve(offer),
-                  onShowCode: () => context.go(Routes.userPickups),
+                  onShowCode: () => showPickupCodeSheet(context, reservation!),
                 ),
               ),
             PositionedDirectional(

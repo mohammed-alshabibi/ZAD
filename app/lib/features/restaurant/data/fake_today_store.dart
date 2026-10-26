@@ -15,6 +15,10 @@ import 'restaurant_today_repositories.dart';
 /// Users near Al Khuwair (aisha@example.com) see Khubz plus four other
 /// fictional kitchens: 23 meals in all, as on the Figma Home screen. A sixth
 /// offer in Muttrah sits outside the 5 km radius.
+///
+/// Aisha also has a pickup history on offers that closed in the last ten
+/// days: 5 collected (7 meals, 9.600 OMR saved, as on Figma "Pickups"),
+/// 1 missed and 1 cancelled.
 class FakeTodayStore {
   FakeTodayStore._(this.offers, this.reservations);
 
@@ -63,6 +67,41 @@ class FakeTodayStore {
           'pickup_end': iso(end),
           'status': available == 0 ? 'sold_out' : 'active',
           'safety_attested': true,
+        };
+
+    // An offer whose pickup window ended [daysAgo] days ago.
+    Map<String, dynamic> past({
+      required String id,
+      required String restaurantId,
+      required String restaurantName,
+      required String cuisine,
+      required List<double> lngLat,
+      required String title,
+      required String category,
+      required int originalPrice,
+      required int price,
+      required int daysAgo,
+    }) =>
+        {
+          ...offer(
+            id: id,
+            restaurantId: restaurantId,
+            restaurantName: restaurantName,
+            cuisine: cuisine,
+            phone: '+968 9000 0000',
+            lngLat: lngLat,
+            title: title,
+            description: '',
+            category: category,
+            allergens: ['none'],
+            originalPrice: originalPrice,
+            price: price,
+            total: 6,
+            available: 0,
+            start: Duration(days: -daysAgo, minutes: -60),
+            end: Duration(days: -daysAgo, minutes: 30),
+          ),
+          'status': 'closed',
         };
 
     return FakeTodayStore._(
@@ -175,14 +214,62 @@ class FakeTodayStore {
           start: const Duration(minutes: -20),
           end: const Duration(minutes: 90),
         ),
+        // Closed offers behind Aisha's pickup history.
+        past(id: 'o_past_mandi', restaurantId: 'r_wadi', restaurantName: 'Wadi Grill House', cuisine: 'grill',
+            lngLat: [58.4037, 23.5870], title: 'Chicken mandi, half portions', category: 'rice_mandi',
+            originalPrice: 3900, price: 1500, daysAgo: 1),
+        past(id: 'o_past_pastry', restaurantId: 'r_qurum', restaurantName: 'Qurum Corner Café', cuisine: 'bakery',
+            lngLat: [58.4120, 23.5890], title: 'Mixed pastry bag', category: 'bakery',
+            originalPrice: 2000, price: 800, daysAgo: 2),
+        past(id: 'o_past_veg', restaurantId: 'r_masala', restaurantName: 'Masala Street', cuisine: 'indian',
+            lngLat: [58.3790, 23.5860], title: 'Veg biryani with raita', category: 'rice_mandi',
+            originalPrice: 2000, price: 900, daysAgo: 3),
+        past(id: 'o_past_kofta', restaurantId: 'r_wadi', restaurantName: 'Wadi Grill House', cuisine: 'grill',
+            lngLat: [58.4037, 23.5870], title: 'Grilled kofta plates', category: 'grill',
+            originalPrice: 2800, price: 1200, daysAgo: 4),
+        past(id: 'o_past_biryani', restaurantId: 'r_bait', restaurantName: 'Bait Al Biryani', cuisine: 'indian',
+            lngLat: [58.3823, 23.5854], title: 'Mutton biryani trays', category: 'rice_mandi',
+            originalPrice: 2400, price: 1200, daysAgo: 5),
+        past(id: 'o_past_halwa', restaurantId: 'r_halwa', restaurantName: 'Al Qurm Sweets', cuisine: 'arabic',
+            lngLat: [58.4067, 23.5850], title: 'Omani halwa and luqaimat', category: 'sweets',
+            originalPrice: 1500, price: 600, daysAgo: 8),
+        past(id: 'o_past_hummus', restaurantId: 'r_green', restaurantName: 'Green Bowl Café', cuisine: 'healthy',
+            lngLat: [58.3870, 23.5885], title: 'Hummus and pita box', category: 'healthy',
+            originalPrice: 1200, price: 600, daysAgo: 10),
       ],
       [
         _reservation('res_aisha', 'Aisha', 1, '482913', 'reserved', end, null, now),
         _reservation('res_salim', 'Salim', 2, '610271', 'reserved', end, null, now),
         _reservation('res_mariam', 'Mariam', 1, '305118', 'collected', end,
             iso(const Duration(minutes: -20)), now),
+        _aishaPast('res_past_1', 'o_past_mandi', 2, 'collected', 1, now),
+        _aishaPast('res_past_2', 'o_past_pastry', 1, 'collected', 2, now),
+        _aishaPast('res_past_3', 'o_past_veg', 1, 'expired', 3, now),
+        _aishaPast('res_past_4', 'o_past_kofta', 1, 'cancelled', 4, now),
+        _aishaPast('res_past_5', 'o_past_biryani', 1, 'collected', 5, now),
+        _aishaPast('res_past_6', 'o_past_halwa', 2, 'collected', 8, now),
+        _aishaPast('res_past_7', 'o_past_hummus', 1, 'collected', 10, now),
       ],
     );
+  }
+
+  /// One of Aisha's earlier reservations, made [daysAgo] days ago once pickup
+  /// had opened; collected ones were picked up 15 minutes later.
+  static Map<String, dynamic> _aishaPast(
+      String id, String offerId, int quantity, String status, int daysAgo, DateTime now) {
+    final created = now.toUtc().subtract(Duration(days: daysAgo, minutes: 40));
+    return {
+      'id': id,
+      'offer_id': offerId,
+      'user_id': 'u_aisha',
+      'user_first_name': 'Aisha',
+      'quantity': quantity,
+      'pickup_code': (100000 + daysAgo * 7919).toString(),
+      'status': status,
+      'hold_expires_at': created.add(const Duration(minutes: 30)).toIso8601String(),
+      'collected_at': status == 'collected' ? created.add(const Duration(minutes: 15)).toIso8601String() : null,
+      'created_at': created.toIso8601String(),
+    };
   }
 
   static Map<String, dynamic> _reservation(String id, String firstName, int quantity, String code,

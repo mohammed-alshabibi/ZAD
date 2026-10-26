@@ -16,6 +16,7 @@ import '../../features/restaurant/onboarding/typical_day_screen.dart';
 import '../../features/user/home/user_home_screen.dart';
 import '../../features/user/home/user_shell.dart';
 import '../../features/user/meal/meal_details_screen.dart';
+import '../../features/user/pickups/pickups_screen.dart';
 import '../l10n/generated/app_localizations.dart';
 import '../widgets/placeholder_screen.dart';
 import '../widgets/tab_placeholder.dart';
@@ -49,10 +50,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             GoRoute(path: Routes.userHome, builder: (_, _) => const UserHomeScreen()),
           ]),
           StatefulShellBranch(routes: [
-            GoRoute(
-              path: Routes.userPickups,
-              builder: (context, _) => TabPlaceholder(name: AppLocalizations.of(context).tabPickups),
-            ),
+            GoRoute(path: Routes.userPickups, builder: (_, _) => const PickupsScreen()),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(

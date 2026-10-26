@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../auth/application/session.dart';
+import '../../restaurant/domain/restaurant_reservation.dart';
 import '../data/user_offers_repository.dart';
 import '../data/user_reservations_repository.dart';
 import '../domain/nearby_offer.dart';
@@ -57,3 +58,37 @@ UserReservation? activeReservationFor(List<UserReservation> reservations, String
 /// Most meals the user may reserve now: 3 per person, and no more than are left.
 int maxReservable(int mealsLeft) =>
     mealsLeft < FakeUserReservationsRepository.maxPerUser ? mealsLeft : FakeUserReservationsRepository.maxPerUser;
+
+/// Pickups "Upcoming": holds still running, the one ending soonest first.
+List<UserReservation> upcomingPickups(List<UserReservation> reservations, DateTime now) =>
+    reservations.where((r) => r.isActive(now)).toList()..sort((a, b) => a.holdExpiresAt.compareTo(b.holdExpiresAt));
+
+/// Pickups "History": collected, missed and cancelled, most recent first.
+List<UserReservation> pickupHistory(List<UserReservation> reservations, DateTime now) =>
+    reservations.where((r) => !r.isActive(now)).toList()
+      ..sort((a, b) => pickupHistoryTime(b).compareTo(pickupHistoryTime(a)));
+
+/// When a past reservation ended: picked up, or the hold ran out, or (for a
+/// cancelled one) when it was made, since the cancel time is not stored.
+DateTime pickupHistoryTime(UserReservation r) => switch (r.status) {
+      ReservationStatus.collected => r.collectedAt ?? r.holdExpiresAt,
+      ReservationStatus.cancelled => r.createdAt,
+      ReservationStatus.reserved || ReservationStatus.expired => r.holdExpiresAt,
+    };
+
+/// "7 meals rescued · 9.600 OMR saved": only collected meals count.
+typedef RescueStats = ({int meals, int savedBaisa});
+
+RescueStats rescueStats(List<UserReservation> reservations) {
+  var meals = 0;
+  var saved = 0;
+  for (final r in reservations.where((r) => r.status == ReservationStatus.collected)) {
+    meals += r.quantity;
+    saved += r.savedBaisa;
+  }
+  return (meals: meals, savedBaisa: saved);
+}
+
+/// How far the restaurant is from the user's saved location (or Muscat).
+int distanceToPickup(HomeCenter center, UserReservation r) =>
+    distanceMeters(center.lat, center.lng, r.lat, r.lng).round();

@@ -1033,7 +1033,7 @@ abstract class AppLocalizations {
   /// No description provided for @hoursMinutesLeft.
   ///
   /// In en, this message translates to:
-  /// **'{hours} h {minutes} min'**
+  /// **'{hours} h {minutes} min left'**
   String hoursMinutesLeft(int hours, int minutes);
 
   /// No description provided for @editQuantity.
@@ -1833,6 +1833,258 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We couldn’t open that on this phone.'**
   String get errorCantOpen;
+
+  /// No description provided for @pickupsImpact.
+  ///
+  /// In en, this message translates to:
+  /// **'{meals, plural, =1{1 meal rescued} other{{meals} meals rescued}} · {saved} saved'**
+  String pickupsImpact(int meals, String saved);
+
+  /// No description provided for @pickupsImpactNoSavings.
+  ///
+  /// In en, this message translates to:
+  /// **'{meals, plural, =1{1 meal rescued} other{{meals} meals rescued}}'**
+  String pickupsImpactNoSavings(int meals);
+
+  /// No description provided for @pickupsImpactNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Rescue your first meal tonight'**
+  String get pickupsImpactNone;
+
+  /// No description provided for @pickupsTabUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get pickupsTabUpcoming;
+
+  /// No description provided for @pickupsTabUpcomingCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming · {count}'**
+  String pickupsTabUpcomingCount(int count);
+
+  /// No description provided for @pickupsTabHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get pickupsTabHistory;
+
+  /// No description provided for @pickupKickerTonight.
+  ///
+  /// In en, this message translates to:
+  /// **'TONIGHT'**
+  String get pickupKickerTonight;
+
+  /// No description provided for @pickupKickerToday.
+  ///
+  /// In en, this message translates to:
+  /// **'TODAY'**
+  String get pickupKickerToday;
+
+  /// No description provided for @pickupRestaurantDistance.
+  ///
+  /// In en, this message translates to:
+  /// **'{restaurant} · {distance}'**
+  String pickupRestaurantDistance(String restaurant, String distance);
+
+  /// No description provided for @pickupAmountCounter.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 meal} other{{count} meals}} · {price} at the counter'**
+  String pickupAmountCounter(int count, String price);
+
+  /// No description provided for @pickupAmountFree.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 meal} other{{count} meals}} · free'**
+  String pickupAmountFree(int count);
+
+  /// No description provided for @heldUntil.
+  ///
+  /// In en, this message translates to:
+  /// **'Held until {time}'**
+  String heldUntil(String time);
+
+  /// No description provided for @hoursMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours} h {minutes} min'**
+  String hoursMinutes(int hours, int minutes);
+
+  /// No description provided for @pickupsRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent'**
+  String get pickupsRecent;
+
+  /// No description provided for @dayToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get dayToday;
+
+  /// No description provided for @dayYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get dayYesterday;
+
+  /// No description provided for @pickupDetailCollected.
+  ///
+  /// In en, this message translates to:
+  /// **'{restaurant} · {when}'**
+  String pickupDetailCollected(String restaurant, String when);
+
+  /// No description provided for @pickupDetailMissed.
+  ///
+  /// In en, this message translates to:
+  /// **'{restaurant} · {day} · hold ended'**
+  String pickupDetailMissed(String restaurant, String day);
+
+  /// No description provided for @pickupDetailCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'{restaurant} · {day} · cancelled'**
+  String pickupDetailCancelled(String restaurant, String day);
+
+  /// No description provided for @statusCollected.
+  ///
+  /// In en, this message translates to:
+  /// **'Collected'**
+  String get statusCollected;
+
+  /// No description provided for @statusMissed.
+  ///
+  /// In en, this message translates to:
+  /// **'Missed'**
+  String get statusMissed;
+
+  /// No description provided for @statusCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get statusCancelled;
+
+  /// No description provided for @pickupsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No pickups waiting'**
+  String get pickupsEmptyTitle;
+
+  /// No description provided for @pickupsEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Reserve a meal on the map and its pickup code shows up here.'**
+  String get pickupsEmptyBody;
+
+  /// No description provided for @findMeals.
+  ///
+  /// In en, this message translates to:
+  /// **'Find meals near you'**
+  String get findMeals;
+
+  /// No description provided for @historyEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Meals you pick up will show here.'**
+  String get historyEmpty;
+
+  /// No description provided for @pickupsLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t load your pickups. Pull down to try again.'**
+  String get pickupsLoadError;
+
+  /// No description provided for @pickupCodeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Show this at the counter'**
+  String get pickupCodeTitle;
+
+  /// No description provided for @pickupCodeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{title} · {count, plural, =1{1 meal} other{{count} meals}} · {restaurant}'**
+  String pickupCodeSubtitle(String title, int count, String restaurant);
+
+  /// No description provided for @pickupCodeCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup code · staff enter it to confirm'**
+  String get pickupCodeCaption;
+
+  /// No description provided for @pickupCodeSemantics.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup code {digits}'**
+  String pickupCodeSemantics(String digits);
+
+  /// No description provided for @heldUntilPay.
+  ///
+  /// In en, this message translates to:
+  /// **'Held until {time} · pay at the counter'**
+  String heldUntilPay(String time);
+
+  /// No description provided for @heldUntilFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Held until {time} · nothing to pay'**
+  String heldUntilFree(String time);
+
+  /// No description provided for @holdEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'The hold ended at {time}. Reserve again if meals are left.'**
+  String holdEnded(String time);
+
+  /// No description provided for @callRestaurant.
+  ///
+  /// In en, this message translates to:
+  /// **'Call restaurant'**
+  String get callRestaurant;
+
+  /// No description provided for @cancelReservation.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel reservation'**
+  String get cancelReservation;
+
+  /// No description provided for @cancelConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel this reservation?'**
+  String get cancelConfirmTitle;
+
+  /// No description provided for @cancelConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The meal goes back on the map for someone else.'**
+  String get cancelConfirmBody;
+
+  /// No description provided for @keepIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep it'**
+  String get keepIt;
+
+  /// No description provided for @yesCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, cancel'**
+  String get yesCancel;
+
+  /// No description provided for @reservationCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Reservation cancelled. The meal is back for others.'**
+  String get reservationCancelled;
+
+  /// No description provided for @errorCancelFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t cancel it. Try again.'**
+  String get errorCancelFailed;
 }
 
 class _AppLocalizationsDelegate

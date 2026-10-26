@@ -70,13 +70,16 @@ enum ZadIcons {
 /// next repaint (seen on the web build), and icons pop in on slow phones.
 Future<void> precacheZadIcons() async {
   await Future.wait([
-    for (final icon in ZadIcons.values)
+    for (final asset in [...ZadIcons.values.map((i) => i.asset), ..._otherSvgs])
       () {
-        final loader = SvgAssetLoader(icon.asset);
+        final loader = SvgAssetLoader(asset);
         return svg.cache.putIfAbsent(loader.cacheKey(null), () => loader.loadBytes(null));
       }(),
   ]);
 }
+
+/// Other SVGs drawn inside sheets, loaded up front for the same reason.
+const _otherSvgs = ['assets/pickups/qr_standin.svg'];
 
 /// One icon at [size] (defaults to the Figma frame size). Colours come from the
 /// asset, which is already bound to the right token in Figma; pass [color]

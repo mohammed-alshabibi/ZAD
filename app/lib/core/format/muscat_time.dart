@@ -27,3 +27,16 @@ MuscatDay muscatDayOf(DateTime instant, {required DateTime now}) {
 
 /// "18 Oct, 14:12" in Muscat time, for dates before yesterday.
 String muscatDateTime(DateTime instant) => DateFormat('d MMM, HH:mm').format(toMuscat(instant));
+
+/// Whole Muscat calendar days from [instant] to [now] (0 = same day).
+int muscatDaysAgo(DateTime instant, {required DateTime now}) {
+  final a = toMuscat(instant);
+  final b = toMuscat(now);
+  return DateTime.utc(b.year, b.month, b.day).difference(DateTime.utc(a.year, a.month, a.day)).inDays;
+}
+
+/// "Tue" in Muscat time.
+String muscatWeekday(DateTime instant) => DateFormat('EEE').format(toMuscat(instant));
+
+/// "18 Oct" in Muscat time.
+String muscatDate(DateTime instant) => DateFormat('d MMM').format(toMuscat(instant));

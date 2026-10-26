@@ -526,7 +526,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String hoursMinutesLeft(int hours, int minutes) {
-    return '$hours h $minutes min';
+    return '$hours h $minutes min left';
   }
 
   @override
@@ -1051,4 +1051,196 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorCantOpen => 'We couldn’t open that on this phone.';
+
+  @override
+  String pickupsImpact(int meals, String saved) {
+    String _temp0 = intl.Intl.pluralLogic(
+      meals,
+      locale: localeName,
+      other: '$meals meals rescued',
+      one: '1 meal rescued',
+    );
+    return '$_temp0 · $saved saved';
+  }
+
+  @override
+  String pickupsImpactNoSavings(int meals) {
+    String _temp0 = intl.Intl.pluralLogic(
+      meals,
+      locale: localeName,
+      other: '$meals meals rescued',
+      one: '1 meal rescued',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get pickupsImpactNone => 'Rescue your first meal tonight';
+
+  @override
+  String get pickupsTabUpcoming => 'Upcoming';
+
+  @override
+  String pickupsTabUpcomingCount(int count) {
+    return 'Upcoming · $count';
+  }
+
+  @override
+  String get pickupsTabHistory => 'History';
+
+  @override
+  String get pickupKickerTonight => 'TONIGHT';
+
+  @override
+  String get pickupKickerToday => 'TODAY';
+
+  @override
+  String pickupRestaurantDistance(String restaurant, String distance) {
+    return '$restaurant · $distance';
+  }
+
+  @override
+  String pickupAmountCounter(int count, String price) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count meals',
+      one: '1 meal',
+    );
+    return '$_temp0 · $price at the counter';
+  }
+
+  @override
+  String pickupAmountFree(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count meals',
+      one: '1 meal',
+    );
+    return '$_temp0 · free';
+  }
+
+  @override
+  String heldUntil(String time) {
+    return 'Held until $time';
+  }
+
+  @override
+  String hoursMinutes(int hours, int minutes) {
+    return '$hours h $minutes min';
+  }
+
+  @override
+  String get pickupsRecent => 'Recent';
+
+  @override
+  String get dayToday => 'Today';
+
+  @override
+  String get dayYesterday => 'Yesterday';
+
+  @override
+  String pickupDetailCollected(String restaurant, String when) {
+    return '$restaurant · $when';
+  }
+
+  @override
+  String pickupDetailMissed(String restaurant, String day) {
+    return '$restaurant · $day · hold ended';
+  }
+
+  @override
+  String pickupDetailCancelled(String restaurant, String day) {
+    return '$restaurant · $day · cancelled';
+  }
+
+  @override
+  String get statusCollected => 'Collected';
+
+  @override
+  String get statusMissed => 'Missed';
+
+  @override
+  String get statusCancelled => 'Cancelled';
+
+  @override
+  String get pickupsEmptyTitle => 'No pickups waiting';
+
+  @override
+  String get pickupsEmptyBody =>
+      'Reserve a meal on the map and its pickup code shows up here.';
+
+  @override
+  String get findMeals => 'Find meals near you';
+
+  @override
+  String get historyEmpty => 'Meals you pick up will show here.';
+
+  @override
+  String get pickupsLoadError =>
+      'We couldn’t load your pickups. Pull down to try again.';
+
+  @override
+  String get pickupCodeTitle => 'Show this at the counter';
+
+  @override
+  String pickupCodeSubtitle(String title, int count, String restaurant) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count meals',
+      one: '1 meal',
+    );
+    return '$title · $_temp0 · $restaurant';
+  }
+
+  @override
+  String get pickupCodeCaption => 'Pickup code · staff enter it to confirm';
+
+  @override
+  String pickupCodeSemantics(String digits) {
+    return 'Pickup code $digits';
+  }
+
+  @override
+  String heldUntilPay(String time) {
+    return 'Held until $time · pay at the counter';
+  }
+
+  @override
+  String heldUntilFree(String time) {
+    return 'Held until $time · nothing to pay';
+  }
+
+  @override
+  String holdEnded(String time) {
+    return 'The hold ended at $time. Reserve again if meals are left.';
+  }
+
+  @override
+  String get callRestaurant => 'Call restaurant';
+
+  @override
+  String get cancelReservation => 'Cancel reservation';
+
+  @override
+  String get cancelConfirmTitle => 'Cancel this reservation?';
+
+  @override
+  String get cancelConfirmBody =>
+      'The meal goes back on the map for someone else.';
+
+  @override
+  String get keepIt => 'Keep it';
+
+  @override
+  String get yesCancel => 'Yes, cancel';
+
+  @override
+  String get reservationCancelled =>
+      'Reservation cancelled. The meal is back for others.';
+
+  @override
+  String get errorCancelFailed => 'We couldn’t cancel it. Try again.';
 }
