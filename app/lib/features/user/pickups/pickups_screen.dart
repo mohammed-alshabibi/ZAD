@@ -14,6 +14,7 @@ import '../../../core/widgets/pickup_window_bar.dart';
 import '../../../core/widgets/zad_button.dart';
 import '../../../core/widgets/zad_icon.dart';
 import '../../../core/widgets/zad_pickup_row.dart';
+import '../../../core/widgets/zad_tabs.dart';
 import '../../restaurant/domain/restaurant_reservation.dart';
 import '../application/home_offers.dart';
 import '../application/reservations.dart';
@@ -119,7 +120,7 @@ class _PickupsScreenState extends ConsumerState<PickupsScreen> {
             ],
           ),
           const SizedBox(height: 20),
-          _Tabs(
+          ZadUnderlineTabs(
             selected: _tab,
             labels: [
               upcoming.isEmpty ? l10n.pickupsTabUpcoming : l10n.pickupsTabUpcomingCount(upcoming.length),
@@ -129,64 +130,6 @@ class _PickupsScreenState extends ConsumerState<PickupsScreen> {
           ),
           const SizedBox(height: 20),
           ...body,
-        ],
-      ),
-    );
-  }
-}
-
-/// Underline tabs (Figma "Tabs"): equal halves, a 3 px card-coloured
-/// indicator under the selected one, and a hairline under the row.
-class _Tabs extends StatelessWidget {
-  const _Tabs({required this.selected, required this.labels, required this.onSelect});
-
-  final int selected;
-  final List<String> labels;
-  final ValueChanged<int> onSelect;
-
-  @override
-  Widget build(BuildContext context) {
-    final z = context.zad;
-    return DecoratedBox(
-      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: z.nightHairline))),
-      child: Row(
-        children: [
-          for (var i = 0; i < labels.length; i++)
-            Expanded(
-              child: Semantics(
-                button: true,
-                selected: i == selected,
-                child: InkWell(
-                  onTap: () => onSelect(i),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 4),
-                    child: Column(
-                      children: [
-                        Text(
-                          labels[i],
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: ZadType.body(
-                            size: 16,
-                            weight: i == selected ? FontWeight.w600 : FontWeight.w500,
-                            color: i == selected ? z.card : z.onFrondMuted,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          height: 3,
-                          decoration: BoxDecoration(
-                            color: i == selected ? z.card : z.card.withValues(alpha: 0),
-                            borderRadius: BorderRadius.circular(2),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
         ],
       ),
     );

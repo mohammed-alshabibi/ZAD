@@ -7,9 +7,9 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/l10n/generated/app_localizations.dart';
 import '../../../core/theme/zad_colors.dart';
-import '../../../core/theme/zad_type.dart';
 import '../../../core/time/clock.dart';
 import '../../../core/widgets/zad_icon.dart';
+import '../../../core/widgets/zad_tabs.dart';
 import '../application/reservations.dart';
 
 /// User tab bar from Figma 8:48: Home · Pickups · Profile (§14.3: three tabs,
@@ -30,7 +30,7 @@ class UserShell extends ConsumerWidget {
     final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
 
     // Branch order matches the router: Home, Pickups, Profile.
-    Widget tab(int branch, ZadIcons icon, String label, {bool dot = false}) => _TabItem(
+    Widget tab(int branch, ZadIcons icon, String label, {bool dot = false}) => ZadTabItem(
           icon: icon,
           label: label,
           dot: dot,
@@ -59,66 +59,6 @@ class UserShell extends ConsumerWidget {
                 tab(2, ZadIcons.tabUser, l10n.tabProfile),
               ],
             ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _TabItem extends StatelessWidget {
-  const _TabItem({required this.icon, required this.label, required this.active, required this.onTap, this.dot = false});
-
-  final ZadIcons icon;
-  final String label;
-  final bool active;
-  final VoidCallback onTap;
-  final bool dot;
-
-  @override
-  Widget build(BuildContext context) {
-    final z = context.zad;
-    final color = active ? z.sap : z.onFrondMuted;
-    return Semantics(
-      button: true,
-      selected: active,
-      child: InkResponse(
-        onTap: onTap,
-        radius: 36,
-        child: SizedBox(
-          width: 64,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  ZadIcon(icon, size: 22, color: color),
-                  if (dot)
-                    // 8 px saffron dot with a 2 px ring in the bar colour (Figma 8:229).
-                    PositionedDirectional(
-                      start: 19,
-                      top: -2,
-                      child: Container(
-                        width: 12,
-                        height: 12,
-                        decoration: BoxDecoration(
-                          color: z.saffron,
-                          shape: BoxShape.circle,
-                          border: Border.all(color: z.nightSheet, width: 2),
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-              const SizedBox(height: 4),
-              Text(
-                label,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: ZadType.body(size: 11, weight: active ? FontWeight.w600 : FontWeight.w400, color: color),
-              ),
-            ],
           ),
         ),
       ),

@@ -30,7 +30,13 @@ class RestaurantException implements Exception {
   String toString() => 'RestaurantException($code)';
 }
 
+/// One in-memory demo store of restaurants, shared with the admin fake.
+final fakeRestaurantStoreProvider = Provider<FakeRestaurantStore>((ref) => FakeRestaurantStore.seeded(DateTime.now()));
+
 final restaurantRepositoryProvider = Provider<RestaurantRepository>((ref) {
   // The real API knows the owner from the JWT; the fake asks the session.
-  return FakeRestaurantRepository(currentUserId: () => ref.read(sessionProvider)?.id);
+  return FakeRestaurantRepository(
+    currentUserId: () => ref.read(sessionProvider)?.id,
+    store: ref.watch(fakeRestaurantStoreProvider),
+  );
 });

@@ -7,8 +7,8 @@ import 'package:go_router/go_router.dart';
 import '../../../core/l10n/generated/app_localizations.dart';
 import '../../../core/router/routes.dart';
 import '../../../core/theme/zad_colors.dart';
-import '../../../core/theme/zad_type.dart';
 import '../../../core/widgets/zad_icon.dart';
+import '../../../core/widgets/zad_tabs.dart';
 
 /// Restaurant tab bar from Figma 29:400: Today · Offers · (+) · Insights · Profile.
 /// The middle button opens "Add surplus" full screen instead of switching tabs.
@@ -24,9 +24,10 @@ class RestaurantShell extends StatelessWidget {
     final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
 
     // Branch order matches the router: Today, Offers, Insights, Profile.
-    Widget tab(int branch, ZadIcons icon, String label) => _TabItem(
+    Widget tab(int branch, ZadIcons icon, String label) => ZadTabItem(
           icon: icon,
           label: label,
+          width: 62,
           active: shell.currentIndex == branch,
           onTap: () => shell.goBranch(branch, initialLocation: branch == shell.currentIndex),
         );
@@ -51,45 +52,6 @@ class RestaurantShell extends StatelessWidget {
               _NewSurplusButton(label: l10n.newSurplus, onTap: () => context.push(Routes.restaurantNewOffer)),
               tab(2, ZadIcons.tabChart, l10n.tabInsights),
               tab(3, ZadIcons.tabUser, l10n.tabProfile),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _TabItem extends StatelessWidget {
-  const _TabItem({required this.icon, required this.label, required this.active, required this.onTap});
-
-  final ZadIcons icon;
-  final String label;
-  final bool active;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final z = context.zad;
-    final color = active ? z.sap : z.onFrondMuted;
-    return Semantics(
-      button: true,
-      selected: active,
-      child: InkResponse(
-        onTap: onTap,
-        radius: 36,
-        child: SizedBox(
-          width: 62,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ZadIcon(icon, size: 22, color: color),
-              const SizedBox(height: 4),
-              Text(
-                label,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: ZadType.body(size: 11, weight: active ? FontWeight.w600 : FontWeight.w400, color: color),
-              ),
             ],
           ),
         ),

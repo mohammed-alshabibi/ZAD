@@ -2427,6 +2427,432 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Got it'**
   String get gotIt;
+
+  /// No description provided for @adminKicker.
+  ///
+  /// In en, this message translates to:
+  /// **'ZAD ADMIN'**
+  String get adminKicker;
+
+  /// No description provided for @tabOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get tabOverview;
+
+  /// No description provided for @tabRestaurants.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurants'**
+  String get tabRestaurants;
+
+  /// No description provided for @adminUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Muscat · today · updated {time}'**
+  String adminUpdated(String time);
+
+  /// No description provided for @mealsRescuedKicker.
+  ///
+  /// In en, this message translates to:
+  /// **'MEALS RESCUED'**
+  String get mealsRescuedKicker;
+
+  /// No description provided for @mealsTodayDelta.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} today'**
+  String mealsTodayDelta(int count);
+
+  /// No description provided for @mealsWeekRate.
+  ///
+  /// In en, this message translates to:
+  /// **'{week} this week · {pct}% of reservations collected'**
+  String mealsWeekRate(int week, int pct);
+
+  /// No description provided for @mealsWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'{week} this week'**
+  String mealsWeek(int week);
+
+  /// No description provided for @kgSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'≈ {kg} kg of food saved (estimate: 0.4 kg per meal)'**
+  String kgSaved(int kg);
+
+  /// No description provided for @statRestaurants.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurants'**
+  String get statRestaurants;
+
+  /// No description provided for @statRestaurantsDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'approved · {pending} waiting'**
+  String statRestaurantsDetail(int pending);
+
+  /// No description provided for @statLiveOffers.
+  ///
+  /// In en, this message translates to:
+  /// **'Live offers'**
+  String get statLiveOffers;
+
+  /// No description provided for @statLiveOffersDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{meals, plural, =1{1 meal} other{{meals} meals}} left right now'**
+  String statLiveOffersDetail(int meals);
+
+  /// No description provided for @statPickupsToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickups today'**
+  String get statPickupsToday;
+
+  /// No description provided for @statPickupsDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} waiting at the counter'**
+  String statPickupsDetail(int count);
+
+  /// No description provided for @statUsers.
+  ///
+  /// In en, this message translates to:
+  /// **'Users'**
+  String get statUsers;
+
+  /// No description provided for @statUsersDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} reserved today'**
+  String statUsersDetail(int count);
+
+  /// No description provided for @needsAttention.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs attention'**
+  String get needsAttention;
+
+  /// No description provided for @attentionApprovals.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurant approvals'**
+  String get attentionApprovals;
+
+  /// No description provided for @attentionApprovalsValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} waiting · oldest {age}'**
+  String attentionApprovalsValue(int count, String age);
+
+  /// No description provided for @attentionApprovalsNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing waiting'**
+  String get attentionApprovalsNone;
+
+  /// No description provided for @attentionOffers.
+  ///
+  /// In en, this message translates to:
+  /// **'Live offers'**
+  String get attentionOffers;
+
+  /// No description provided for @attentionOffersValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} active · review or remove'**
+  String attentionOffersValue(int count);
+
+  /// No description provided for @adminLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t load this. Pull down to try again.'**
+  String get adminLoadError;
+
+  /// No description provided for @adminRestaurantsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurants'**
+  String get adminRestaurantsTitle;
+
+  /// No description provided for @pendingSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} waiting for review · reply within a day'**
+  String pendingSummary(int count);
+
+  /// No description provided for @pendingSummaryNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing waiting for review'**
+  String get pendingSummaryNone;
+
+  /// No description provided for @tabPendingCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending · {count}'**
+  String tabPendingCount(int count);
+
+  /// No description provided for @tabApprovedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved · {count}'**
+  String tabApprovedCount(int count);
+
+  /// No description provided for @tabSuspendedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspended · {count}'**
+  String tabSuspendedCount(int count);
+
+  /// No description provided for @reviewKickerNew.
+  ///
+  /// In en, this message translates to:
+  /// **'NEW · WAITING {age}'**
+  String reviewKickerNew(String age);
+
+  /// No description provided for @reviewKickerApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'APPROVED'**
+  String get reviewKickerApproved;
+
+  /// No description provided for @reviewKickerSuspended.
+  ///
+  /// In en, this message translates to:
+  /// **'SUSPENDED'**
+  String get reviewKickerSuspended;
+
+  /// No description provided for @cuisineArea.
+  ///
+  /// In en, this message translates to:
+  /// **'{cuisine} · {area}'**
+  String cuisineArea(String cuisine, String area);
+
+  /// No description provided for @rowOwner.
+  ///
+  /// In en, this message translates to:
+  /// **'Owner'**
+  String get rowOwner;
+
+  /// No description provided for @ownerValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} · {phone}'**
+  String ownerValue(String name, String phone);
+
+  /// No description provided for @rowPickupPoint.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup point'**
+  String get rowPickupPoint;
+
+  /// No description provided for @rowTypicalDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Typical day'**
+  String get rowTypicalDay;
+
+  /// No description provided for @typicalDayValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{meals} meals · usually {low}–{high}% left'**
+  String typicalDayValue(int meals, int low, int high);
+
+  /// No description provided for @typicalDayNone.
+  ///
+  /// In en, this message translates to:
+  /// **'Not given'**
+  String get typicalDayNone;
+
+  /// No description provided for @termsAccepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurant Terms accepted · {when}'**
+  String termsAccepted(String when);
+
+  /// No description provided for @adminReject.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get adminReject;
+
+  /// No description provided for @adminApprove.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve'**
+  String get adminApprove;
+
+  /// No description provided for @adminSuspend.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspend'**
+  String get adminSuspend;
+
+  /// No description provided for @adminReinstate.
+  ///
+  /// In en, this message translates to:
+  /// **'Reinstate'**
+  String get adminReinstate;
+
+  /// No description provided for @ownerNotified.
+  ///
+  /// In en, this message translates to:
+  /// **'The owner is notified either way.'**
+  String get ownerNotified;
+
+  /// No description provided for @alsoWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Also waiting · {count}'**
+  String alsoWaiting(int count);
+
+  /// No description provided for @oldestFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Oldest first'**
+  String get oldestFirst;
+
+  /// No description provided for @nonePending.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing waiting. New sign-ups show up here.'**
+  String get nonePending;
+
+  /// No description provided for @noneApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'No approved restaurants yet.'**
+  String get noneApproved;
+
+  /// No description provided for @noneSuspended.
+  ///
+  /// In en, this message translates to:
+  /// **'No suspended restaurants.'**
+  String get noneSuspended;
+
+  /// No description provided for @rejectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject {name}?'**
+  String rejectTitle(String name);
+
+  /// No description provided for @rejectBody.
+  ///
+  /// In en, this message translates to:
+  /// **'They can fix their details and send them again.'**
+  String get rejectBody;
+
+  /// No description provided for @suspendTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspend {name}?'**
+  String suspendTitle(String name);
+
+  /// No description provided for @suspendBody.
+  ///
+  /// In en, this message translates to:
+  /// **'They can’t post new surplus until you reinstate them.'**
+  String get suspendBody;
+
+  /// No description provided for @approvedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved. {name} can post surplus now.'**
+  String approvedToast(String name);
+
+  /// No description provided for @rejectedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected. {name} has been told.'**
+  String rejectedToast(String name);
+
+  /// No description provided for @suspendedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is suspended.'**
+  String suspendedToast(String name);
+
+  /// No description provided for @reinstatedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} can post again.'**
+  String reinstatedToast(String name);
+
+  /// No description provided for @errorAdminAction.
+  ///
+  /// In en, this message translates to:
+  /// **'That didn’t work. Try again.'**
+  String get errorAdminAction;
+
+  /// No description provided for @ageMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String ageMinutes(int minutes);
+
+  /// No description provided for @ageHours.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours} h'**
+  String ageHours(int hours);
+
+  /// No description provided for @ageDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} d'**
+  String ageDays(int days);
+
+  /// No description provided for @adminOffersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Offers'**
+  String get adminOffersTitle;
+
+  /// No description provided for @adminOffersSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} live · {meals} meals left'**
+  String adminOffersSummary(int count, int meals);
+
+  /// No description provided for @adminOffersNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No live offers right now.'**
+  String get adminOffersNone;
+
+  /// No description provided for @adminOfferLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{left} of {total} left · until {time}'**
+  String adminOfferLine(int left, int total, String time);
+
+  /// No description provided for @adminRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get adminRemove;
+
+  /// No description provided for @removeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove this offer?'**
+  String get removeTitle;
+
+  /// No description provided for @removeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{title} from {restaurant} stops showing to users. People who already reserved can still pick up.'**
+  String removeBody(String title, String restaurant);
+
+  /// No description provided for @removedToast.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer removed.'**
+  String get removedToast;
 }
 
 class _AppLocalizationsDelegate
