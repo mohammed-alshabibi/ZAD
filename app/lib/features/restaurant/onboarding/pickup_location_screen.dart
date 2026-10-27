@@ -4,7 +4,6 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
@@ -18,7 +17,7 @@ import '../../../core/theme/zad_type.dart';
 import '../../../core/widgets/zad_button.dart';
 import '../../../core/widgets/zad_form_row.dart';
 import '../../../core/widgets/zad_icon.dart';
-import '../../../core/widgets/zad_map_pin.dart';
+import '../../../core/widgets/map_picker.dart';
 import '../../../core/widgets/zad_text_field.dart';
 import '../application/onboarding_draft.dart';
 import '../domain/restaurant.dart';
@@ -187,11 +186,11 @@ class _PickupLocationScreenState extends ConsumerState<PickupLocationScreen> {
                 fit: StackFit.expand,
                 children: [
                   _mapLayer(l10n),
-                  _CentrePin(label: _draft.name, hint: l10n.pickupMoveHint),
+                  MapCentrePin(label: _draft.name, hint: l10n.pickupMoveHint),
                   PositionedDirectional(
                     end: 16,
                     bottom: _underSheet + 30,
-                    child: _LocateButton(label: l10n.pickupLocateMe, busy: _locating, onTap: _locateMe),
+                    child: MapLocateButton(label: l10n.pickupLocateMe, busy: _locating, onTap: _locateMe),
                   ),
                 ],
               ),
@@ -208,7 +207,7 @@ class _PickupLocationScreenState extends ConsumerState<PickupLocationScreen> {
                   children: [
                     Align(
                       alignment: AlignmentDirectional.centerStart,
-                      child: _RoundButton(label: l10n.back, onTap: () => context.pop()),
+                      child: MapRoundButton(label: l10n.back, onTap: () => context.pop()),
                     ),
                     _StepPill(text: l10n.onboardingStep(2, 3)),
                   ],
@@ -217,7 +216,7 @@ class _PickupLocationScreenState extends ConsumerState<PickupLocationScreen> {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: _MeasureHeight(
+              child: MeasureHeight(
                 onHeight: (h) {
                   if ((h - _sheetHeight).abs() > 0.5) setState(() => _sheetHeight = h);
                 },
@@ -231,7 +230,7 @@ class _PickupLocationScreenState extends ConsumerState<PickupLocationScreen> {
   }
 
   Widget _mapLayer(AppLocalizations l10n) {
-    if (!mapboxAvailable) return _MapFallback(message: l10n.mapUnavailable);
+    if (!mapboxAvailable) return MapFallback(message: l10n.mapUnavailable);
     return MapWidget(
       key: const ValueKey('pickupMap'),
       styleUri: MapboxStyles.DARK,
@@ -292,89 +291,6 @@ class _PickupLocationScreenState extends ConsumerState<PickupLocationScreen> {
   }
 }
 
-/// Fixed centre pin with its ground shadow and the "Move the map…" hint.
-/// The point being chosen is the bottom of the pin's disc, at the exact
-/// centre of the map.
-class _CentrePin extends StatelessWidget {
-  const _CentrePin({required this.label, required this.hint});
-
-  final String label;
-  final String hint;
-
-  @override
-  Widget build(BuildContext context) {
-    final z = context.zad;
-    const disc = ZadSelectedMapPin.disc;
-    return IgnorePointer(
-      child: LayoutBuilder(
-        builder: (context, box) {
-          final cx = box.maxWidth / 2;
-          final cy = box.maxHeight / 2;
-          return Stack(
-            clipBehavior: Clip.none,
-            children: [
-              // Figma: hint pill 54 px above the disc.
-              Positioned(
-                left: 16,
-                right: 16,
-                top: cy - disc - 54,
-                child: Center(
-                  child: Container(
-                    padding: const EdgeInsetsDirectional.symmetric(horizontal: 14, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: z.nightRaised,
-                      borderRadius: BorderRadius.circular(999),
-                      border: Border.all(color: z.nightHairline),
-                    ),
-                    child: Text(hint, textAlign: TextAlign.center, style: ZadType.body(size: 13, color: z.card)),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: cx - 13,
-                top: cy - 4,
-                child: SvgPicture.asset('assets/onboarding/pin_shadow.svg', width: 26, height: 8),
-              ),
-              Positioned(
-                left: 0,
-                right: 0,
-                top: cy - disc,
-                child: Center(child: ZadSelectedMapPin(label: label)),
-              ),
-            ],
-          );
-        },
-      ),
-    );
-  }
-}
-
-/// Shown instead of the map on the web preview, in tests, or without a token.
-class _MapFallback extends StatelessWidget {
-  const _MapFallback({required this.message});
-
-  final String message;
-
-  @override
-  Widget build(BuildContext context) {
-    final z = context.zad;
-    return ColoredBox(
-      color: z.nightRaised,
-      child: Align(
-        alignment: const Alignment(0, 0.55),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: Text(
-            message,
-            textAlign: TextAlign.center,
-            style: ZadType.body(size: 12, height: 16 / 12, color: z.onFrondMuted),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class _StepPill extends StatelessWidget {
   const _StepPill({required this.text});
 
@@ -387,73 +303,6 @@ class _StepPill extends StatelessWidget {
       padding: const EdgeInsetsDirectional.symmetric(horizontal: 14, vertical: 9),
       decoration: BoxDecoration(color: z.nightRaised, borderRadius: BorderRadius.circular(999)),
       child: Text(text, style: ZadType.body(size: 13, weight: FontWeight.w500, color: z.card)),
-    );
-  }
-}
-
-class _RoundButton extends StatelessWidget {
-  const _RoundButton({required this.label, required this.onTap});
-
-  final String label;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      button: true,
-      label: label,
-      child: Material(
-        color: context.zad.nightRaised,
-        shape: const CircleBorder(),
-        clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: onTap,
-          child: const SizedBox.square(dimension: 40, child: Center(child: ZadIcon(ZadIcons.chevronLeft, size: 20))),
-        ),
-      ),
-    );
-  }
-}
-
-/// Figma "Locate me": 42 px raised circle with the locate arrow.
-class _LocateButton extends StatelessWidget {
-  const _LocateButton({required this.label, required this.busy, required this.onTap});
-
-  final String label;
-  final bool busy;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final z = context.zad;
-    return Semantics(
-      button: true,
-      label: label,
-      child: Container(
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-          boxShadow: [BoxShadow(color: ZadColors.buttonShadow, offset: Offset(0, 4), blurRadius: 14)],
-        ),
-        child: Material(
-          color: z.nightRaised,
-          shape: CircleBorder(side: BorderSide(color: z.nightHairline)),
-          clipBehavior: Clip.antiAlias,
-          child: InkWell(
-            onTap: busy ? null : onTap,
-            child: SizedBox.square(
-              dimension: 42,
-              child: Center(
-                child: busy
-                    ? SizedBox.square(
-                        dimension: 16,
-                        child: CircularProgressIndicator(strokeWidth: 2, color: z.card),
-                      )
-                    : const ZadIcon(ZadIcons.locate, size: 18),
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
@@ -504,27 +353,5 @@ class _AddressSheetState extends State<_AddressSheet> {
         ],
       ),
     );
-  }
-}
-
-/// Reports its child's height after layout (used to sit the map behind the sheet).
-class _MeasureHeight extends StatefulWidget {
-  const _MeasureHeight({required this.onHeight, required this.child});
-
-  final ValueChanged<double> onHeight;
-  final Widget child;
-
-  @override
-  State<_MeasureHeight> createState() => _MeasureHeightState();
-}
-
-class _MeasureHeightState extends State<_MeasureHeight> {
-  @override
-  Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final box = context.findRenderObject() as RenderBox?;
-      if (mounted && box != null && box.hasSize) widget.onHeight(box.size.height);
-    });
-    return widget.child;
   }
 }

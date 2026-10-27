@@ -763,5 +763,13 @@
   "profileOwner": "Owner",
   "profileRole": "Role",
   "profileRoleAdmin": "Admin",
-  "profileAdminNote": "Admin accounts are made on the server. Restaurants and offers are in the other tabs."
+  "profileAdminNote": "Admin accounts are made on the server. Restaurants and offers are in the other tabs.",
+"setAreaTitle": "Set your area",
+  "setAreaBody": "Move the map to your neighbourhood. We show meals within 5 km of the pin.",
+  "setAreaHint": "Move the map to your area",
+  "setAreaFinding": "Finding the areaâ€¦",
+  "setAreaPinned": "Pinned area",
+  "setAreaPrivacy": "Saved to about 100 m. Restaurants never see it.",
+  "setAreaSave": "Use this area",
+  "setAreaSaved": "Area saved. Showing meals near it."
 }

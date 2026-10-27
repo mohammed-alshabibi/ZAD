@@ -7,6 +7,7 @@ import '../../features/admin/overview_screen.dart';
 import '../../features/admin/profile_screen.dart';
 import '../../features/admin/restaurants_screen.dart';
 import '../../features/auth/account_type_screen.dart';
+import '../../features/auth/application/session.dart';
 import '../../features/auth/domain/app_user.dart';
 import '../../features/auth/location_permission_screen.dart';
 import '../../features/auth/login_screen.dart';
@@ -28,14 +29,38 @@ import '../../features/user/home/user_home_screen.dart';
 import '../../features/user/home/user_shell.dart';
 import '../../features/user/meal/meal_details_screen.dart';
 import '../../features/user/pickups/pickups_screen.dart';
+import '../../features/user/profile/set_area_screen.dart';
 import '../../features/user/profile/user_profile_screen.dart';
 import '../widgets/placeholder_screen.dart';
 import 'routes.dart';
 
-/// Screens not built yet show a placeholder; each is replaced as P1 progresses.
+/// Role guard (CLAUDE.md §8.1). Hiding screens is UX only; the API checks
+/// roles on every request. Each role's screens live under its own prefix
+/// (/user, /restaurant, /admin): a signed-out visitor goes to the splash and
+/// a signed-in account to its own home. Returns null to stay.
+String? roleRedirect(String location, AppUser? user) {
+  final path = Uri.parse(location).path;
+  bool under(String prefix) => path == prefix || path.startsWith('$prefix/');
+  final UserRole? owner = under(Routes.userHome)
+      ? UserRole.user
+      : under(Routes.restaurantHome)
+          ? UserRole.restaurant
+          : under(Routes.adminHome)
+              ? UserRole.admin
+              : null;
+  // Shared screens that still need an account.
+  final signedInOnly = owner != null || path == Routes.notifications || path == Routes.locationPermission;
+  if (!signedInOnly) return null;
+  if (user == null) return Routes.splash;
+  if (owner != null && user.role != owner) return homeForRole(user.role);
+  return null;
+}
+
+/// Screens not built yet (Forgot password, Terms, Privacy) show a placeholder.
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: Routes.splash,
+    redirect: (_, state) => roleRedirect(state.uri.toString(), ref.read(sessionProvider)),
     routes: [
       GoRoute(path: Routes.splash, builder: (_, _) => const SplashScreen()),
       GoRoute(path: Routes.accountType, builder: (_, _) => const AccountTypeScreen()),
@@ -71,7 +96,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.mealDetailsPattern,
         builder: (_, state) => MealDetailsScreen(offerId: state.pathParameters['id']!),
       ),
-      GoRoute(path: Routes.setArea, builder: (_, _) => const PlaceholderScreen(name: 'Set my area')),
+      GoRoute(path: Routes.setArea, builder: (_, _) => const SetAreaScreen()),
       GoRoute(path: Routes.notifications, builder: (_, _) => const NotificationsScreen()),
       // Restaurant tabs keep their own state (indexed stack).
       StatefulShellRoute.indexedStack(

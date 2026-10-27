@@ -3585,6 +3585,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Admin accounts are made on the server. Restaurants and offers are in the other tabs.'**
   String get profileAdminNote;
+
+  /// No description provided for @setAreaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your area'**
+  String get setAreaTitle;
+
+  /// No description provided for @setAreaBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Move the map to your neighbourhood. We show meals within 5 km of the pin.'**
+  String get setAreaBody;
+
+  /// No description provided for @setAreaHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Move the map to your area'**
+  String get setAreaHint;
+
+  /// No description provided for @setAreaFinding.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding the areaâ€¦'**
+  String get setAreaFinding;
+
+  /// No description provided for @setAreaPinned.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinned area'**
+  String get setAreaPinned;
+
+  /// No description provided for @setAreaPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved to about 100 m. Restaurants never see it.'**
+  String get setAreaPrivacy;
+
+  /// No description provided for @setAreaSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this area'**
+  String get setAreaSave;
+
+  /// No description provided for @setAreaSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Area saved. Showing meals near it.'**
+  String get setAreaSaved;
 }
 
 class _AppLocalizationsDelegate

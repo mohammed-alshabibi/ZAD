@@ -2248,4 +2248,30 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get profileAdminNote =>
       'Admin accounts are made on the server. Restaurants and offers are in the other tabs.';
+
+  @override
+  String get setAreaTitle => 'Set your area';
+
+  @override
+  String get setAreaBody =>
+      'Move the map to your neighbourhood. We show meals within 5 km of the pin.';
+
+  @override
+  String get setAreaHint => 'Move the map to your area';
+
+  @override
+  String get setAreaFinding => 'Finding the areaâ€¦';
+
+  @override
+  String get setAreaPinned => 'Pinned area';
+
+  @override
+  String get setAreaPrivacy =>
+      'Saved to about 100 m. Restaurants never see it.';
+
+  @override
+  String get setAreaSave => 'Use this area';
+
+  @override
+  String get setAreaSaved => 'Area saved. Showing meals near it.';
 }
