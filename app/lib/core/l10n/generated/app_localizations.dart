@@ -3307,7 +3307,7 @@ abstract class AppLocalizations {
   /// No description provided for @errorLoadOffers.
   ///
   /// In en, this message translates to:
-  /// **'We couldnâ€™t load your offers. Pull down to try again.'**
+  /// **'We couldn’t load your offers. Pull down to try again.'**
   String get errorLoadOffers;
 
   /// No description provided for @offersCollectedWeek.
@@ -3325,7 +3325,7 @@ abstract class AppLocalizations {
   /// No description provided for @offersTabLiveCount.
   ///
   /// In en, this message translates to:
-  /// **'Live Â· {count}'**
+  /// **'Live · {count}'**
   String offersTabLiveCount(int count);
 
   /// No description provided for @offersTabPast.
@@ -3343,7 +3343,7 @@ abstract class AppLocalizations {
   /// No description provided for @offerPastDetail.
   ///
   /// In en, this message translates to:
-  /// **'{day} Â· {collected} of {total} collected'**
+  /// **'{day} · {collected} of {total} collected'**
   String offerPastDetail(String day, int collected, int total);
 
   /// No description provided for @offerStatusAllTaken.
@@ -3373,19 +3373,19 @@ abstract class AppLocalizations {
   /// No description provided for @notificationsLoadError.
   ///
   /// In en, this message translates to:
-  /// **'We couldnâ€™t load your notifications. Pull down to try again.'**
+  /// **'We couldn’t load your notifications. Pull down to try again.'**
   String get notificationsLoadError;
 
   /// No description provided for @notificationsEmptyTitle.
   ///
   /// In en, this message translates to:
-  /// **'Youâ€™re all caught up'**
+  /// **'You’re all caught up'**
   String get notificationsEmptyTitle;
 
   /// No description provided for @notificationsEmptyUser.
   ///
   /// In en, this message translates to:
-  /// **'Weâ€™ll let you know when a restaurant near you posts meals.'**
+  /// **'We’ll let you know when a restaurant near you posts meals.'**
   String get notificationsEmptyUser;
 
   /// No description provided for @notificationsEmptyRestaurant.
@@ -3505,7 +3505,7 @@ abstract class AppLocalizations {
   /// No description provided for @profileAreaUnset.
   ///
   /// In en, this message translates to:
-  /// **'Not set Â· showing Muscat'**
+  /// **'Not set · showing Muscat'**
   String get profileAreaUnset;
 
   /// No description provided for @profileAlerts.
@@ -3559,7 +3559,7 @@ abstract class AppLocalizations {
   /// No description provided for @profileTypicalDayValue.
   ///
   /// In en, this message translates to:
-  /// **'{meals} meals a day Â· {share} left over'**
+  /// **'{meals} meals a day · {share} left over'**
   String profileTypicalDayValue(int meals, String share);
 
   /// No description provided for @profileOwner.
@@ -3607,7 +3607,7 @@ abstract class AppLocalizations {
   /// No description provided for @setAreaFinding.
   ///
   /// In en, this message translates to:
-  /// **'Finding the areaâ€¦'**
+  /// **'Finding the area…'**
   String get setAreaFinding;
 
   /// No description provided for @setAreaPinned.

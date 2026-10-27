@@ -2066,7 +2066,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorLoadOffers =>
-      'We couldnâ€™t load your offers. Pull down to try again.';
+      'We couldn’t load your offers. Pull down to try again.';
 
   @override
   String offersCollectedWeek(int count) {
@@ -2085,7 +2085,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String offersTabLiveCount(int count) {
-    return 'Live Â· $count';
+    return 'Live · $count';
   }
 
   @override
@@ -2096,7 +2096,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String offerPastDetail(String day, int collected, int total) {
-    return '$day Â· $collected of $total collected';
+    return '$day · $collected of $total collected';
   }
 
   @override
@@ -2113,14 +2113,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notificationsLoadError =>
-      'We couldnâ€™t load your notifications. Pull down to try again.';
+      'We couldn’t load your notifications. Pull down to try again.';
 
   @override
-  String get notificationsEmptyTitle => 'Youâ€™re all caught up';
+  String get notificationsEmptyTitle => 'You’re all caught up';
 
   @override
   String get notificationsEmptyUser =>
-      'Weâ€™ll let you know when a restaurant near you posts meals.';
+      'We’ll let you know when a restaurant near you posts meals.';
 
   @override
   String get notificationsEmptyRestaurant =>
@@ -2204,7 +2204,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileMyArea => 'My area';
 
   @override
-  String get profileAreaUnset => 'Not set Â· showing Muscat';
+  String get profileAreaUnset => 'Not set · showing Muscat';
 
   @override
   String get profileAlerts => 'New meals nearby';
@@ -2233,7 +2233,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String profileTypicalDayValue(int meals, String share) {
-    return '$meals meals a day Â· $share left over';
+    return '$meals meals a day · $share left over';
   }
 
   @override
@@ -2260,7 +2260,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get setAreaHint => 'Move the map to your area';
 
   @override
-  String get setAreaFinding => 'Finding the areaâ€¦';
+  String get setAreaFinding => 'Finding the area…';
 
   @override
   String get setAreaPinned => 'Pinned area';

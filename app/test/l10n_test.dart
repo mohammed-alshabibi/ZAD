@@ -13,6 +13,11 @@ void main() {
     expect(dupes, isEmpty);
   });
 
+  test('app_en.arb has no garbled characters (UTF-8 read as Windows-1252)', () {
+    final source = File('lib/core/l10n/app_en.arb').readAsStringSync();
+    expect(RegExp('Â|â€').hasMatch(source), isFalse);
+  });
+
   test('restaurant time left reads "28 min" / "1 h 12 min", without "left"', () {
     final l10n = lookupAppLocalizations(const Locale('en'));
     final now = DateTime.utc(2026, 10, 26, 17);
