@@ -2110,4 +2110,142 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get offerStatusRemoved => 'Removed';
+
+  @override
+  String get notificationsLoadError =>
+      'We couldnâ€™t load your notifications. Pull down to try again.';
+
+  @override
+  String get notificationsEmptyTitle => 'Youâ€™re all caught up';
+
+  @override
+  String get notificationsEmptyUser =>
+      'Weâ€™ll let you know when a restaurant near you posts meals.';
+
+  @override
+  String get notificationsEmptyRestaurant =>
+      'News about your restaurant will show here.';
+
+  @override
+  String get notificationsMarkAllRead => 'Mark all as read';
+
+  @override
+  String get notificationsAllRead => 'Nothing new';
+
+  @override
+  String notificationsUnread(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count new',
+      one: '1 new',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get notificationJustNow => 'Just now';
+
+  @override
+  String notificationMinutesAgo(int minutes) {
+    return '$minutes min ago';
+  }
+
+  @override
+  String notificationHoursAgo(int hours) {
+    return '$hours h ago';
+  }
+
+  @override
+  String memberSince(String month) {
+    return 'Rescuing meals since $month';
+  }
+
+  @override
+  String get profileStatMeals => 'Meals rescued';
+
+  @override
+  String get profileStatSaved => 'OMR saved';
+
+  @override
+  String get profileStatPickups => 'Pickups';
+
+  @override
+  String get profileSectionAccount => 'Account';
+
+  @override
+  String get profileSectionPickups => 'Pickups';
+
+  @override
+  String get profileSectionNotifications => 'Notifications';
+
+  @override
+  String get profileSectionRestaurant => 'Restaurant';
+
+  @override
+  String get profileEditName => 'Your name';
+
+  @override
+  String get profilePickupHistory => 'Pickup history';
+
+  @override
+  String profilePickupHistoryValue(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count pickups so far',
+      one: '1 pickup so far',
+      zero: 'No pickups yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get profileMyArea => 'My area';
+
+  @override
+  String get profileAreaUnset => 'Not set Â· showing Muscat';
+
+  @override
+  String get profileAlerts => 'New meals nearby';
+
+  @override
+  String get profileAlertsValue => 'Up to 3 alerts a day, within 3 km';
+
+  @override
+  String get profileVerified => 'Verified by ZAD';
+
+  @override
+  String get profileEditRestaurant => 'Edit restaurant details';
+
+  @override
+  String get profileEditRestaurantValue =>
+      'Name, phone, pickup point and typical day';
+
+  @override
+  String get profilePhone => 'Phone';
+
+  @override
+  String get profilePickupPoint => 'Pickup point';
+
+  @override
+  String get profileTypicalDay => 'Typical day';
+
+  @override
+  String profileTypicalDayValue(int meals, String share) {
+    return '$meals meals a day Â· $share left over';
+  }
+
+  @override
+  String get profileOwner => 'Owner';
+
+  @override
+  String get profileRole => 'Role';
+
+  @override
+  String get profileRoleAdmin => 'Admin';
+
+  @override
+  String get profileAdminNote =>
+      'Admin accounts are made on the server. Restaurants and offers are in the other tabs.';
 }

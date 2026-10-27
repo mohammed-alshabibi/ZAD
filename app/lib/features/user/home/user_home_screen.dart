@@ -23,6 +23,7 @@ import '../../../core/widgets/zad_icon.dart';
 import '../../../core/widgets/zad_map_pin.dart';
 import '../../../core/widgets/zad_offer_photo_card.dart';
 import '../../auth/application/session.dart';
+import '../../notifications/application/notifications.dart';
 import '../../restaurant/domain/offer.dart';
 import '../application/home_offers.dart';
 import '../domain/nearby_offer.dart';
@@ -354,10 +355,15 @@ class _UserHomeScreenState extends ConsumerState<UserHomeScreen> {
                   ),
                   const SizedBox(width: 12),
                   const Spacer(),
-                  _RoundMapButton(
-                    label: l10n.notifications,
-                    icon: ZadIcons.bell18,
-                    onTap: () => context.push(Routes.notifications),
+                  Stack(
+                    children: [
+                      _RoundMapButton(
+                        label: l10n.notifications,
+                        icon: ZadIcons.bell18,
+                        onTap: () => context.push(Routes.notifications),
+                      ),
+                      if (ref.watch(unreadNotificationsProvider) > 0) const _UnreadDot(),
+                    ],
                   ),
                 ],
               ),
@@ -727,6 +733,31 @@ class _AreaPill extends StatelessWidget {
 }
 
 /// Figma "Notifications" / "Locate me": 42 px raised circle over the map.
+/// Sap dot on a bell button while there are unread notifications.
+class _UnreadDot extends StatelessWidget {
+  const _UnreadDot();
+
+  @override
+  Widget build(BuildContext context) {
+    final z = context.zad;
+    return PositionedDirectional(
+      top: 9,
+      end: 10,
+      child: IgnorePointer(
+        child: Container(
+          width: 9,
+          height: 9,
+          decoration: BoxDecoration(
+            color: z.sap,
+            shape: BoxShape.circle,
+            border: Border.all(color: z.nightRaised, width: 1.5),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _RoundMapButton extends StatelessWidget {
   const _RoundMapButton({required this.label, required this.icon, required this.onTap, this.busy = false});
 

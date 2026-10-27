@@ -51,6 +51,20 @@ class MyReservationsNotifier extends AsyncNotifier<List<UserReservation>> {
 final myReservationsProvider =
     AsyncNotifierProvider<MyReservationsNotifier, List<UserReservation>>(MyReservationsNotifier.new);
 
+/// Which Pickups tab is open: 0 = Upcoming, 1 = History. A provider (not
+/// screen state) so Profile's "Pickup history" row can open History.
+class PickupsTabNotifier extends Notifier<int> {
+  @override
+  int build() {
+    ref.watch(sessionProvider.select((u) => u?.id));
+    return 0;
+  }
+
+  void select(int tab) => state = tab;
+}
+
+final pickupsTabProvider = NotifierProvider<PickupsTabNotifier, int>(PickupsTabNotifier.new);
+
 /// The user's waiting reservation on [offerId], if any.
 UserReservation? activeReservationFor(List<UserReservation> reservations, String offerId, DateTime now) =>
     reservations.where((r) => r.offerId == offerId && r.isActive(now)).firstOrNull;
