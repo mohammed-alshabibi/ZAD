@@ -24,10 +24,11 @@ void main() {
 
   test('overview counts come from the demo data', () async {
     final o = await admin.overview();
-    // Mariam's pickup tonight + Aisha's 7 meals from earlier days.
-    expect(o.mealsRescued, 8);
-    // 6 collected of 7 finished (Aisha missed one; a cancel doesn't count).
-    expect(o.collectedPct, 86);
+    // Mariam's pickup tonight + Aisha's 7 meals + 14 at Khubz on earlier days.
+    expect(o.mealsRescued, 22);
+    // 11 collected of 13 finished (Aisha and Mariam each missed one; a
+    // cancel doesn't count).
+    expect(o.collectedPct, 85);
     expect(o.restaurantsApproved, 8);
     expect(o.restaurantsPending, 3);
     // Six live offers, including the one in Muttrah outside users' 5 km.

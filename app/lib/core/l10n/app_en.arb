@@ -707,5 +707,19 @@
   "@dailyLogSaved": {"placeholders": {"day": {"type": "String"}}},
   "dailyLogSaveError": "Couldn’t save the log. Try again.",
   "dailyLogAfter14": "After 14 days, the forecast learns from your own numbers.",
-  "insightsListNote": "Expected surplus meals and the likely range for each day"
+  "insightsListNote": "Expected surplus meals and the likely range for each day",
+"errorLoadOffers": "We couldnâ€™t load your offers. Pull down to try again.",
+  "offersCollectedWeek": "{count, plural, =0{No meals collected this week yet} =1{1 meal collected this week} other{{count} meals collected this week}}",
+  "@offersCollectedWeek": {"placeholders": {"count": {"type": "int"}}},
+  "offersTabLive": "Live",
+  "offersTabLiveCount": "Live Â· {count}",
+  "@offersTabLiveCount": {"placeholders": {"count": {"type": "int"}}},
+  "offersTabPast": "Past",
+  "offersPastEmpty": "Offers that have ended will show here.",
+  "offerPastDetail": "{day} Â· {collected} of {total} collected",
+  "@offerPastDetail": {"placeholders": {"day": {"type": "String"}, "collected": {"type": "int"}, "total": {"type": "int"}}},
+  "offerStatusAllTaken": "All taken",
+  "offerStatusEnded": "Ended",
+  "offerStatusEndedEarly": "Ended early",
+  "offerStatusRemoved": "Removed"
 }

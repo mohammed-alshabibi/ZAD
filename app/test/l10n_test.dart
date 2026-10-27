@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:zad/core/l10n/generated/app_localizations.dart';
-import 'package:zad/features/restaurant/home/restaurant_home_screen.dart';
+import 'package:zad/features/restaurant/home/live_offer_card.dart';
 
 void main() {
   test('app_en.arb has no duplicate keys (a later one would silently win)', () {
