@@ -2063,4 +2063,51 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get insightsListNote =>
       'Expected surplus meals and the likely range for each day';
+
+  @override
+  String get errorLoadOffers =>
+      'We couldnâ€™t load your offers. Pull down to try again.';
+
+  @override
+  String offersCollectedWeek(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count meals collected this week',
+      one: '1 meal collected this week',
+      zero: 'No meals collected this week yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get offersTabLive => 'Live';
+
+  @override
+  String offersTabLiveCount(int count) {
+    return 'Live Â· $count';
+  }
+
+  @override
+  String get offersTabPast => 'Past';
+
+  @override
+  String get offersPastEmpty => 'Offers that have ended will show here.';
+
+  @override
+  String offerPastDetail(String day, int collected, int total) {
+    return '$day Â· $collected of $total collected';
+  }
+
+  @override
+  String get offerStatusAllTaken => 'All taken';
+
+  @override
+  String get offerStatusEnded => 'Ended';
+
+  @override
+  String get offerStatusEndedEarly => 'Ended early';
+
+  @override
+  String get offerStatusRemoved => 'Removed';
 }

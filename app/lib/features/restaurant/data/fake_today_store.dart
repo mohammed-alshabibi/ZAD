@@ -18,6 +18,8 @@ import 'restaurant_today_repositories.dart';
 /// Aisha also has a pickup history on offers that closed in the last ten
 /// days: 5 collected (7 meals, 9.600 OMR saved, as on Figma "Pickups"),
 /// 1 missed and 1 cancelled.
+///
+/// Khubz also has four past offers from the last week (its Offers tab).
 class FakeTodayStore {
   FakeTodayStore._(this.offers, this.reservations);
 
@@ -80,6 +82,11 @@ class FakeTodayStore {
       required int originalPrice,
       required int price,
       required int daysAgo,
+      String description = '',
+      List<String> allergens = const ['none'],
+      int total = 6,
+      int available = 0,
+      String status = 'closed',
     }) =>
         {
           ...offer(
@@ -90,17 +97,51 @@ class FakeTodayStore {
             phone: '+968 9000 0000',
             lngLat: lngLat,
             title: title,
-            description: '',
+            description: description,
             category: category,
-            allergens: ['none'],
+            allergens: allergens,
             originalPrice: originalPrice,
             price: price,
-            total: 6,
-            available: 0,
+            total: total,
+            available: available,
             start: Duration(days: -daysAgo, minutes: -60),
             end: Duration(days: -daysAgo, minutes: 30),
           ),
-          'status': 'closed',
+          'status': status,
+        };
+
+    // Khubz's own earlier offers (its Offers tab, "Past").
+    Map<String, dynamic> khubzPast({
+      required String id,
+      required String title,
+      required String category,
+      required List<String> allergens,
+      required int? originalPrice,
+      required int price,
+      required int total,
+      required int available,
+      required int daysAgo,
+      String status = 'closed',
+    }) =>
+        {
+          ...past(
+            id: id,
+            restaurantId: 'r_khubz',
+            restaurantName: 'Khubz & Co. Bakery',
+            cuisine: 'bakery',
+            lngLat: [58.3915, 23.5884],
+            title: title,
+            category: category,
+            allergens: allergens,
+            originalPrice: originalPrice ?? 0,
+            price: price,
+            total: total,
+            available: available,
+            daysAgo: daysAgo,
+            status: status,
+          ),
+          'original_price_baisa': originalPrice,
+          'restaurant_phone': '+968 9123 4567',
         };
 
     return FakeTodayStore._(
@@ -235,6 +276,15 @@ class FakeTodayStore {
         past(id: 'o_past_hummus', restaurantId: 'r_green', restaurantName: 'Green Bowl Café', cuisine: 'healthy',
             lngLat: [58.3870, 23.5885], title: 'Hummus and pita box', category: 'healthy',
             originalPrice: 1200, price: 600, daysAgo: 10),
+        khubzPast(id: 'o_kh_zaatar', title: 'Zaatar manakish box', category: 'bakery',
+            allergens: ['gluten', 'sesame'], originalPrice: 2000, price: 800, total: 6, available: 0, daysAgo: 1),
+        khubzPast(id: 'o_kh_fatayer', title: 'Cheese fatayer', category: 'bakery',
+            allergens: ['gluten', 'milk'], originalPrice: 1500, price: 600, total: 8, available: 3, daysAgo: 2),
+        khubzPast(id: 'o_kh_maamoul', title: 'Date maamoul box', category: 'sweets',
+            allergens: ['gluten', 'nuts'], originalPrice: 1800, price: 700, total: 4, available: 4, daysAgo: 4,
+            status: 'cancelled'),
+        khubzPast(id: 'o_kh_bread', title: 'Mixed bread bag', category: 'bakery',
+            allergens: ['gluten'], originalPrice: null, price: 0, total: 10, available: 4, daysAgo: 6),
       ],
       [
         _reservation('res_aisha', 'Aisha', 1, '482913', 'reserved', end, null, now),
@@ -248,6 +298,14 @@ class FakeTodayStore {
         _aishaPast('res_past_5', 'o_past_biryani', 1, 'collected', 5, now),
         _aishaPast('res_past_6', 'o_past_halwa', 2, 'collected', 8, now),
         _aishaPast('res_past_7', 'o_past_hummus', 1, 'collected', 10, now),
+        // Pickups behind Khubz's past offers (Salim and Mariam only, so
+        // Aisha's history stays as on Figma).
+        _pastPickup('res_kh_1', 'o_kh_zaatar', 'Salim', 3, 'collected', 1, now),
+        _pastPickup('res_kh_2', 'o_kh_zaatar', 'Mariam', 3, 'collected', 1, now),
+        _pastPickup('res_kh_3', 'o_kh_fatayer', 'Salim', 2, 'collected', 2, now),
+        _pastPickup('res_kh_4', 'o_kh_fatayer', 'Mariam', 3, 'expired', 2, now),
+        _pastPickup('res_kh_5', 'o_kh_bread', 'Salim', 3, 'collected', 6, now),
+        _pastPickup('res_kh_6', 'o_kh_bread', 'Mariam', 3, 'collected', 6, now),
       ],
     );
   }
@@ -267,6 +325,24 @@ class FakeTodayStore {
       'status': status,
       'hold_expires_at': created.add(const Duration(minutes: 30)).toIso8601String(),
       'collected_at': status == 'collected' ? created.add(const Duration(minutes: 15)).toIso8601String() : null,
+      'created_at': created.toIso8601String(),
+    };
+  }
+
+  /// Someone else's earlier pickup at Khubz, made [daysAgo] days ago.
+  static Map<String, dynamic> _pastPickup(
+      String id, String offerId, String firstName, int quantity, String status, int daysAgo, DateTime now) {
+    final created = now.toUtc().subtract(Duration(days: daysAgo, minutes: 40));
+    return {
+      'id': id,
+      'offer_id': offerId,
+      'user_id': 'u_${firstName.toLowerCase()}',
+      'user_first_name': firstName,
+      'quantity': quantity,
+      'pickup_code': (300000 + daysAgo * 1000 + id.codeUnitAt(id.length - 1)).toString(),
+      'status': status,
+      'hold_expires_at': created.add(const Duration(minutes: 30)).toIso8601String(),
+      'collected_at': status == 'collected' ? created.add(const Duration(minutes: 10)).toIso8601String() : null,
       'created_at': created.toIso8601String(),
     };
   }

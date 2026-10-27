@@ -15,6 +15,7 @@ import '../../features/restaurant/add_surplus/add_surplus_screen.dart';
 import '../../features/restaurant/home/restaurant_home_screen.dart';
 import '../../features/restaurant/insights/daily_log_screen.dart';
 import '../../features/restaurant/insights/insights_screen.dart';
+import '../../features/restaurant/offers/offers_screen.dart';
 import '../../features/restaurant/home/restaurant_shell.dart';
 import '../../features/restaurant/onboarding/pending_approval_screen.dart';
 import '../../features/restaurant/onboarding/pickup_location_screen.dart';
@@ -81,10 +82,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             GoRoute(path: Routes.restaurantHome, builder: (_, _) => const RestaurantHomeScreen()),
           ]),
           StatefulShellBranch(routes: [
-            GoRoute(
-              path: Routes.restaurantOffers,
-              builder: (context, _) => TabPlaceholder(name: AppLocalizations.of(context).tabOffers),
-            ),
+            GoRoute(path: Routes.restaurantOffers, builder: (_, _) => const RestaurantOffersScreen()),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(path: Routes.restaurantInsights, builder: (_, _) => const InsightsScreen()),

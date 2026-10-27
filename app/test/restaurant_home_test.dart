@@ -114,7 +114,7 @@ void main() {
     });
 
     test('edit quantity keeps what is already taken; end early stops new reservations', () async {
-      final offer = (await offers.myOffers()).single;
+      final offer = (await offers.myOffers()).firstWhere((o) => o.id == 'o_zaatar');
       expect(offer.taken, 4);
       await expectLater(
         offers.updateQuantity(offer.id, 3),
@@ -136,7 +136,7 @@ void main() {
       final r = store.reservations.firstWhere((r) => r['id'] == 'res_salim');
       r['hold_expires_at'] = DateTime.now().toUtc().subtract(const Duration(minutes: 1)).toIso8601String();
 
-      final offer = (await offers.myOffers()).single;
+      final offer = (await offers.myOffers()).firstWhere((o) => o.id == 'o_zaatar');
       expect(offer.quantityAvailable, 4); // 2 + Salim's 2
       final salim = (await pickups.myReservations()).firstWhere((r) => r.userFirstName == 'Salim');
       expect(salim.status, ReservationStatus.expired);

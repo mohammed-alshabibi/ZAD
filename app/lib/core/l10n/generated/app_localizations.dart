@@ -3303,6 +3303,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Expected surplus meals and the likely range for each day'**
   String get insightsListNote;
+
+  /// No description provided for @errorLoadOffers.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldnâ€™t load your offers. Pull down to try again.'**
+  String get errorLoadOffers;
+
+  /// No description provided for @offersCollectedWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No meals collected this week yet} =1{1 meal collected this week} other{{count} meals collected this week}}'**
+  String offersCollectedWeek(int count);
+
+  /// No description provided for @offersTabLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get offersTabLive;
+
+  /// No description provided for @offersTabLiveCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Live Â· {count}'**
+  String offersTabLiveCount(int count);
+
+  /// No description provided for @offersTabPast.
+  ///
+  /// In en, this message translates to:
+  /// **'Past'**
+  String get offersTabPast;
+
+  /// No description provided for @offersPastEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Offers that have ended will show here.'**
+  String get offersPastEmpty;
+
+  /// No description provided for @offerPastDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{day} Â· {collected} of {total} collected'**
+  String offerPastDetail(String day, int collected, int total);
+
+  /// No description provided for @offerStatusAllTaken.
+  ///
+  /// In en, this message translates to:
+  /// **'All taken'**
+  String get offerStatusAllTaken;
+
+  /// No description provided for @offerStatusEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Ended'**
+  String get offerStatusEnded;
+
+  /// No description provided for @offerStatusEndedEarly.
+  ///
+  /// In en, this message translates to:
+  /// **'Ended early'**
+  String get offerStatusEndedEarly;
+
+  /// No description provided for @offerStatusRemoved.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed'**
+  String get offerStatusRemoved;
 }
 
 class _AppLocalizationsDelegate
