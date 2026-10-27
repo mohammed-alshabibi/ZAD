@@ -32,9 +32,6 @@ class PickupsScreen extends ConsumerStatefulWidget {
 }
 
 class _PickupsScreenState extends ConsumerState<PickupsScreen> {
-  /// 0 = Upcoming, 1 = History.
-  var _tab = 0;
-
   /// Rows under "Recent" on the Upcoming tab (Figma shows 3).
   static const _recentCount = 3;
 
@@ -48,6 +45,8 @@ class _PickupsScreenState extends ConsumerState<PickupsScreen> {
     final upcoming = upcomingPickups(all, now);
     final history = pickupHistory(all, now);
     final center = ref.watch(homeCenterProvider);
+    final tab = ref.watch(pickupsTabProvider);
+    void selectTab(int i) => ref.read(pickupsTabProvider.notifier).select(i);
 
     final List<Widget> body;
     if (async.isLoading && !async.hasValue) {
@@ -59,7 +58,7 @@ class _PickupsScreenState extends ConsumerState<PickupsScreen> {
       ];
     } else if (async.hasError && !async.hasValue) {
       body = [_Message(text: l10n.pickupsLoadError)];
-    } else if (_tab == 0) {
+    } else if (tab == 0) {
       body = [
         if (upcoming.isEmpty)
           _EmptyUpcoming(onFind: () => context.go(Routes.userHome))
@@ -76,7 +75,7 @@ class _PickupsScreenState extends ConsumerState<PickupsScreen> {
                 child: Text(l10n.pickupsRecent, style: ZadType.body(size: 16, weight: FontWeight.w600, color: z.card)),
               ),
               TextButton(
-                onPressed: () => setState(() => _tab = 1),
+                onPressed: () => selectTab(1),
                 style: TextButton.styleFrom(
                   foregroundColor: z.onFrondMuted,
                   padding: const EdgeInsetsDirectional.symmetric(horizontal: 8),
@@ -121,12 +120,12 @@ class _PickupsScreenState extends ConsumerState<PickupsScreen> {
           ),
           const SizedBox(height: 20),
           ZadUnderlineTabs(
-            selected: _tab,
+            selected: tab,
             labels: [
               upcoming.isEmpty ? l10n.pickupsTabUpcoming : l10n.pickupsTabUpcomingCount(upcoming.length),
               l10n.pickupsTabHistory,
             ],
-            onSelect: (i) => setState(() => _tab = i),
+            onSelect: selectTab,
           ),
           const SizedBox(height: 20),
           ...body,

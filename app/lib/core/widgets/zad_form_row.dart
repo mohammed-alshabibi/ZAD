@@ -15,8 +15,12 @@ class ZadFormRow extends StatelessWidget {
     this.chevron = true,
     this.error = false,
     this.iconColor,
+    this.trailing,
     this.onTap,
   });
+
+  /// Replaces the chevron, e.g. a switch.
+  final Widget? trailing;
 
   /// Re-tints the icon (a `context.zad` token), e.g. sap for a done state.
   final Color? iconColor;
@@ -61,7 +65,10 @@ class ZadFormRow extends StatelessWidget {
                   ],
                 ),
               ),
-              if (chevron) ...[
+              if (trailing != null) ...[
+                const SizedBox(width: 14),
+                trailing!,
+              ] else if (chevron) ...[
                 const SizedBox(width: 14),
                 const ZadIcon(ZadIcons.chevronRight, size: 18),
               ],

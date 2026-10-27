@@ -50,7 +50,9 @@ class _TypicalDayScreenState extends ConsumerState<TypicalDayScreen> {
     try {
       final saved = await ref.read(myRestaurantProvider.notifier).submit(ref.read(onboardingDraftProvider));
       draftNotifier.start();
-      if (mounted) context.go(routeForRestaurant(saved));
+      final next = routeForRestaurant(saved);
+      // Editing from Profile goes back there once saved.
+      if (mounted) context.go(_editing && next == Routes.restaurantHome ? Routes.restaurantProfile : next);
     } catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context)

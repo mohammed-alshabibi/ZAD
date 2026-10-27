@@ -3307,7 +3307,7 @@ abstract class AppLocalizations {
   /// No description provided for @errorLoadOffers.
   ///
   /// In en, this message translates to:
-  /// **'We couldnâ€™t load your offers. Pull down to try again.'**
+  /// **'We couldn’t load your offers. Pull down to try again.'**
   String get errorLoadOffers;
 
   /// No description provided for @offersCollectedWeek.
@@ -3325,7 +3325,7 @@ abstract class AppLocalizations {
   /// No description provided for @offersTabLiveCount.
   ///
   /// In en, this message translates to:
-  /// **'Live Â· {count}'**
+  /// **'Live · {count}'**
   String offersTabLiveCount(int count);
 
   /// No description provided for @offersTabPast.
@@ -3343,7 +3343,7 @@ abstract class AppLocalizations {
   /// No description provided for @offerPastDetail.
   ///
   /// In en, this message translates to:
-  /// **'{day} Â· {collected} of {total} collected'**
+  /// **'{day} · {collected} of {total} collected'**
   String offerPastDetail(String day, int collected, int total);
 
   /// No description provided for @offerStatusAllTaken.
@@ -3369,6 +3369,270 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Removed'**
   String get offerStatusRemoved;
+
+  /// No description provided for @notificationsLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t load your notifications. Pull down to try again.'**
+  String get notificationsLoadError;
+
+  /// No description provided for @notificationsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You’re all caught up'**
+  String get notificationsEmptyTitle;
+
+  /// No description provided for @notificationsEmptyUser.
+  ///
+  /// In en, this message translates to:
+  /// **'We’ll let you know when a restaurant near you posts meals.'**
+  String get notificationsEmptyUser;
+
+  /// No description provided for @notificationsEmptyRestaurant.
+  ///
+  /// In en, this message translates to:
+  /// **'News about your restaurant will show here.'**
+  String get notificationsEmptyRestaurant;
+
+  /// No description provided for @notificationsMarkAllRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark all as read'**
+  String get notificationsMarkAllRead;
+
+  /// No description provided for @notificationsAllRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing new'**
+  String get notificationsAllRead;
+
+  /// No description provided for @notificationsUnread.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 new} other{{count} new}}'**
+  String notificationsUnread(int count);
+
+  /// No description provided for @notificationJustNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Just now'**
+  String get notificationJustNow;
+
+  /// No description provided for @notificationMinutesAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min ago'**
+  String notificationMinutesAgo(int minutes);
+
+  /// No description provided for @notificationHoursAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours} h ago'**
+  String notificationHoursAgo(int hours);
+
+  /// No description provided for @memberSince.
+  ///
+  /// In en, this message translates to:
+  /// **'Rescuing meals since {month}'**
+  String memberSince(String month);
+
+  /// No description provided for @profileStatMeals.
+  ///
+  /// In en, this message translates to:
+  /// **'Meals rescued'**
+  String get profileStatMeals;
+
+  /// No description provided for @profileStatSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'OMR saved'**
+  String get profileStatSaved;
+
+  /// No description provided for @profileStatPickups.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickups'**
+  String get profileStatPickups;
+
+  /// No description provided for @profileSectionAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get profileSectionAccount;
+
+  /// No description provided for @profileSectionPickups.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickups'**
+  String get profileSectionPickups;
+
+  /// No description provided for @profileSectionNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get profileSectionNotifications;
+
+  /// No description provided for @profileSectionRestaurant.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurant'**
+  String get profileSectionRestaurant;
+
+  /// No description provided for @profileEditName.
+  ///
+  /// In en, this message translates to:
+  /// **'Your name'**
+  String get profileEditName;
+
+  /// No description provided for @profilePickupHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup history'**
+  String get profilePickupHistory;
+
+  /// No description provided for @profilePickupHistoryValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No pickups yet} =1{1 pickup so far} other{{count} pickups so far}}'**
+  String profilePickupHistoryValue(int count);
+
+  /// No description provided for @profileMyArea.
+  ///
+  /// In en, this message translates to:
+  /// **'My area'**
+  String get profileMyArea;
+
+  /// No description provided for @profileAreaUnset.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set · showing Muscat'**
+  String get profileAreaUnset;
+
+  /// No description provided for @profileAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'New meals nearby'**
+  String get profileAlerts;
+
+  /// No description provided for @profileAlertsValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to 3 alerts a day, within 3 km'**
+  String get profileAlertsValue;
+
+  /// No description provided for @profileVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified by ZAD'**
+  String get profileVerified;
+
+  /// No description provided for @profileEditRestaurant.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit restaurant details'**
+  String get profileEditRestaurant;
+
+  /// No description provided for @profileEditRestaurantValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Name, phone, pickup point and typical day'**
+  String get profileEditRestaurantValue;
+
+  /// No description provided for @profilePhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get profilePhone;
+
+  /// No description provided for @profilePickupPoint.
+  ///
+  /// In en, this message translates to:
+  /// **'Pickup point'**
+  String get profilePickupPoint;
+
+  /// No description provided for @profileTypicalDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Typical day'**
+  String get profileTypicalDay;
+
+  /// No description provided for @profileTypicalDayValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{meals} meals a day · {share} left over'**
+  String profileTypicalDayValue(int meals, String share);
+
+  /// No description provided for @profileOwner.
+  ///
+  /// In en, this message translates to:
+  /// **'Owner'**
+  String get profileOwner;
+
+  /// No description provided for @profileRole.
+  ///
+  /// In en, this message translates to:
+  /// **'Role'**
+  String get profileRole;
+
+  /// No description provided for @profileRoleAdmin.
+  ///
+  /// In en, this message translates to:
+  /// **'Admin'**
+  String get profileRoleAdmin;
+
+  /// No description provided for @profileAdminNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Admin accounts are made on the server. Restaurants and offers are in the other tabs.'**
+  String get profileAdminNote;
+
+  /// No description provided for @setAreaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set your area'**
+  String get setAreaTitle;
+
+  /// No description provided for @setAreaBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Move the map to your neighbourhood. We show meals within 5 km of the pin.'**
+  String get setAreaBody;
+
+  /// No description provided for @setAreaHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Move the map to your area'**
+  String get setAreaHint;
+
+  /// No description provided for @setAreaFinding.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding the area…'**
+  String get setAreaFinding;
+
+  /// No description provided for @setAreaPinned.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinned area'**
+  String get setAreaPinned;
+
+  /// No description provided for @setAreaPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved to about 100 m. Restaurants never see it.'**
+  String get setAreaPrivacy;
+
+  /// No description provided for @setAreaSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this area'**
+  String get setAreaSave;
+
+  /// No description provided for @setAreaSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Area saved. Showing meals near it.'**
+  String get setAreaSaved;
 }
 
 class _AppLocalizationsDelegate

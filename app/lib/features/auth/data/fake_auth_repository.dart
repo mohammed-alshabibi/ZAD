@@ -124,6 +124,15 @@ class FakeAuthRepository implements AuthRepository {
   }
 
   @override
+  Future<AppUser> updateMe({String? fullName, bool? notifyEnabled}) async {
+    await Future<void>.delayed(latency ~/ 2);
+    final json = _current.json;
+    if (fullName != null) json['full_name'] = fullName.trim();
+    if (notifyEnabled != null) json['notify_enabled'] = notifyEnabled;
+    return AppUser.fromJson(json);
+  }
+
+  @override
   Future<AppUser> updateLocation({required double lat, required double lng}) async {
     await Future<void>.delayed(latency ~/ 2);
     final account = _current;

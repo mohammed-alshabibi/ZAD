@@ -28,6 +28,11 @@ class SessionNotifier extends Notifier<AppUser?> {
     return state = await _repo.me();
   }
 
+  /// `PATCH /me` from Profile.
+  Future<void> updateMe({String? fullName, bool? notifyEnabled}) async {
+    state = await _repo.updateMe(fullName: fullName, notifyEnabled: notifyEnabled);
+  }
+
   /// Saves the phone's location, rounded to ~100 m (CLAUDE.md §6).
   Future<void> updateLocation({required double lat, required double lng}) async {
     state = await _repo.updateLocation(lat: roundCoord(lat), lng: roundCoord(lng));

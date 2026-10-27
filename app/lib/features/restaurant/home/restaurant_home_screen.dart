@@ -11,6 +11,7 @@ import '../../../core/theme/zad_type.dart';
 import '../../../core/time/clock.dart';
 import '../../../core/widgets/zad_icon.dart';
 import '../../../core/widgets/zad_reservation_row.dart';
+import '../../notifications/application/notifications.dart';
 import '../application/my_restaurant.dart';
 import '../application/restaurant_today.dart';
 import '../domain/forecast.dart';
@@ -65,6 +66,7 @@ class _RestaurantHomeScreenState extends ConsumerState<RestaurantHomeScreen> {
               _Header(
                 name: restaurant?.name ?? '',
                 area: restaurant?.area ?? '',
+                unread: ref.watch(unreadNotificationsProvider) > 0,
                 onBell: () => context.push(Routes.notifications),
               ),
               const SizedBox(height: 18),
@@ -172,10 +174,11 @@ class _RestaurantHomeScreenState extends ConsumerState<RestaurantHomeScreen> {
 }
 
 class _Header extends StatelessWidget {
-  const _Header({required this.name, required this.area, required this.onBell});
+  const _Header({required this.name, required this.area, required this.unread, required this.onBell});
 
   final String name;
   final String area;
+  final bool unread;
   final VoidCallback onBell;
 
   @override
@@ -224,7 +227,15 @@ class _Header extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             child: InkWell(
               onTap: onBell,
-              child: const SizedBox.square(dimension: 42, child: Center(child: ZadIcon(ZadIcons.bell, size: 18))),
+              child: SizedBox.square(
+                dimension: 42,
+                child: Stack(
+                  children: [
+                    const Center(child: ZadIcon(ZadIcons.bell, size: 18)),
+                    if (unread) const _UnreadDot(),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
@@ -274,6 +285,31 @@ class _Stats extends StatelessWidget {
         const SizedBox(width: 10),
         tile(collected, l10n.statCollected, z.sap),
       ],
+    );
+  }
+}
+
+/// Sap dot on a bell button while there are unread notifications.
+class _UnreadDot extends StatelessWidget {
+  const _UnreadDot();
+
+  @override
+  Widget build(BuildContext context) {
+    final z = context.zad;
+    return PositionedDirectional(
+      top: 9,
+      end: 10,
+      child: IgnorePointer(
+        child: Container(
+          width: 9,
+          height: 9,
+          decoration: BoxDecoration(
+            color: z.sap,
+            shape: BoxShape.circle,
+            border: Border.all(color: z.nightRaised, width: 1.5),
+          ),
+        ),
+      ),
     );
   }
 }
