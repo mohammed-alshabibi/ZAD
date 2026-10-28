@@ -21,7 +21,7 @@ abstract interface class NotificationsRepository {
 
 /// In-memory inbox for P1, keyed by user id, in the §4 JSON shape.
 ///
-/// Demo: aisha@example.com has three "new meals nearby" alerts from tonight
+/// Demo: fatema@example.com has three "new meals nearby" alerts from tonight
 /// (2 unread) and one from two days ago, written the way `notify_nearby`
 /// will write them (§6). khubz@example.com has its approval note.
 /// Everyone else starts with an empty inbox.
@@ -30,19 +30,19 @@ class FakeNotificationsStore {
 
   factory FakeNotificationsStore.seeded(FakeTodayStore offers, DateTime now) {
     String ago(Duration d) => now.toUtc().subtract(d).toIso8601String();
-    // Aisha's saved location (Al Khuwair), as in FakeAuthRepository.
-    const aishaLat = 23.583, aishaLng = 58.396;
+    // Fatema's saved location (Al Khuwair), as in FakeAuthRepository.
+    const fatemaLat = 23.583, fatemaLng = 58.396;
 
     Map<String, dynamic> newOffer(String id, String offerId, Duration age, {bool read = false}) {
       final o = offers.offerById(offerId)!;
       final coords = (o['location'] as Map<String, dynamic>)['coordinates'] as List<dynamic>;
       final meters =
-          distanceMeters(aishaLat, aishaLng, (coords[1] as num).toDouble(), (coords[0] as num).toDouble()).round();
+          distanceMeters(fatemaLat, fatemaLng, (coords[1] as num).toDouble(), (coords[0] as num).toDouble()).round();
       final price = o['price_baisa'] as int;
       final until = muscatClock(DateTime.parse(o['pickup_end'] as String));
       return {
         'id': id,
-        'user_id': 'u_aisha',
+        'user_id': 'u_fatema',
         'type': AppNotification.typeNewOffer,
         'offer_id': offerId,
         // §6: "🍃 {Restaurant} posted surplus 1.2 km away: {title}, {price|Free}, pickup until {time}".
@@ -55,7 +55,7 @@ class FakeNotificationsStore {
     }
 
     return FakeNotificationsStore._({
-      'u_aisha': [
+      'u_fatema': [
         newOffer('n_1', 'o_mandi', const Duration(minutes: 12)),
         newOffer('n_2', 'o_bowls', const Duration(minutes: 41)),
         newOffer('n_3', 'o_zaatar', const Duration(minutes: 95), read: true),

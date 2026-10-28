@@ -19,11 +19,11 @@ void main() {
     setUp(() {
       final now = DateTime.now();
       store = FakeNotificationsStore.seeded(FakeTodayStore.seeded(now), now);
-      signedIn = 'u_aisha';
+      signedIn = 'u_fatema';
       repo = FakeNotificationsRepository(store, () => signedIn, latency: Duration.zero);
     });
 
-    test('Aisha: four "new meals nearby" alerts, newest first, two unread', () async {
+    test('Fatema: four "new meals nearby" alerts, newest first, two unread', () async {
       final inbox = await repo.mine();
       expect(inbox.map((n) => n.offerId), ['o_mandi', 'o_bowls', 'o_zaatar', 'o_past_pastry']);
       expect(inbox.every((n) => n.type == AppNotification.typeNewOffer), isTrue);
@@ -64,13 +64,13 @@ void main() {
   group('PATCH /me (fake)', () {
     test('changes the name and the alerts switch, never the role', () async {
       final auth = FakeAuthRepository(latency: Duration.zero);
-      await auth.login(email: 'aisha@example.com', password: FakeAuthRepository.demoPassword);
+      await auth.login(email: 'fatema@example.com', password: FakeAuthRepository.demoPassword);
 
       final off = await auth.updateMe(notifyEnabled: false);
       expect(off.notifyEnabled, isFalse);
-      final renamed = await auth.updateMe(fullName: '  Aisha Al-Said ');
-      expect((renamed.fullName, renamed.notifyEnabled, renamed.role), ('Aisha Al-Said', false, UserRole.user));
-      expect((await auth.me()).fullName, 'Aisha Al-Said');
+      final renamed = await auth.updateMe(fullName: '  Fatema Al-Said ');
+      expect((renamed.fullName, renamed.notifyEnabled, renamed.role), ('Fatema Al-Said', false, UserRole.user));
+      expect((await auth.me()).fullName, 'Fatema Al-Said');
     });
   });
 }

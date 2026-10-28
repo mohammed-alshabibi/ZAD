@@ -5,7 +5,7 @@ import 'auth_repository.dart';
 /// shapes and parses them with the same `fromJson` the real repository will use.
 ///
 /// Demo accounts (password `zad12345` for all):
-/// aisha@example.com (user) · khubz@example.com (restaurant, approved) ·
+/// fatema@example.com (user) · khubz@example.com (restaurant, approved) ·
 /// karak@example.com (restaurant, waiting for review) · admin@zad.om (admin).
 class FakeAuthRepository implements AuthRepository {
   FakeAuthRepository({this.latency = const Duration(milliseconds: 500)});
@@ -15,13 +15,13 @@ class FakeAuthRepository implements AuthRepository {
   static const demoPassword = 'zad12345';
 
   final Map<String, _Account> _accounts = {
-    'aisha@example.com': _Account(
+    'fatema@example.com': _Account(
       password: demoPassword,
       json: {
-        'id': 'u_aisha',
-        'email': 'aisha@example.com',
+        'id': 'u_fatema',
+        'email': 'fatema@example.com',
         'role': 'user',
-        'full_name': 'Aisha Al-Balushi',
+        'full_name': 'Fatema Al-Balushi',
         'phone': null,
         'status': 'active',
         'notify_enabled': true,

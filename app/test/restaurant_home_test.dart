@@ -53,7 +53,7 @@ void main() {
       expect(today.liveOffers.single.title, 'Zaatar manakish box');
       expect(today.liveOffers.single.quantityAvailable, 2);
       expect((today.postedMeals, today.reservedMeals, today.collectedMeals), (6, 3, 1));
-      expect(today.waiting.map((r) => r.userFirstName), ['Aisha', 'Salim']);
+      expect(today.waiting.map((r) => r.userFirstName), ['Fatema', 'Salim']);
       expect(today.collected.single.userFirstName, 'Mariam');
     });
 
@@ -71,13 +71,13 @@ void main() {
     });
 
     test('the restaurant sees only the last 3 digits of a code', () async {
-      final aisha = (await pickups.myReservations()).firstWhere((r) => r.userFirstName == 'Aisha');
-      expect(aisha.codeHint, '913');
+      final fatema = (await pickups.myReservations()).firstWhere((r) => r.userFirstName == 'Fatema');
+      expect(fatema.codeHint, '913');
     });
 
     test('check shows the match without collecting; confirm collects', () async {
       final match = await pickups.check('482913');
-      expect(match.userFirstName, 'Aisha');
+      expect(match.userFirstName, 'Fatema');
       expect(match.status, ReservationStatus.reserved);
       expect(match.amountBaisa, 800);
 

@@ -229,7 +229,7 @@ class _CodeBoxes extends StatelessWidget {
   }
 }
 
-/// Figma "Match": sap check + "Code matches · Aisha" + what to hand over.
+/// Figma "Match": sap check + "Code matches · Fatema" + what to hand over.
 class _MatchCard extends StatelessWidget {
   const _MatchCard({required this.reservation});
 

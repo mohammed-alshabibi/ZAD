@@ -12,14 +12,14 @@ void main() {
   group('AuthValidators', () {
     test('full name must not be blank', () {
       expect(AuthValidators.fullName('   '), AuthFieldError.nameRequired);
-      expect(AuthValidators.fullName('Aisha'), isNull);
+      expect(AuthValidators.fullName('Fatema'), isNull);
     });
 
     test('email', () {
       expect(AuthValidators.email(''), AuthFieldError.emailRequired);
-      expect(AuthValidators.email('aisha'), AuthFieldError.emailInvalid);
-      expect(AuthValidators.email('aisha@example'), AuthFieldError.emailInvalid);
-      expect(AuthValidators.email(' aisha@example.com '), isNull);
+      expect(AuthValidators.email('fatema'), AuthFieldError.emailInvalid);
+      expect(AuthValidators.email('fatema@example'), AuthFieldError.emailInvalid);
+      expect(AuthValidators.email(' fatema@example.com '), isNull);
     });
 
     test('new password: 8+ characters including a number', () {
@@ -45,7 +45,7 @@ void main() {
       'id': 'u1',
       'email': 'a@b.om',
       'role': 'user',
-      'full_name': 'Aisha Al-Balushi',
+      'full_name': 'Fatema Al-Balushi',
       'phone': null,
       'status': 'active',
       'notify_enabled': true,
@@ -53,7 +53,7 @@ void main() {
     });
     expect(user.lng, 58.391);
     expect(user.lat, 23.588);
-    expect(user.firstName, 'Aisha');
+    expect(user.firstName, 'Fatema');
   });
 
   group('Session with the fake repository', () {
@@ -78,7 +78,7 @@ void main() {
 
     test('wrong password is rejected and nobody is signed in', () async {
       await expectLater(
-        session().login(email: 'aisha@example.com', password: 'nope'),
+        session().login(email: 'fatema@example.com', password: 'nope'),
         throwsA(isA<AuthException>().having((e) => e.code, 'code', AuthException.invalidCredentials)),
       );
       expect(container.read(sessionProvider), isNull);
@@ -96,13 +96,13 @@ void main() {
       expect(nextAfterSignup(UserRole.restaurant), Routes.restaurantOnboarding);
 
       await expectLater(
-        session().register(email: 'aisha@example.com', password: 'x1234567', fullName: 'A', role: UserRole.user),
+        session().register(email: 'fatema@example.com', password: 'x1234567', fullName: 'A', role: UserRole.user),
         throwsA(isA<AuthException>().having((e) => e.code, 'code', AuthException.emailTaken)),
       );
     });
 
     test('location is stored rounded', () async {
-      await session().login(email: 'aisha@example.com', password: FakeAuthRepository.demoPassword);
+      await session().login(email: 'fatema@example.com', password: FakeAuthRepository.demoPassword);
       await session().updateLocation(lat: 23.61234, lng: 58.54567);
       final me = container.read(sessionProvider)!;
       expect(me.lat, 23.612);
