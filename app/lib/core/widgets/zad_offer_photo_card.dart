@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../theme/zad_colors.dart';
 import '../theme/zad_type.dart';
-import 'pickup_window_bar.dart';
 import 'zad_icon.dart';
 
 /// Figma component "Offer photo card" (7:70): the floating card shown over
 /// the map when a pin is selected. Photo area (a placeholder until meal
-/// photos exist), urgency tag, restaurant, meal line, pickup status,
-/// pickup-window bar and fact chips. All text comes in already translated.
+/// photos exist), urgency tag, restaurant, meal line, pickup status
+/// and fact chips. All text comes in already translated.
 ///
 /// Ratings, save and share from the Figma card are left out: they are out of
 /// scope (CLAUDE.md §1.3).
@@ -19,10 +18,7 @@ class ZadOfferPhotoCard extends StatelessWidget {
     required this.details,
     required this.statusLabel,
     required this.untilLabel,
-    required this.windowStartLabel,
-    required this.windowEndLabel,
     required this.pickupStart,
-    required this.pickupEnd,
     required this.now,
     required this.priceLabel,
     required this.mealsLeftLabel,
@@ -42,10 +38,7 @@ class ZadOfferPhotoCard extends StatelessWidget {
 
   /// "until 21:40".
   final String untilLabel;
-  final String windowStartLabel;
-  final String windowEndLabel;
   final DateTime pickupStart;
-  final DateTime pickupEnd;
   final DateTime now;
   final String priceLabel;
   final String? wasPriceLabel;
@@ -117,21 +110,6 @@ class ZadOfferPhotoCard extends StatelessWidget {
                       ]),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 6),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: Row(
-                        children: [
-                          Text(windowStartLabel, style: ZadType.mono(size: 10, weight: FontWeight.w400, color: z.onFrondMuted)),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: PickupWindowBar(start: pickupStart, end: pickupEnd, now: now, showNow: true),
-                          ),
-                          const SizedBox(width: 8),
-                          Text(windowEndLabel, style: ZadType.mono(size: 10, weight: FontWeight.w400, color: z.onFrondMuted)),
-                        ],
-                      ),
                     ),
                     const SizedBox(height: 6),
                     Padding(
