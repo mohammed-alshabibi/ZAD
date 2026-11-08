@@ -5,7 +5,7 @@ import '../../../core/format/muscat_time.dart';
 import '../../../core/l10n/generated/app_localizations.dart';
 import '../../../core/theme/zad_colors.dart';
 import '../../../core/theme/zad_type.dart';
-import '../../../core/widgets/pickup_window_bar.dart';
+import '../../../core/widgets/pickup_window_bar.dart' show isClosingSoon;
 import '../../../core/widgets/zad_button.dart';
 import '../domain/offer.dart';
 
@@ -82,8 +82,6 @@ class LiveOfferCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 10),
-          PickupWindowBar(start: offer.pickupStart, end: offer.pickupEnd, now: now),
           const SizedBox(height: 14),
           Row(
             children: [
