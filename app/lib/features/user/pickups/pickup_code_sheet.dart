@@ -4,21 +4,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/format/muscat_time.dart';
 import '../../../core/l10n/generated/app_localizations.dart';
-import '../../../core/launch/external_links.dart';
 import '../../../core/theme/zad_colors.dart';
 import '../../../core/theme/zad_type.dart';
 import '../../../core/time/clock.dart';
-import '../../../core/widgets/pickup_window_bar.dart';
-import '../../../core/widgets/zad_action_tile.dart';
 import '../../../core/widgets/zad_button.dart';
-import '../../../core/widgets/zad_icon.dart';
 import '../../../core/widgets/zad_sheet.dart';
 import '../application/reservations.dart';
 import '../domain/user_reservation.dart';
-import 'pickup_text.dart';
 
 /// Figma "Pickups — Pickup code" (27:319): the code to show at the counter,
-/// the hold countdown, Directions / Call, and Cancel reservation. Says so in
+/// and Cancel reservation. Says so in
 /// a snackbar when the user cancels.
 Future<void> showPickupCodeSheet(BuildContext context, UserReservation reservation) async {
   final messenger = ScaffoldMessenger.of(context);
@@ -70,58 +65,20 @@ class _PickupCodeSheetState extends ConsumerState<_PickupCodeSheet> {
             .firstOrNull ??
         widget.initial;
     final active = r.isActive(now);
-    final phone = r.restaurantPhone;
 
     return ZadSheet(
       title: l10n.pickupCodeTitle,
       subtitle: l10n.pickupCodeSubtitle(r.offerTitle, r.quantity, r.restaurantName),
       children: [
         _CodePanel(code: r.pickupCode, dimmed: !active),
-        const SizedBox(height: 16),
-        if (active) ...[
-          Row(
-            children: [
-              ZadIcon(ZadIcons.clock, size: 16, color: z.saffron),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  r.amountBaisa == 0
-                      ? l10n.heldUntilFree(muscatClock(r.holdExpiresAt))
-                      : l10n.heldUntilPay(muscatClock(r.holdExpiresAt)),
-                  style: ZadType.body(size: 14, color: z.card),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Text(l10n.timeLeft(r.holdExpiresAt, now, left: false), style: ZadType.mono(size: 13, color: z.saffron)),
-            ],
-          ),
-          const SizedBox(height: 8),
-          PickupWindowBar(start: r.holdStartsAt, end: r.holdExpiresAt, now: now),
-        ] else
+        // Without this line a dimmed code would have no explanation.
+        if (!active) ...[
+          const SizedBox(height: 16),
           Text(
             l10n.holdEnded(muscatClock(r.holdExpiresAt)),
             style: ZadType.body(size: 14, height: 20 / 14, color: z.danger),
           ),
-        const SizedBox(height: 16),
-        Row(
-          children: [
-            Expanded(
-              child: ZadActionTile(
-                icon: ZadIcons.directions,
-                label: l10n.directions,
-                onTap: () => openDirections(context, lat: r.lat, lng: r.lng),
-              ),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: ZadActionTile(
-                icon: ZadIcons.call,
-                label: l10n.callRestaurant,
-                onTap: phone == null ? null : () => callPhone(context, phone),
-              ),
-            ),
-          ],
-        ),
+        ],
         if (active) ...[
           const SizedBox(height: 16),
           AnimatedSize(
