@@ -23,7 +23,7 @@ import '../application/home_offers.dart';
 import '../application/reservations.dart';
 import '../domain/user_reservation.dart';
 
-/// User "Profile" tab (§9: name, history, notifications on/off, log out).
+/// User "Profile" tab: name, stats, my area, notifications inbox, log out.
 /// No Figma frame; built from the Form row and Stat tile components.
 class UserProfileScreen extends ConsumerStatefulWidget {
   const UserProfileScreen({super.key});
@@ -33,25 +33,6 @@ class UserProfileScreen extends ConsumerStatefulWidget {
 }
 
 class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
-  var _savingAlerts = false;
-
-  Future<void> _setAlerts(bool on) async {
-    final l10n = AppLocalizations.of(context);
-    setState(() => _savingAlerts = true);
-    try {
-      await ref.read(sessionProvider.notifier).updateMe(notifyEnabled: on);
-    } catch (_) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.errorGeneric)));
-    } finally {
-      if (mounted) setState(() => _savingAlerts = false);
-    }
-  }
-
-  void _openHistory() {
-    ref.read(pickupsTabProvider.notifier).select(1);
-    context.go(Routes.userPickups);
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -96,25 +77,12 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
         ZadFormRow(icon: ZadIcons.mail, title: l10n.fieldEmail, value: user.email, chevron: false),
         ZadSectionLabel(l10n.profileSectionPickups),
         ZadFormRow(
-          icon: ZadIcons.clock,
-          title: l10n.profilePickupHistory,
-          value: l10n.profilePickupHistoryValue(pickups),
-          onTap: _openHistory,
-        ),
-        ZadFormRow(
           icon: ZadIcons.mapPin,
           title: l10n.profileMyArea,
           value: !center.isUserLocation ? l10n.profileAreaUnset : (area ?? l10n.homeAreaNearYou),
           onTap: () => context.push(Routes.setArea),
         ),
         ZadSectionLabel(l10n.profileSectionNotifications),
-        ZadFormRow(
-          icon: ZadIcons.leaf,
-          title: l10n.profileAlerts,
-          value: l10n.profileAlertsValue,
-          onTap: _savingAlerts ? null : () => _setAlerts(!user.notifyEnabled),
-          trailing: ZadSwitch(value: user.notifyEnabled, onChanged: _savingAlerts ? null : _setAlerts),
-        ),
         ZadFormRow(
           icon: ZadIcons.bell,
           title: l10n.notifications,
