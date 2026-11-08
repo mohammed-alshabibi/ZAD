@@ -31,7 +31,7 @@ import 'offer_text.dart';
 
 /// Figma "Home — Map-first" (8:48). The map is the home screen: leaf pins
 /// (one per restaurant, with meals left), the selected restaurant's offers as
-/// floating photo cards, and a sheet with the meal count, filters and search
+/// floating photo cards, and a sheet with the meal count and filters
 /// that drags up into a list sorted by pickup end.
 class UserHomeScreen extends ConsumerStatefulWidget {
   const UserHomeScreen({super.key});
@@ -50,8 +50,6 @@ class _UserHomeScreenState extends ConsumerState<UserHomeScreen> {
 
   final _cards = ScrollController();
   final _sheet = DraggableScrollableController();
-  final _search = TextEditingController();
-  final _searchFocus = FocusNode();
 
   /// The restaurant whose pin is selected. Null + [_cleared] = the user
   /// closed the cards by tapping the map.
@@ -59,7 +57,7 @@ class _UserHomeScreenState extends ConsumerState<UserHomeScreen> {
   var _cleared = false;
   var _locating = false;
 
-  /// Sheet height when collapsed (grabber to search field), measured.
+  /// Sheet height when collapsed (grabber to filter chips), measured.
   double _sheetMin = 186;
 
   MapboxMap? _map;
@@ -84,20 +82,9 @@ class _UserHomeScreenState extends ConsumerState<UserHomeScreen> {
   HomeCenter? _center;
 
   @override
-  void initState() {
-    super.initState();
-    _searchFocus.addListener(() {
-      // Typing a search opens the list so the results are visible.
-      if (_searchFocus.hasFocus) _expandSheet();
-    });
-  }
-
-  @override
   void dispose() {
     _cards.dispose();
     _sheet.dispose();
-    _search.dispose();
-    _searchFocus.dispose();
     super.dispose();
   }
 
@@ -230,14 +217,6 @@ class _UserHomeScreenState extends ConsumerState<UserHomeScreen> {
     final index = (_cards.offset / extent).round().clamp(0, cards.length - 1);
     final id = cards[index].restaurantId;
     if (id != _selectedId) setState(() => _selectedId = id);
-  }
-
-  // -------------------------------------------------------------- sheet
-
-  void _expandSheet() {
-    if (_sheet.isAttached) {
-      _sheet.animateTo(1, duration: const Duration(milliseconds: 280), curve: Curves.easeOutCubic);
-    }
   }
 
   // ----------------------------------------------------------- location
@@ -517,8 +496,6 @@ class _UserHomeScreenState extends ConsumerState<UserHomeScreen> {
                 child: _SheetHeader(
                   title: _SheetTitle(offersAsync: offersAsync, visible: visible, filtered: !filters.isEmpty),
                   filters: filters,
-                  search: _search,
-                  searchFocus: _searchFocus,
                 ),
               ),
             ),
@@ -832,14 +809,12 @@ class _SnapPhysics extends ScrollPhysics {
 
 // ----------------------------------------------------------------- sheet
 
-/// Grabber, meal count, filter chips and search (the collapsed sheet).
+/// Grabber, meal count and filter chips (the collapsed sheet).
 class _SheetHeader extends ConsumerWidget {
-  const _SheetHeader({required this.title, required this.filters, required this.search, required this.searchFocus});
+  const _SheetHeader({required this.title, required this.filters});
 
   final Widget title;
   final HomeFilters filters;
-  final TextEditingController search;
-  final FocusNode searchFocus;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -883,11 +858,6 @@ class _SheetHeader extends ConsumerWidget {
               ],
             ),
           ),
-          const SizedBox(height: 14),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: _SearchField(controller: search, focusNode: searchFocus, onChanged: f.setQuery),
-          ),
         ],
       ),
     );
@@ -923,92 +893,6 @@ class _SheetTitle extends StatelessWidget {
           TextSpan(text: meals, style: style.copyWith(color: z.sap)),
           TextSpan(text: text.substring(at + meals.length)),
         ],
-      ),
-    );
-  }
-}
-
-/// Figma "Search": raised pill with a rib-to-saffron outline.
-/// The saffron glow slowly travels around the outline (stops when the phone
-/// asks for reduced motion).
-class _SearchField extends StatefulWidget {
-  const _SearchField({required this.controller, required this.focusNode, required this.onChanged});
-
-  final TextEditingController controller;
-  final FocusNode focusNode;
-  final ValueChanged<String> onChanged;
-
-  @override
-  State<_SearchField> createState() => _SearchFieldState();
-}
-
-class _SearchFieldState extends State<_SearchField> with SingleTickerProviderStateMixin {
-  late final AnimationController _spin =
-      AnimationController(vsync: this, duration: const Duration(seconds: 4));
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (MediaQuery.disableAnimationsOf(context)) {
-      _spin.stop();
-    } else if (!_spin.isAnimating) {
-      _spin.repeat();
-    }
-  }
-
-  @override
-  void dispose() {
-    _spin.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final z = context.zad;
-    return AnimatedBuilder(
-      animation: _spin,
-      builder: (context, child) => Container(
-        padding: const EdgeInsets.all(1.5),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(999),
-          gradient: SweepGradient(
-            colors: [z.rib, z.rib, z.saffron, z.rib, z.rib],
-            stops: const [0, 0.3, 0.5, 0.7, 1],
-            transform: GradientRotation(_spin.value * 2 * math.pi),
-          ),
-        ),
-        child: child,
-      ),
-      child: Container(
-        padding: const EdgeInsetsDirectional.fromSTEB(18, 6, 18, 6),
-        decoration: BoxDecoration(color: z.nightRaised, borderRadius: BorderRadius.circular(999)),
-        child: Row(
-          children: [
-            const ZadIcon(ZadIcons.search, size: 18),
-            const SizedBox(width: 10),
-            Expanded(
-              child: SizedBox(
-                height: 40,
-                child: Center(
-                  child: TextField(
-                    controller: widget.controller,
-                    focusNode: widget.focusNode,
-                    onChanged: widget.onChanged,
-                    textInputAction: TextInputAction.search,
-                    onSubmitted: (_) => widget.focusNode.unfocus(),
-                    cursorColor: z.sap,
-                    style: ZadType.body(size: 14, color: z.card),
-                    decoration: InputDecoration.collapsed(
-                      hintText: l10n.searchMealsHint,
-                      hintStyle: ZadType.body(size: 14, color: z.onFrondMuted),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
