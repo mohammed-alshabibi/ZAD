@@ -24,9 +24,9 @@ void main() {
 
   test('overview counts come from the demo data', () async {
     final o = await admin.overview();
-    // Mariam's pickup tonight + Aisha's 7 meals + 14 at Khubz on earlier days.
+    // Mariam's pickup tonight + Fatema's 7 meals + 14 at Khubz on earlier days.
     expect(o.mealsRescued, 22);
-    // 11 collected of 13 finished (Aisha and Mariam each missed one; a
+    // 11 collected of 13 finished (Fatema and Mariam each missed one; a
     // cancel doesn't count).
     expect(o.collectedPct, 85);
     expect(o.restaurantsApproved, 8);

@@ -22,16 +22,16 @@ void main() {
   final l10n = lookupAppLocalizations(const Locale('en'));
   late DateTime now;
   late FakeTodayStore store;
-  late FakeUserReservationsRepository aisha;
+  late FakeUserReservationsRepository fatema;
 
   setUp(() {
     now = DateTime.now();
     store = FakeTodayStore.seeded(now);
-    aisha = FakeUserReservationsRepository(store, () => _user('u_aisha', 'Aisha Al-Balushi'), latency: Duration.zero);
+    fatema = FakeUserReservationsRepository(store, () => _user('u_fatema', 'Fatema Al-Balushi'), latency: Duration.zero);
   });
 
-  test('Aisha sees one pickup waiting and her history, as on Figma "Pickups"', () async {
-    final mine = await aisha.myReservations();
+  test('Fatema sees one pickup waiting and her history, as on Figma "Pickups"', () async {
+    final mine = await fatema.myReservations();
     final upcoming = upcomingPickups(mine, now);
     expect(upcoming.map((r) => r.pickupCode), ['482913']);
 
@@ -48,7 +48,7 @@ void main() {
   });
 
   test('only collected meals count: 7 meals rescued, 9.600 OMR saved', () async {
-    final stats = rescueStats(await aisha.myReservations());
+    final stats = rescueStats(await fatema.myReservations());
     expect(stats.meals, 7);
     expect(stats.savedBaisa, 9600);
     expect(l10n.impactLine(stats), '7 meals rescued · 9.600 OMR saved');
@@ -57,7 +57,7 @@ void main() {
   });
 
   test('a hold that ran out counts as missed even before the server marks it', () async {
-    final r = (await aisha.myReservations()).singleWhere((r) => r.id == 'res_aisha');
+    final r = (await fatema.myReservations()).singleWhere((r) => r.id == 'res_fatema');
     final later = r.holdExpiresAt.add(const Duration(minutes: 1));
     expect(r.status, ReservationStatus.reserved);
     expect(r.isMissed(later), isTrue);
@@ -67,17 +67,17 @@ void main() {
   });
 
   test('cancelling moves the pickup to History as Cancelled', () async {
-    await aisha.cancel('res_aisha');
-    final mine = await aisha.myReservations();
+    await fatema.cancel('res_fatema');
+    final mine = await fatema.myReservations();
     expect(upcomingPickups(mine, now), isEmpty);
-    final cancelled = mine.singleWhere((r) => r.id == 'res_aisha');
+    final cancelled = mine.singleWhere((r) => r.id == 'res_fatema');
     expect(l10n.pickupHistoryStatus(cancelled, now), 'Cancelled');
     expect(l10n.pickupHistoryDetail(cancelled, now), 'Khubz & Co. Bakery · Today · cancelled');
     expect(rescueStats(mine).meals, 7);
   });
 
   test('the hold bar starts when the 30-minute hold started', () async {
-    final r = (await aisha.myReservations()).singleWhere((r) => r.id == 'res_aisha');
+    final r = (await fatema.myReservations()).singleWhere((r) => r.id == 'res_fatema');
     expect(r.holdExpiresAt.difference(r.holdStartsAt), const Duration(minutes: 30));
     // Reserved before pickup opens: the hold counts from the opening time.
     final omar = FakeUserReservationsRepository(store, () => _user('u_omar', 'Omar'), latency: Duration.zero);
@@ -87,7 +87,7 @@ void main() {
   });
 
   test('amount line: price × meals at the counter, or free', () async {
-    final r = (await aisha.myReservations()).singleWhere((r) => r.id == 'res_aisha');
+    final r = (await fatema.myReservations()).singleWhere((r) => r.id == 'res_fatema');
     expect(l10n.pickupAmount(r), '1 meal · 0.800 OMR at the counter');
     final omar = FakeUserReservationsRepository(store, () => _user('u_omar', 'Omar'), latency: Duration.zero);
     expect(l10n.pickupAmount(await omar.reserve('o_bowls', 2)), '2 meals · free');

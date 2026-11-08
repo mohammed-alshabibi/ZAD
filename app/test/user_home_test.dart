@@ -10,7 +10,7 @@ import 'package:zad/features/user/data/user_offers_repository.dart';
 import 'package:zad/features/user/domain/nearby_offer.dart';
 
 void main() {
-  // aisha@example.com's demo location in Al Khuwair.
+  // fatema@example.com's demo location in Al Khuwair.
   const lat = 23.583;
   const lng = 58.396;
 

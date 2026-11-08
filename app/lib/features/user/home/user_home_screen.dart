@@ -929,7 +929,9 @@ class _SheetTitle extends StatelessWidget {
 }
 
 /// Figma "Search": raised pill with a rib-to-saffron outline.
-class _SearchField extends StatelessWidget {
+/// The saffron glow slowly travels around the outline (stops when the phone
+/// asks for reduced motion).
+class _SearchField extends StatefulWidget {
   const _SearchField({required this.controller, required this.focusNode, required this.onChanged});
 
   final TextEditingController controller;
@@ -937,14 +939,46 @@ class _SearchField extends StatelessWidget {
   final ValueChanged<String> onChanged;
 
   @override
+  State<_SearchField> createState() => _SearchFieldState();
+}
+
+class _SearchFieldState extends State<_SearchField> with SingleTickerProviderStateMixin {
+  late final AnimationController _spin =
+      AnimationController(vsync: this, duration: const Duration(seconds: 4));
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (MediaQuery.disableAnimationsOf(context)) {
+      _spin.stop();
+    } else if (!_spin.isAnimating) {
+      _spin.repeat();
+    }
+  }
+
+  @override
+  void dispose() {
+    _spin.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final z = context.zad;
-    return Container(
-      padding: const EdgeInsets.all(1.5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(999),
-        gradient: LinearGradient(colors: [z.rib, z.rib, z.saffron], stops: const [0, 0.55, 1]),
+    return AnimatedBuilder(
+      animation: _spin,
+      builder: (context, child) => Container(
+        padding: const EdgeInsets.all(1.5),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(999),
+          gradient: SweepGradient(
+            colors: [z.rib, z.rib, z.saffron, z.rib, z.rib],
+            stops: const [0, 0.3, 0.5, 0.7, 1],
+            transform: GradientRotation(_spin.value * 2 * math.pi),
+          ),
+        ),
+        child: child,
       ),
       child: Container(
         padding: const EdgeInsetsDirectional.fromSTEB(18, 6, 18, 6),
@@ -958,11 +992,11 @@ class _SearchField extends StatelessWidget {
                 height: 40,
                 child: Center(
                   child: TextField(
-                    controller: controller,
-                    focusNode: focusNode,
-                    onChanged: onChanged,
+                    controller: widget.controller,
+                    focusNode: widget.focusNode,
+                    onChanged: widget.onChanged,
                     textInputAction: TextInputAction.search,
-                    onSubmitted: (_) => focusNode.unfocus(),
+                    onSubmitted: (_) => widget.focusNode.unfocus(),
                     cursorColor: z.sap,
                     style: ZadType.body(size: 14, color: z.card),
                     decoration: InputDecoration.collapsed(

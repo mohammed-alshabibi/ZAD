@@ -18,20 +18,20 @@ AppUser _user(String id, String name) => AppUser.fromJson({
 
 void main() {
   late FakeTodayStore store;
-  late FakeUserReservationsRepository aisha;
+  late FakeUserReservationsRepository fatema;
   late FakeUserReservationsRepository omar;
 
   setUp(() {
     store = FakeTodayStore.seeded(DateTime.now());
-    aisha = FakeUserReservationsRepository(store, () => _user('u_aisha', 'Aisha Al-Balushi'), latency: Duration.zero);
+    fatema = FakeUserReservationsRepository(store, () => _user('u_fatema', 'Fatema Al-Balushi'), latency: Duration.zero);
     omar = FakeUserReservationsRepository(store, () => _user('u_omar', 'Omar Al-Said'), latency: Duration.zero);
   });
 
   int left(String offerId) => store.offerById(offerId)!['quantity_available'] as int;
   String status(String offerId) => store.offerById(offerId)!['status'] as String;
 
-  test('Aisha already holds the seeded Khubz pickup (code 482 913)', () async {
-    final mine = await aisha.myReservations();
+  test('Fatema already holds the seeded Khubz pickup (code 482 913)', () async {
+    final mine = await fatema.myReservations();
     final khubz = mine.singleWhere((r) => r.offerId == 'o_zaatar');
     expect(khubz.pickupCode, '482913');
     expect(formatPickupCode(khubz.pickupCode), '482 913');
@@ -102,7 +102,7 @@ void main() {
   });
 
   test('a user cannot cancel someone else’s reservation', () async {
-    await expectLater(omar.cancel('res_aisha'), throwsA(isA<ReserveException>()));
+    await expectLater(omar.cancel('res_fatema'), throwsA(isA<ReserveException>()));
   });
 
   test('the restaurant sees the new pickup with first name and last 3 digits only', () async {

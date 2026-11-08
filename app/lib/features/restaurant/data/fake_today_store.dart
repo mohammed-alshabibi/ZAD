@@ -11,11 +11,11 @@ import 'restaurant_today_repositories.dart';
 /// Demo (khubz@example.com): one live offer closing in 28 minutes, two
 /// pickups waiting (codes **482913** and **610271**) and one collected.
 ///
-/// Users near Al Khuwair (aisha@example.com) see Khubz plus four other
+/// Users near Al Khuwair (fatema@example.com) see Khubz plus four other
 /// fictional kitchens: 23 meals in all, as on the Figma Home screen. A sixth
 /// offer in Muttrah sits outside the 5 km radius.
 ///
-/// Aisha also has a pickup history on offers that closed in the last ten
+/// Fatema also has a pickup history on offers that closed in the last ten
 /// days: 5 collected (7 meals, 9.600 OMR saved, as on Figma "Pickups"),
 /// 1 missed and 1 cancelled.
 ///
@@ -254,7 +254,7 @@ class FakeTodayStore {
           start: const Duration(minutes: -20),
           end: const Duration(minutes: 90),
         ),
-        // Closed offers behind Aisha's pickup history.
+        // Closed offers behind Fatema's pickup history.
         past(id: 'o_past_mandi', restaurantId: 'r_wadi', restaurantName: 'Wadi Grill House', cuisine: 'grill',
             lngLat: [58.4037, 23.5870], title: 'Chicken mandi, half portions', category: 'rice_mandi',
             originalPrice: 3900, price: 1500, daysAgo: 1),
@@ -287,19 +287,19 @@ class FakeTodayStore {
             allergens: ['gluten'], originalPrice: null, price: 0, total: 10, available: 4, daysAgo: 6),
       ],
       [
-        _reservation('res_aisha', 'Aisha', 1, '482913', 'reserved', end, null, now),
+        _reservation('res_fatema', 'Fatema', 1, '482913', 'reserved', end, null, now),
         _reservation('res_salim', 'Salim', 2, '610271', 'reserved', end, null, now),
         _reservation('res_mariam', 'Mariam', 1, '305118', 'collected', end,
             iso(const Duration(minutes: -20)), now),
-        _aishaPast('res_past_1', 'o_past_mandi', 2, 'collected', 1, now),
-        _aishaPast('res_past_2', 'o_past_pastry', 1, 'collected', 2, now),
-        _aishaPast('res_past_3', 'o_past_veg', 1, 'expired', 3, now),
-        _aishaPast('res_past_4', 'o_past_kofta', 1, 'cancelled', 4, now),
-        _aishaPast('res_past_5', 'o_past_biryani', 1, 'collected', 5, now),
-        _aishaPast('res_past_6', 'o_past_halwa', 2, 'collected', 8, now),
-        _aishaPast('res_past_7', 'o_past_hummus', 1, 'collected', 10, now),
+        _fatemaPast('res_past_1', 'o_past_mandi', 2, 'collected', 1, now),
+        _fatemaPast('res_past_2', 'o_past_pastry', 1, 'collected', 2, now),
+        _fatemaPast('res_past_3', 'o_past_veg', 1, 'expired', 3, now),
+        _fatemaPast('res_past_4', 'o_past_kofta', 1, 'cancelled', 4, now),
+        _fatemaPast('res_past_5', 'o_past_biryani', 1, 'collected', 5, now),
+        _fatemaPast('res_past_6', 'o_past_halwa', 2, 'collected', 8, now),
+        _fatemaPast('res_past_7', 'o_past_hummus', 1, 'collected', 10, now),
         // Pickups behind Khubz's past offers (Salim and Mariam only, so
-        // Aisha's history stays as on Figma).
+        // Fatema's history stays as on Figma).
         _pastPickup('res_kh_1', 'o_kh_zaatar', 'Salim', 3, 'collected', 1, now),
         _pastPickup('res_kh_2', 'o_kh_zaatar', 'Mariam', 3, 'collected', 1, now),
         _pastPickup('res_kh_3', 'o_kh_fatayer', 'Salim', 2, 'collected', 2, now),
@@ -310,16 +310,16 @@ class FakeTodayStore {
     );
   }
 
-  /// One of Aisha's earlier reservations, made [daysAgo] days ago once pickup
+  /// One of Fatema's earlier reservations, made [daysAgo] days ago once pickup
   /// had opened; collected ones were picked up 15 minutes later.
-  static Map<String, dynamic> _aishaPast(
+  static Map<String, dynamic> _fatemaPast(
       String id, String offerId, int quantity, String status, int daysAgo, DateTime now) {
     final created = now.toUtc().subtract(Duration(days: daysAgo, minutes: 40));
     return {
       'id': id,
       'offer_id': offerId,
-      'user_id': 'u_aisha',
-      'user_first_name': 'Aisha',
+      'user_id': 'u_fatema',
+      'user_first_name': 'Fatema',
       'quantity': quantity,
       'pickup_code': (100000 + daysAgo * 7919).toString(),
       'status': status,
@@ -352,7 +352,7 @@ class FakeTodayStore {
       {
         'id': id,
         'offer_id': 'o_zaatar',
-        // Demo users: res_aisha belongs to aisha@example.com (u_aisha).
+        // Demo users: res_fatema belongs to fatema@example.com (u_fatema).
         'user_id': 'u_${firstName.toLowerCase()}',
         'user_first_name': firstName,
         'quantity': quantity,

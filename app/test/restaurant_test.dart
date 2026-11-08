@@ -140,7 +140,7 @@ void main() {
 
     test('a user account has no restaurant', () async {
       final c = make();
-      await c.read(sessionProvider.notifier).login(email: 'aisha@example.com', password: 'zad12345');
+      await c.read(sessionProvider.notifier).login(email: 'fatema@example.com', password: 'zad12345');
       expect(await c.read(myRestaurantProvider.future), isNull);
     });
   });
