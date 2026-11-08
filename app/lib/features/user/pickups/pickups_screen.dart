@@ -3,14 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/format/distance.dart';
-import '../../../core/format/muscat_time.dart';
 import '../../../core/l10n/generated/app_localizations.dart';
 import '../../../core/launch/external_links.dart';
 import '../../../core/router/routes.dart';
 import '../../../core/theme/zad_colors.dart';
 import '../../../core/theme/zad_type.dart';
 import '../../../core/time/clock.dart';
-import '../../../core/widgets/pickup_window_bar.dart';
 import '../../../core/widgets/zad_button.dart';
 import '../../../core/widgets/zad_icon.dart';
 import '../../../core/widgets/zad_pickup_row.dart';
@@ -22,7 +20,7 @@ import '../domain/user_reservation.dart';
 import 'pickup_code_sheet.dart';
 import 'pickup_text.dart';
 
-/// Figma "Pickups" (26:256): meals rescued so far, Upcoming · History tabs,
+/// Figma "Pickups" (26:256): Upcoming · History tabs,
 /// a card per running hold with "Show pickup code", and recent pickups.
 class PickupsScreen extends ConsumerStatefulWidget {
   const PickupsScreen({super.key});
@@ -110,14 +108,6 @@ class _PickupsScreenState extends ConsumerState<PickupsScreen> {
             l10n.tabPickups,
             style: ZadType.display(size: 34, letterSpacing: -0.51, color: z.card),
           ),
-          const SizedBox(height: 6),
-          Row(
-            children: [
-              const ZadIcon(ZadIcons.leaf, size: 16),
-              const SizedBox(width: 6),
-              Expanded(child: Text(l10n.impactLine(rescueStats(all)), style: ZadType.body(size: 14, color: z.sap))),
-            ],
-          ),
           const SizedBox(height: 20),
           ZadUnderlineTabs(
             selected: tab,
@@ -135,8 +125,8 @@ class _PickupsScreenState extends ConsumerState<PickupsScreen> {
   }
 }
 
-/// Figma "Active reservation": the meal, how much to pay, the hold countdown
-/// and bar, and Show pickup code / Directions.
+/// Figma "Active reservation": the meal, how much to pay, and
+/// Show pickup code / Directions.
 class _ActiveCard extends StatelessWidget {
   const _ActiveCard({required this.reservation, required this.now, required this.distanceM});
 
@@ -195,20 +185,6 @@ class _ActiveCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 14),
-          Row(
-            children: [
-              ZadIcon(ZadIcons.clock, size: 16, color: z.saffron),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(l10n.heldUntil(muscatClock(r.holdExpiresAt)), style: ZadType.body(size: 14, color: z.card)),
-              ),
-              const SizedBox(width: 8),
-              Text(l10n.timeLeft(r.holdExpiresAt, now), style: ZadType.mono(size: 13, color: z.saffron)),
-            ],
-          ),
-          const SizedBox(height: 8),
-          PickupWindowBar(start: r.holdStartsAt, end: r.holdExpiresAt, now: now),
           const SizedBox(height: 14),
           Row(
             children: [
