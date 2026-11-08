@@ -175,7 +175,7 @@ abstract class AppLocalizations {
   /// No description provided for @accountTypeUserTitle.
   ///
   /// In en, this message translates to:
-  /// **'I want to rescue meals'**
+  /// **'Customer'**
   String get accountTypeUserTitle;
 
   /// No description provided for @accountTypeUserBody.
@@ -187,7 +187,7 @@ abstract class AppLocalizations {
   /// No description provided for @accountTypeRestaurantTitle.
   ///
   /// In en, this message translates to:
-  /// **'I run a restaurant'**
+  /// **'Restaurant'**
   String get accountTypeRestaurantTitle;
 
   /// No description provided for @accountTypeRestaurantBody.

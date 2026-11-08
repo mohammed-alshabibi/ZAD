@@ -56,14 +56,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'Pick the account that fits you. Restaurant accounts are checked by our team before their meals go live.';
 
   @override
-  String get accountTypeUserTitle => 'I want to rescue meals';
+  String get accountTypeUserTitle => 'Customer';
 
   @override
   String get accountTypeUserBody =>
       'Find surplus meals near you tonight and pick them up at the counter.';
 
   @override
-  String get accountTypeRestaurantTitle => 'I run a restaurant';
+  String get accountTypeRestaurantTitle => 'Restaurant';
 
   @override
   String get accountTypeRestaurantBody =>
