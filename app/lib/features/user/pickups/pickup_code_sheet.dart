@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/format/muscat_time.dart';
 import '../../../core/l10n/generated/app_localizations.dart';
@@ -152,8 +151,7 @@ class _PickupCodeSheetState extends ConsumerState<_PickupCodeSheet> {
   }
 }
 
-/// Figma "Code panel": light card, QR (decorative stand-in until a real QR
-/// is generated), the code in DM Mono and a caption.
+/// Figma "Code panel": light card with the code in DM Mono and a caption.
 class _CodePanel extends StatelessWidget {
   const _CodePanel({required this.code, required this.dimmed});
 
@@ -176,8 +174,6 @@ class _CodePanel extends StatelessWidget {
           decoration: BoxDecoration(color: z.card, borderRadius: BorderRadius.circular(24)),
           child: Column(
             children: [
-              SvgPicture.asset('assets/pickups/qr_standin.svg', width: 150, height: 150),
-              const SizedBox(height: 12),
               FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Text(
