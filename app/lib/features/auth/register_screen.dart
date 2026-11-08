@@ -105,16 +105,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
       ],
       children: [
         AuthTitle(l10n.registerTitle, size: 28),
-        const SizedBox(height: 8),
-        AuthLinkText(
-          prompt: widget.role == UserRole.restaurant
-              ? l10n.registerSigningUpAsRestaurant
-              : l10n.registerSigningUpAsUser,
-          separator: ' · ',
-          link: l10n.registerChangeType,
-          textAlign: TextAlign.start,
-          onTap: _changeType,
-        ),
         const SizedBox(height: 22),
         AutofillGroup(
           child: Column(
