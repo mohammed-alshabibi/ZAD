@@ -23,14 +23,14 @@ void main() {
 
   setUp(() {
     store = FakeTodayStore.seeded(DateTime.now());
-    fatema = FakeUserReservationsRepository(store, () => _user('u_fatema', 'Fatema Al-Balushi'), latency: Duration.zero);
+    fatema = FakeUserReservationsRepository(store, () => _user('u_fatma', 'Fatma Almoqbali'), latency: Duration.zero);
     omar = FakeUserReservationsRepository(store, () => _user('u_omar', 'Omar Al-Said'), latency: Duration.zero);
   });
 
   int left(String offerId) => store.offerById(offerId)!['quantity_available'] as int;
   String status(String offerId) => store.offerById(offerId)!['status'] as String;
 
-  test('Fatema already holds the seeded Khubz pickup (code 482 913)', () async {
+  test('Fatma already holds the seeded Khubz pickup (code 482 913)', () async {
     final mine = await fatema.myReservations();
     final khubz = mine.singleWhere((r) => r.offerId == 'o_zaatar');
     expect(khubz.pickupCode, '482913');

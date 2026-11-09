@@ -2590,6 +2590,24 @@ abstract class AppLocalizations {
   /// **'Nothing waiting for review'**
   String get pendingSummaryNone;
 
+  /// No description provided for @tabPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get tabPending;
+
+  /// No description provided for @tabApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get tabApproved;
+
+  /// No description provided for @tabSuspended.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspended'**
+  String get tabSuspended;
+
   /// No description provided for @tabPendingCount.
   ///
   /// In en, this message translates to:

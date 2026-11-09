@@ -15,7 +15,7 @@ import 'restaurant_today_repositories.dart';
 /// fictional kitchens: 23 meals in all, as on the Figma Home screen. A sixth
 /// offer in Muttrah sits outside the 5 km radius.
 ///
-/// Fatema also has a pickup history on offers that closed in the last ten
+/// Fatma also has a pickup history on offers that closed in the last ten
 /// days: 5 collected (7 meals, 9.600 OMR saved, as on Figma "Pickups"),
 /// 1 missed and 1 cancelled.
 ///
@@ -254,7 +254,7 @@ class FakeTodayStore {
           start: const Duration(minutes: -20),
           end: const Duration(minutes: 90),
         ),
-        // Closed offers behind Fatema's pickup history.
+        // Closed offers behind Fatma's pickup history.
         past(id: 'o_past_mandi', restaurantId: 'r_wadi', restaurantName: 'Wadi Grill House', cuisine: 'grill',
             lngLat: [58.4037, 23.5870], title: 'Chicken mandi, half portions', category: 'rice_mandi',
             originalPrice: 3900, price: 1500, daysAgo: 1),
@@ -287,7 +287,7 @@ class FakeTodayStore {
             allergens: ['gluten'], originalPrice: null, price: 0, total: 10, available: 4, daysAgo: 6),
       ],
       [
-        _reservation('res_fatema', 'Fatema', 1, '482913', 'reserved', end, null, now),
+        _reservation('res_fatema', 'Fatma', 1, '482913', 'reserved', end, null, now),
         _reservation('res_salim', 'Salim', 2, '610271', 'reserved', end, null, now),
         _reservation('res_mariam', 'Mariam', 1, '305118', 'collected', end,
             iso(const Duration(minutes: -20)), now),
@@ -299,7 +299,7 @@ class FakeTodayStore {
         _fatemaPast('res_past_6', 'o_past_halwa', 2, 'collected', 8, now),
         _fatemaPast('res_past_7', 'o_past_hummus', 1, 'collected', 10, now),
         // Pickups behind Khubz's past offers (Salim and Mariam only, so
-        // Fatema's history stays as on Figma).
+        // Fatma's history stays as on Figma).
         _pastPickup('res_kh_1', 'o_kh_zaatar', 'Salim', 3, 'collected', 1, now),
         _pastPickup('res_kh_2', 'o_kh_zaatar', 'Mariam', 3, 'collected', 1, now),
         _pastPickup('res_kh_3', 'o_kh_fatayer', 'Salim', 2, 'collected', 2, now),
@@ -310,7 +310,7 @@ class FakeTodayStore {
     );
   }
 
-  /// One of Fatema's earlier reservations, made [daysAgo] days ago once pickup
+  /// One of Fatma's earlier reservations, made [daysAgo] days ago once pickup
   /// had opened; collected ones were picked up 15 minutes later.
   static Map<String, dynamic> _fatemaPast(
       String id, String offerId, int quantity, String status, int daysAgo, DateTime now) {
@@ -318,8 +318,8 @@ class FakeTodayStore {
     return {
       'id': id,
       'offer_id': offerId,
-      'user_id': 'u_fatema',
-      'user_first_name': 'Fatema',
+      'user_id': 'u_fatma',
+      'user_first_name': 'Fatma',
       'quantity': quantity,
       'pickup_code': (100000 + daysAgo * 7919).toString(),
       'status': status,
@@ -352,7 +352,7 @@ class FakeTodayStore {
       {
         'id': id,
         'offer_id': 'o_zaatar',
-        // Demo users: res_fatema belongs to fatema@example.com (u_fatema).
+        // Demo users: res_fatema belongs to fatema@example.com (u_fatma).
         'user_id': 'u_${firstName.toLowerCase()}',
         'user_first_name': firstName,
         'quantity': quantity,

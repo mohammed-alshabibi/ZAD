@@ -41,10 +41,12 @@ extension AdminText on AppLocalizations {
 
 /// "ZAD ADMIN" kicker, big title and a sap summary line with a clock.
 class AdminHeader extends StatelessWidget {
-  const AdminHeader({super.key, required this.title, required this.summary});
+  const AdminHeader({super.key, required this.title, this.summary});
 
   final String title;
-  final String summary;
+
+  /// The line under the title; left out when null.
+  final String? summary;
 
   @override
   Widget build(BuildContext context) {
@@ -56,14 +58,16 @@ class AdminHeader extends StatelessWidget {
         Text(l10n.adminKicker, style: ZadType.mono(size: 11, color: z.sap, letterSpacing: 1.1)),
         const SizedBox(height: 6),
         Text(title, style: ZadType.display(size: 34, letterSpacing: -0.51, color: z.card)),
-        const SizedBox(height: 6),
-        Row(
-          children: [
-            const ZadIcon(ZadIcons.clock, size: 16),
-            const SizedBox(width: 6),
-            Expanded(child: Text(summary, style: ZadType.body(size: 14, color: z.sap))),
-          ],
-        ),
+        if (summary != null) ...[
+          const SizedBox(height: 6),
+          Row(
+            children: [
+              const ZadIcon(ZadIcons.clock, size: 16),
+              const SizedBox(width: 6),
+              Expanded(child: Text(summary!, style: ZadType.body(size: 14, color: z.sap))),
+            ],
+          ),
+        ],
       ],
     );
   }

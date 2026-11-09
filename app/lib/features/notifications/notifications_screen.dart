@@ -17,6 +17,7 @@ import 'domain/app_notification.dart';
 
 /// Inbox (Zesty 71–73 pattern; no Figma frame): newest first, unread rows
 /// bold with a sap dot. Tapping a "new meals nearby" alert opens the meal.
+/// Customers see an empty page for now.
 class NotificationsScreen extends ConsumerWidget {
   const NotificationsScreen({super.key});
 
@@ -37,9 +38,14 @@ class NotificationsScreen extends ConsumerWidget {
     final items = async.value ?? const <AppNotification>[];
     final unread = ref.watch(unreadNotificationsProvider);
     final role = ref.watch(sessionProvider.select((u) => u?.role));
+    // The customer inbox is left empty for now; later it will only show
+    // reservation confirmations.
+    final isCustomer = role == UserRole.user;
 
     final List<Widget> body;
-    if (async.isLoading && !async.hasValue) {
+    if (isCustomer) {
+      body = const [];
+    } else if (async.isLoading && !async.hasValue) {
       body = [
         Padding(
           padding: const EdgeInsets.only(top: 48),
@@ -54,9 +60,7 @@ class NotificationsScreen extends ConsumerWidget {
         ),
       ];
     } else if (items.isEmpty) {
-      body = [
-        _Empty(body: role == UserRole.restaurant ? l10n.notificationsEmptyRestaurant : l10n.notificationsEmptyUser),
-      ];
+      body = [_Empty(body: l10n.notificationsEmptyRestaurant)];
     } else {
       body = [for (final n in items) _Row(n: n, when: l10n.notificationAge(n.createdAt, now), onTap: () => _open(context, ref, n))];
     }
@@ -90,11 +94,13 @@ class NotificationsScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 14),
               Text(l10n.notifications, style: ZadType.display(size: 34, letterSpacing: -0.51, color: z.card)),
-              const SizedBox(height: 6),
-              Text(
-                unread == 0 ? l10n.notificationsAllRead : l10n.notificationsUnread(unread),
-                style: ZadType.body(size: 14, color: z.onFrondMuted),
-              ),
+              if (!isCustomer) ...[
+                const SizedBox(height: 6),
+                Text(
+                  unread == 0 ? l10n.notificationsAllRead : l10n.notificationsUnread(unread),
+                  style: ZadType.body(size: 14, color: z.onFrondMuted),
+                ),
+              ],
               const SizedBox(height: 12),
               ...body,
             ],

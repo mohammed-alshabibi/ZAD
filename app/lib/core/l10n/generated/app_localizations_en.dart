@@ -1548,6 +1548,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pendingSummaryNone => 'Nothing waiting for review';
 
   @override
+  String get tabPending => 'Pending';
+
+  @override
+  String get tabApproved => 'Approved';
+
+  @override
+  String get tabSuspended => 'Suspended';
+
+  @override
   String tabPendingCount(int count) {
     return 'Pending · $count';
   }
