@@ -25,9 +25,9 @@
 
   "accountTypeTitle": "How will you use ZAD?",
   "accountTypeBody": "Pick the account that fits you. Restaurant accounts are checked by our team before their meals go live.",
-  "accountTypeUserTitle": "I want to rescue meals",
+  "accountTypeUserTitle": "Customer",
   "accountTypeUserBody": "Find surplus meals near you tonight and pick them up at the counter.",
-  "accountTypeRestaurantTitle": "I run a restaurant",
+  "accountTypeRestaurantTitle": "Restaurant",
   "accountTypeRestaurantBody": "Post what’s left at closing time, confirm pickups and see tomorrow’s forecast.",
 
   "registerTitle": "Create your account",
@@ -542,6 +542,9 @@
   "pendingSummary": "{count} waiting for review · reply within a day",
   "@pendingSummary": { "placeholders": { "count": { "type": "int" } } },
   "pendingSummaryNone": "Nothing waiting for review",
+  "tabPending": "Pending",
+  "tabApproved": "Approved",
+  "tabSuspended": "Suspended",
   "tabPendingCount": "Pending · {count}",
   "@tabPendingCount": { "placeholders": { "count": { "type": "int" } } },
   "tabApprovedCount": "Approved · {count}",

@@ -12,7 +12,7 @@ void main() {
   group('AuthValidators', () {
     test('full name must not be blank', () {
       expect(AuthValidators.fullName('   '), AuthFieldError.nameRequired);
-      expect(AuthValidators.fullName('Fatema'), isNull);
+      expect(AuthValidators.fullName('Fatma'), isNull);
     });
 
     test('email', () {
@@ -45,7 +45,7 @@ void main() {
       'id': 'u1',
       'email': 'a@b.om',
       'role': 'user',
-      'full_name': 'Fatema Al-Balushi',
+      'full_name': 'Fatma Almoqbali',
       'phone': null,
       'status': 'active',
       'notify_enabled': true,
@@ -53,7 +53,7 @@ void main() {
     });
     expect(user.lng, 58.391);
     expect(user.lat, 23.588);
-    expect(user.firstName, 'Fatema');
+    expect(user.firstName, 'Fatma');
   });
 
   group('Session with the fake repository', () {

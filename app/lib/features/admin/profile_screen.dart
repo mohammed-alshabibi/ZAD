@@ -32,8 +32,6 @@ class AdminProfileScreen extends ConsumerWidget {
           ZadFormRow(icon: ZadIcons.mail, title: l10n.fieldEmail, value: user.email, chevron: false),
           ZadFormRow(icon: ZadIcons.shield, title: l10n.profileRole, value: l10n.profileRoleAdmin, chevron: false),
         ],
-        const SizedBox(height: 12),
-        Text(l10n.profileAdminNote, style: ZadType.body(size: 13, height: 18 / 13, color: z.onFrondMuted)),
         const SizedBox(height: 28),
         const LogOutButton(),
       ],

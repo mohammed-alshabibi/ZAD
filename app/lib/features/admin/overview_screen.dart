@@ -8,15 +8,13 @@ import '../../core/l10n/generated/app_localizations.dart';
 import '../../core/router/routes.dart';
 import '../../core/theme/zad_colors.dart';
 import '../../core/theme/zad_type.dart';
-import '../../core/widgets/zad_form_row.dart';
-import '../../core/widgets/zad_icon.dart';
 import '../../core/widgets/zad_stat_tile.dart';
 import 'admin_widgets.dart';
 import 'application/admin_providers.dart';
 import 'domain/admin_models.dart';
 
 /// Figma "Admin: Overview" (47:956): meals rescued (the end point of the
-/// demo script), four counts, and what needs attention.
+/// demo script) and four counts.
 class AdminOverviewScreen extends ConsumerWidget {
   const AdminOverviewScreen({super.key});
 
@@ -44,10 +42,6 @@ class AdminOverviewScreen extends ConsumerWidget {
             _MealsRescued(o: data.overview),
             const SizedBox(height: 20),
             _Stats(o: data.overview),
-            const SizedBox(height: 20),
-            Text(l10n.needsAttention, style: ZadType.body(size: 16, weight: FontWeight.w600, color: z.card)),
-            const SizedBox(height: 20),
-            _Attention(o: data.overview),
           ] else if (async.hasError)
             AdminMessage(text: l10n.adminLoadError)
           else
@@ -144,42 +138,6 @@ class _Stats extends StatelessWidget {
           ZadStatTile(label: l10n.statUsers, value: '${o.users}', detail: l10n.statUsersDetail(o.usersReservedToday)),
         ),
       ],
-    );
-  }
-}
-
-/// "Needs attention": shortcuts to approvals and live offers.
-class _Attention extends StatelessWidget {
-  const _Attention({required this.o});
-
-  final AdminOverview o;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final z = context.zad;
-    final oldest = o.oldestPendingAt;
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(color: z.nightRaised, borderRadius: BorderRadius.circular(20)),
-      child: Column(
-        children: [
-          ZadFormRow(
-            icon: ZadIcons.storeSmall,
-            title: l10n.attentionApprovals,
-            value: oldest == null
-                ? l10n.attentionApprovalsNone
-                : l10n.attentionApprovalsValue(o.restaurantsPending, l10n.age(oldest, DateTime.now())),
-            onTap: () => context.go(Routes.adminRestaurants),
-          ),
-          ZadFormRow(
-            icon: ZadIcons.tag,
-            title: l10n.attentionOffers,
-            value: l10n.attentionOffersValue(o.liveOffers),
-            onTap: () => context.go(Routes.adminOffers),
-          ),
-        ],
-      ),
     );
   }
 }

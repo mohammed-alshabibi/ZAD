@@ -27,10 +27,10 @@ void main() {
   setUp(() {
     now = DateTime.now();
     store = FakeTodayStore.seeded(now);
-    fatema = FakeUserReservationsRepository(store, () => _user('u_fatema', 'Fatema Al-Balushi'), latency: Duration.zero);
+    fatema = FakeUserReservationsRepository(store, () => _user('u_fatma', 'Fatma Almoqbali'), latency: Duration.zero);
   });
 
-  test('Fatema sees one pickup waiting and her history, as on Figma "Pickups"', () async {
+  test('Fatma sees one pickup waiting and her history, as on Figma "Pickups"', () async {
     final mine = await fatema.myReservations();
     final upcoming = upcomingPickups(mine, now);
     expect(upcoming.map((r) => r.pickupCode), ['482913']);

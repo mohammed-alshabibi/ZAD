@@ -18,10 +18,10 @@ class FakeAuthRepository implements AuthRepository {
     'fatema@example.com': _Account(
       password: demoPassword,
       json: {
-        'id': 'u_fatema',
+        'id': 'u_fatma',
         'email': 'fatema@example.com',
         'role': 'user',
-        'full_name': 'Fatema Al-Balushi',
+        'full_name': 'Fatma Almoqbali',
         'phone': null,
         'status': 'active',
         'notify_enabled': true,

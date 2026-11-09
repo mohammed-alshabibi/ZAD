@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/format/muscat_time.dart';
 import '../../../core/l10n/generated/app_localizations.dart';
 import '../../../core/theme/zad_colors.dart';
 import '../../../core/theme/zad_type.dart';
-import '../../../core/time/clock.dart';
 import '../../../core/widgets/zad_button.dart';
-import '../../../core/widgets/zad_icon.dart';
 import '../../../core/widgets/zad_sheet.dart';
 import '../../../core/widgets/zad_stepper.dart';
 import '../application/reservations.dart';
@@ -15,7 +12,6 @@ import '../data/user_offers_repository.dart';
 import '../data/user_reservations_repository.dart';
 import '../domain/nearby_offer.dart';
 import '../domain/user_reservation.dart';
-import '../home/offer_text.dart';
 
 /// Figma "Meal details — Reserve sheet" (24:170). Returns the new
 /// reservation, or null if the user closed the sheet.
@@ -78,18 +74,11 @@ class _ReserveSheetState extends ConsumerState<_ReserveSheet> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final z = context.zad;
-    final now = ref.now;
     // Follow the live count while the sheet is open.
     final offer = ref.watch(offerDetailsProvider(widget.offer.id)).value ?? widget.offer;
     final o = offer.offer;
     final max = maxReservable(o.quantityAvailable);
     final quantity = _quantity.clamp(1, max < 1 ? 1 : max);
-
-    // hold_expires_at = min(max(now, pickup_start) + 30 min, pickup_end), as the server works it out.
-    final from = now.isAfter(o.pickupStart) ? now : o.pickupStart;
-    final hold = from.add(FakeUserReservationsRepository.hold);
-    final holdUntil = hold.isAfter(o.pickupEnd) ? o.pickupEnd : hold;
-    final free = o.priceBaisa == 0;
 
     return ZadSheet(
       title: l10n.reserveSheetTitle,
@@ -118,24 +107,6 @@ class _ReserveSheetState extends ConsumerState<_ReserveSheet> {
                 increaseLabel: l10n.increaseQuantity,
                 onDecrease: _busy || quantity <= 1 ? null : () => setState(() => _quantity = quantity - 1),
                 onIncrease: _busy || quantity >= max ? null : () => setState(() => _quantity = quantity + 1),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 18),
-        _Box(
-          child: Column(
-            children: [
-              _SummaryRow(
-                icon: ZadIcons.clock,
-                title: l10n.holdUntilTitle(muscatClock(holdUntil)),
-                body: l10n.holdUntilBody,
-                divider: true,
-              ),
-              _SummaryRow(
-                icon: ZadIcons.wallet,
-                title: free ? l10n.freeCounterTitle : l10n.payCounterTitle(l10n.priceLabel(o.priceBaisa * quantity)),
-                body: free ? l10n.freeCounterBody : l10n.payCounterBody,
               ),
             ],
           ),
@@ -187,42 +158,6 @@ class _Box extends StatelessWidget {
         border: Border.all(color: z.nightHairline),
       ),
       child: child,
-    );
-  }
-}
-
-class _SummaryRow extends StatelessWidget {
-  const _SummaryRow({required this.icon, required this.title, required this.body, this.divider = false});
-
-  final ZadIcons icon;
-  final String title;
-  final String body;
-  final bool divider;
-
-  @override
-  Widget build(BuildContext context) {
-    final z = context.zad;
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      decoration: BoxDecoration(
-        border: divider ? Border(bottom: BorderSide(color: z.nightHairline)) : null,
-      ),
-      child: Row(
-        children: [
-          ZadIcon(icon, size: 20),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title, style: ZadType.body(size: 14, weight: FontWeight.w500, color: z.card)),
-                const SizedBox(height: 2),
-                Text(body, style: ZadType.body(size: 12, height: 17 / 12, color: z.onFrondMuted)),
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

@@ -13,7 +13,6 @@ import '../../../core/launch/external_links.dart';
 import '../../../core/theme/zad_colors.dart';
 import '../../../core/theme/zad_type.dart';
 import '../../../core/time/clock.dart';
-import '../../../core/widgets/pickup_window_bar.dart';
 import '../../../core/widgets/zad_action_tile.dart';
 import '../../../core/widgets/zad_button.dart';
 import '../../../core/widgets/zad_fact_chip.dart';
@@ -177,7 +176,6 @@ class _Content extends StatelessWidget {
     final o = offer.offer;
     final tag = l10n.closingTag(o, now);
     final started = !now.isBefore(o.pickupStart);
-    final mono11 = ZadType.mono(size: 11, weight: FontWeight.w400, color: z.onFrondMuted);
     final phone = offer.restaurantPhone;
 
     return SingleChildScrollView(
@@ -213,16 +211,6 @@ class _Content extends StatelessWidget {
                         decoration: BoxDecoration(color: z.saffron, borderRadius: BorderRadius.circular(6)),
                         child: Text(tag, style: ZadType.mono(size: 11, color: z.ink)),
                       ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Row(
-                  children: [
-                    Text(muscatClock(o.pickupStart), style: mono11),
-                    const SizedBox(width: 8),
-                    Expanded(child: PickupWindowBar(start: o.pickupStart, end: o.pickupEnd, now: now, showNow: true)),
-                    const SizedBox(width: 8),
-                    Text(muscatClock(o.pickupEnd), style: mono11),
                   ],
                 ),
                 const SizedBox(height: 16),

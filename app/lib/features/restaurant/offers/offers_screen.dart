@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../core/l10n/generated/app_localizations.dart';
-import '../../../core/router/routes.dart';
 import '../../../core/theme/zad_colors.dart';
 import '../../../core/theme/zad_type.dart';
-import '../../../core/time/clock.dart';
 import '../../../core/widgets/zad_icon.dart';
-import '../../../core/widgets/zad_pickup_row.dart';
 import '../../../core/widgets/zad_tabs.dart';
-import '../../user/pickups/pickup_text.dart';
 import '../application/restaurant_offers.dart';
 import '../application/restaurant_today.dart';
-import '../home/live_offer_card.dart';
-import '../home/offer_sheets.dart';
 
-/// Restaurant "Offers" tab (no Figma frame; built from the Pickups layout):
-/// Live offers with Edit quantity / End early, and Past offers with how
-/// many meals were picked up.
+/// Restaurant "Offers" tab: the Live and Past tabs are left empty for now.
+/// The lists (live offer cards, past offer rows) are in git tag `ui-v1`.
 class RestaurantOffersScreen extends ConsumerStatefulWidget {
   const RestaurantOffersScreen({super.key});
 
@@ -34,48 +26,7 @@ class _RestaurantOffersScreenState extends ConsumerState<RestaurantOffersScreen>
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final z = context.zad;
-    final now = ref.now;
-    final async = ref.watch(restaurantOffersViewProvider);
-    final view = async.value;
-
-    final List<Widget> body;
-    if (view == null) {
-      body = [
-        Padding(
-          padding: const EdgeInsets.only(top: 48),
-          child: Center(
-            child: async.hasError
-                ? Text(l10n.errorLoadOffers, textAlign: TextAlign.center, style: ZadType.body(size: 14, color: z.danger))
-                : CircularProgressIndicator(color: z.sap),
-          ),
-        ),
-      ];
-    } else if (_tab == 0) {
-      body = [
-        if (view.live.isEmpty)
-          NothingLive(onPost: () => context.push(Routes.restaurantNewOffer))
-        else
-          for (final offer in view.live) ...[
-            LiveOfferCard(
-              offer: offer,
-              now: now,
-              onEditQuantity: () => showEditQuantitySheet(context, offer),
-              onEndEarly: () => showEndEarlySheet(context, offer),
-            ),
-            const SizedBox(height: 12),
-          ],
-      ];
-    } else {
-      body = [
-        if (view.past.isEmpty)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24),
-            child: Text(l10n.offersPastEmpty, style: ZadType.body(size: 15, height: 22 / 15, color: z.onFrondMuted)),
-          )
-        else
-          for (final p in view.past) _PastOfferRow(past: p, now: now),
-      ];
-    }
+    final view = ref.watch(restaurantOffersViewProvider).value;
 
     return RefreshIndicator(
       color: z.frond,
@@ -103,40 +54,13 @@ class _RestaurantOffersScreenState extends ConsumerState<RestaurantOffersScreen>
           ZadUnderlineTabs(
             selected: _tab,
             labels: [
-              (view?.live.length ?? 0) == 0 ? l10n.offersTabLive : l10n.offersTabLiveCount(view!.live.length),
+              l10n.offersTabLive,
               l10n.offersTabPast,
             ],
             onSelect: (i) => setState(() => _tab = i),
           ),
-          const SizedBox(height: 20),
-          ...body,
         ],
       ),
-    );
-  }
-}
-
-class _PastOfferRow extends StatelessWidget {
-  const _PastOfferRow({required this.past, required this.now});
-
-  final PastOffer past;
-  final DateTime now;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final o = past.offer;
-    final outcome = pastOfferOutcome(o);
-    return ZadPickupRow(
-      meal: o.title,
-      detail: l10n.offerPastDetail(l10n.pickupDay(o.pickupEnd, now), past.collectedMeals, o.quantityTotal),
-      status: outcome == PastOfferOutcome.allTaken ? ZadPickupStatus.collected : ZadPickupStatus.missed,
-      statusLabel: switch (outcome) {
-        PastOfferOutcome.allTaken => l10n.offerStatusAllTaken,
-        PastOfferOutcome.ended => l10n.offerStatusEnded,
-        PastOfferOutcome.endedEarly => l10n.offerStatusEndedEarly,
-        PastOfferOutcome.removed => l10n.offerStatusRemoved,
-      },
     );
   }
 }

@@ -6,19 +6,19 @@ import '../theme/zad_type.dart';
 import 'zad_icon.dart';
 
 /// Figma component "Choice card" (35:717): large single-choice card.
-/// Selected = sap outline, rib icon tile, filled radio.
+/// Selected = sap outline, rib icon tile, filled radio. The description is optional.
 class ZadChoiceCard extends StatelessWidget {
   const ZadChoiceCard({
     super.key,
     required this.title,
-    required this.description,
+    this.description,
     required this.icon,
     required this.selected,
     required this.onTap,
   });
 
   final String title;
-  final String description;
+  final String? description;
   final ZadIcons icon;
   final bool selected;
   final VoidCallback onTap;
@@ -63,8 +63,10 @@ class ZadChoiceCard extends StatelessWidget {
                     children: [
                       Text(title,
                           style: ZadType.body(size: 17, weight: FontWeight.w600, height: 22 / 17, color: z.card)),
-                      const SizedBox(height: 4),
-                      Text(description, style: ZadType.body(size: 14, height: 20 / 14, color: z.onFrondMuted)),
+                      if (description case final d?) ...[
+                        const SizedBox(height: 4),
+                        Text(d, style: ZadType.body(size: 14, height: 20 / 14, color: z.onFrondMuted)),
+                      ],
                     ],
                   ),
                 ),

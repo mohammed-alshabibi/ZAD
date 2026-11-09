@@ -41,14 +41,9 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
       ],
       children: [
         const AuthLeafTile(),
-        const SizedBox(height: 24),
-        AuthTitle(l10n.accountTypeTitle),
-        const SizedBox(height: 10),
-        AuthBody(l10n.accountTypeBody),
         const SizedBox(height: 28),
         ZadChoiceCard(
           title: l10n.accountTypeUserTitle,
-          description: l10n.accountTypeUserBody,
           icon: ZadIcons.user,
           selected: _role == UserRole.user,
           onTap: () => setState(() => _role = UserRole.user),
@@ -56,7 +51,6 @@ class _AccountTypeScreenState extends State<AccountTypeScreen> {
         const SizedBox(height: 12),
         ZadChoiceCard(
           title: l10n.accountTypeRestaurantTitle,
-          description: l10n.accountTypeRestaurantBody,
           icon: ZadIcons.store,
           selected: _role == UserRole.restaurant,
           onTap: () => setState(() => _role = UserRole.restaurant),

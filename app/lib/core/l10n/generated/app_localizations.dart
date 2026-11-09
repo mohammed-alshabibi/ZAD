@@ -175,7 +175,7 @@ abstract class AppLocalizations {
   /// No description provided for @accountTypeUserTitle.
   ///
   /// In en, this message translates to:
-  /// **'I want to rescue meals'**
+  /// **'Customer'**
   String get accountTypeUserTitle;
 
   /// No description provided for @accountTypeUserBody.
@@ -187,7 +187,7 @@ abstract class AppLocalizations {
   /// No description provided for @accountTypeRestaurantTitle.
   ///
   /// In en, this message translates to:
-  /// **'I run a restaurant'**
+  /// **'Restaurant'**
   String get accountTypeRestaurantTitle;
 
   /// No description provided for @accountTypeRestaurantBody.
@@ -2589,6 +2589,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nothing waiting for review'**
   String get pendingSummaryNone;
+
+  /// No description provided for @tabPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get tabPending;
+
+  /// No description provided for @tabApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get tabApproved;
+
+  /// No description provided for @tabSuspended.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspended'**
+  String get tabSuspended;
 
   /// No description provided for @tabPendingCount.
   ///
